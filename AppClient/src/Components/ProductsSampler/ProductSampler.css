@@ -1,0 +1,174 @@
+/* PERTENECEN AL BuyCar.jsx */
+.product-container{
+    width: 100%;
+    padding-top: 11rem;
+    gap: 6rem 12rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.product-title-principal{
+    margin: 0;
+    font-size: 2.2rem;
+    font-weight: 700;
+    /* -webkit-text-stroke: 1.5px rgb(22, 118, 182); */
+    text-align: center;
+    color: black;
+}
+
+/* ---------------------------------------------- */
+
+.product-card{
+    padding: 1.4rem;
+    width: 27rem;
+    height: 39rem;
+    border-radius: 12px;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: whitesmoke;
+}
+
+.prod-title{
+    font-size: 1.7rem;
+    margin: 0;
+    font-weight: 700;
+    text-align: center;
+}
+
+.box-img{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.prod-img{
+    width: 50%;
+}
+
+.card-dates{
+    padding-top: 1rem;
+    height: 8.5rem;
+    display: flex;
+}
+
+.card-left{
+    width: 8rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-right{
+    width: 8rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.subtitle-descrip{
+    margin: 0;
+    width: 4rem;
+    height: 0px;
+    font-size: 9px;
+    font-weight: 700;
+    color: rgb(24, 135, 209);
+    text-align: center;
+}
+
+.value-descrip{
+    margin: 0;
+    padding-bottom: 4.2rem;
+    line-height: 1.3rem;
+    height: 20px;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.subtitle-store{
+    margin: 0;
+    height: 0px;
+    font-size: 9px;
+    font-weight: 700;
+    color: rgb(24, 135, 209);  
+    text-align: center; 
+}
+
+.subtitle{
+    margin: 0;
+    height: 10px;
+    font-size: 9px;
+    font-weight: 700;
+    color: rgb(24, 135, 209);
+}
+
+.value{
+    margin: 0;
+    padding-bottom: 2rem;
+    height: 20px;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.quantity-controls{
+    height: 1.5rem;
+    width: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.btn-minor{
+    margin-top: 0.1rem;
+    height: 1rem;
+    width: 1rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: red;
+}
+
+.btn-plus{
+    margin-top: 0.1rem;
+    height: 1rem;
+    width: 1rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: seagreen;
+}
+
+.span-btn{ 
+    font-size: 0.5rem;  
+}
+
+.card-btn{
+    width: 12rem;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 0.2rem 1rem;
+    border-radius: 4px;
+    color: rgb(24, 135, 209);
+    text-align: center;
+    text-decoration: none;
+    background-color: whitesmoke;
+
+}
+
+.card-btn:hover{
+    color: black;
+    background-color: rgb(24, 135, 209);
+}
+
+

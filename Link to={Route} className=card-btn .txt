@@ -1,0 +1,10 @@
+            <Link to={Route} className="card-btn shadow-md">
+              Comprar
+            </Link>
+
+carrito compras 
+manejar entregas con historial
+prevencion de errors
+descripcion text area
+placeholders de formularios
+css de las nuevas paginas 

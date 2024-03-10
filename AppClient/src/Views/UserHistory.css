@@ -1,0 +1,16 @@
+.shop-card{
+    width: 35%;
+    border: 2px solid #c1e1f6;
+    box-shadow: 1px 1px 4px rgb(220, 220, 220);
+}
+
+.shops-info {
+    width: 85%;
+    padding-left: 10%;
+}
+
+.invoice-item {
+    color: black;
+    font-weight: bold;
+    padding-top: 5%;
+}
