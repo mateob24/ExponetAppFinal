@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 import { IoStorefrontSharp } from "react-icons/io5";
 import { ShopContextValues } from "../Components/Context/ShopContext";
+import Swal from 'sweetalert2';
 // import Header from '../Components/Header/Header';
 // import Footer from '../Components/Footer/Footer';
 
@@ -46,7 +47,13 @@ function Login() {
         Cookies.set("userRoll", response.data.userRoll);
         console.log("Cookie userId establecida:", response.data.userId);
         setBuyCarProducts([]);
-        alert("bienvenido");
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Bienvenido",
+          showConfirmButton: false,
+          timer: 1500,
+        });
         navigate("/");
       }
     } catch (error) {

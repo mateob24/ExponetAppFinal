@@ -6,6 +6,7 @@ import Footer from "../Components/Footer/Footer";
 import { ShopContextValues } from "../Components/Context/ShopContext";
 import { useContext } from "react";
 import "./UpdateShop.css";
+import Swal from 'sweetalert2';
 
 function UpdateProduct() {
   const [productName, setProductName] = useState("");
@@ -35,7 +36,13 @@ function UpdateProduct() {
       .then(() => {
         getProductsList();
         limpiarCampos();
-        alert("Producto registrado");
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Producto registrado",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       })
       .catch((error) => {
         console.error("Error al registrar el producto:", error);
@@ -68,7 +75,13 @@ function UpdateProduct() {
 
     Axios.put("http://localhost:3000/updateProduct", formData)
       .then(() => {
-        alert("Producto actualizado");
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Producto actualizado",
+          showConfirmButton: false,
+          timer: 1500,
+        });
         getProductsList();
         limpiarCampos();
       })
@@ -88,7 +101,13 @@ function UpdateProduct() {
     }
 
     Axios.put(`http://localhost:3000/deleteProduct/${productId}`).then(() => {
-      alert("Producto eliminado");
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Producto eliminado",
+        showConfirmButton: false,
+        timer: 1500,
+      });
       limpiarCampos();
       getProductsList();
     });

@@ -4,6 +4,7 @@ import Header from "../Components/Header/Header";
 import Footer from "../Components/Footer/Footer";
 import "./OrdersManagment.css";
 import { ShopContextValues } from "../Components/Context/ShopContext";
+import Swal from "sweetalert2";
 
 function OrdersManagment() {
   const [orders, setOrders] = useState([]);
@@ -25,12 +26,11 @@ function OrdersManagment() {
     fetchBuyCars();
   }, []);
 
-
   function orderDelivered(buyCarContent) {
     console.log("soy funcion");
     console.dir(buyCarContent);
 
-    const newBuyCarContent = ChangeState(buyCarContent, globalShopId)
+    const newBuyCarContent = ChangeState(buyCarContent, globalShopId);
 
     const parsedContent = JSON.parse(buyCarContent);
     console.dir(parsedContent);
@@ -52,19 +52,23 @@ function OrdersManagment() {
 
     console.dir(productsShopOwners);
 
-
-
     axios
       .post("http://localhost:3000/ProductStockUpdate", {
         productsIds,
         productsQuantities,
         productsShopOwners,
-        newBuyCarContent
+        newBuyCarContent,
       })
       .then((response) => {
         // Maneja la respuesta si es necesario
         console.log(response.data);
-        alert("pedido despachado")
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Pedido despachado",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       })
       .catch((error) => {
         console.error("Error al actualizar el stock del producto:", error);
@@ -75,8 +79,11 @@ function OrdersManagment() {
     const parsedContent = JSON.parse(buyCarContent);
     console.dir(parsedContent);
 
-    parsedContent.products.forEach(product => {
-      if (product.productShopOwner === globalShopId && product.productState === "pendiente") {
+    parsedContent.products.forEach((product) => {
+      if (
+        product.productShopOwner === globalShopId &&
+        product.productState === "pendiente"
+      ) {
         product.productState = "Despachado";
       } else if (product.productState === "pendiente") {
         product.productState = "pendiente";
@@ -85,8 +92,6 @@ function OrdersManagment() {
 
     return JSON.stringify(parsedContent);
   }
-
-
 
   const DeleteBuyCar = (buyCarId) => {
     const confirmation = window.confirm(
@@ -99,7 +104,13 @@ function OrdersManagment() {
     }
 
     axios.put(`http://localhost:3000/deleteBuyCar/${buyCarId}`).then(() => {
-      alert("Carrito eliminado");
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Carrito eliminado",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     });
   };
   return (
@@ -108,7 +119,9 @@ function OrdersManagment() {
 
       <div>
         <div className="box-title-historial">
-          <h2 className="product-title-historial">Lista De Ordenes De Compra</h2>
+          <h2 className="product-title-historial">
+            Lista De Ordenes De Compra
+          </h2>
         </div>
         <ul className="orders-container">
           {orders.map((order, index) => (
@@ -137,7 +150,9 @@ function OrdersManagment() {
                       <p className="invoice-item">Categoría:</p>
                       <p>{product.productCategory}</p>
 
-                      <p className="invoice-item">Estado: {product.productState}</p>
+                      <p className="invoice-item">
+                        Estado: {product.productState}
+                      </p>
                     </li>
                   )
                 )}

@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { IoStorefrontSharp } from "react-icons/io5";
 import "./Register.css";
+import Swal from 'sweetalert2';
 
 function RegisterForm() {
   const [formData, setFormData] = useState({
@@ -28,7 +29,10 @@ function RegisterForm() {
 
     if (formData.userPassword !== formData.confirmPassword) {
       console.error("Las contraseñas no coinciden");
-      alert("las contraseñas no coinciden");
+      Swal.fire({
+        icon: "error",
+        text: "Contraseñas no coinciden!",
+      });
       return;
     }
 
@@ -40,14 +44,20 @@ function RegisterForm() {
       !formData.userRole
     ) {
       console.error("Por favor, complete todos los campos");
-      alert("rellene todos los campos");
+      Swal.fire({
+        icon: "error",
+        text: "Complete todos los campos requeridos en el formulario!",
+      });
       return;
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.userMail)) {
       console.error("Formato de correo electrónico inválido");
-      alert("formato de correo electronico invalido");
+      Swal.fire({
+        icon: "warning",
+        title: "Formato de correo electronico invalido",
+      });
       return;
     }
 
@@ -61,7 +71,10 @@ function RegisterForm() {
       });
 
       console.log(response.data);
-      alert("registro exitoso");
+      Swal.fire({
+        title: "¡Registro exitoso!",
+        icon: "success",
+      });
       navigate("/Login");
     } catch (error) {
       console.error("Error al enviar la solicitud:", error);

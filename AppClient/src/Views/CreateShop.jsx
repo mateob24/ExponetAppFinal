@@ -8,6 +8,7 @@ import Footer from "../Components/Footer/Footer";
 import Cookies from "js-cookie";
 import { useContext } from "react";
 import { ShopContextValues } from "../Components/Context/ShopContext";
+import Swal from 'sweetalert2';
 
 function CreateShop() {
   const [shopName, setShopName] = useState("");
@@ -86,12 +87,21 @@ function CreateShop() {
 
       Axios.put("http://localhost:3000/updateShop", formData, {}).then(() => {
         getShops();
-        alert("Tienda actualizada");
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Tienda actializada",
+          showConfirmButton: false,
+          timer: 1500,
+        });
         limpiarCampos();
       });
     } else {
       // El usuario ha hecho clic en "Cancelar"
-      alert("Actualización cancelada");
+      Swal.fire({
+        icon: "error",
+        title: "Actualizacion cancelada",
+      });
     }
   };
 
