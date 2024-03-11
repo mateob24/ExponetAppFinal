@@ -3,7 +3,7 @@ import Header from "../Components/Header/Header";
 import Footer from "../Components/Footer/Footer";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
-import "./UserHistory.css"
+import "./UserHistory.css";
 
 function UserHistory() {
   const [buyCars, setBuyCars] = useState([]);
@@ -13,7 +13,9 @@ function UserHistory() {
     setBuyCarUser(Cookies.get("userId"));
     const fetchShops = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/buyCarsList");
+        const response = await axios.get(
+          "http://exponet-app-final.vercel.app/buyCarsList"
+        );
         setBuyCars(response.data);
       } catch (error) {
         console.error("Error al obtener la lista de tiendas:", error);
@@ -36,7 +38,9 @@ function UserHistory() {
             <div key={filteredBuyCar.buyCarId} className="shop-card-historial">
               <div className="shops-info">
                 <h4 className="shops-title m-0">Detalle de Compra</h4>
-                {Array.isArray(JSON.parse(filteredBuyCar.buyCarContent).products) &&
+                {Array.isArray(
+                  JSON.parse(filteredBuyCar.buyCarContent).products
+                ) &&
                   JSON.parse(filteredBuyCar.buyCarContent).products.map(
                     (product, index) => (
                       <div key={product.productId}>
@@ -53,8 +57,9 @@ function UserHistory() {
                           {Array.isArray(
                             JSON.parse(filteredBuyCar.buyCarContent).quantities
                           ) &&
-                            JSON.parse(filteredBuyCar.buyCarContent).quantities[index]
-                              .quantity}
+                            JSON.parse(filteredBuyCar.buyCarContent).quantities[
+                              index
+                            ].quantity}
                         </p>
                       </div>
                     )

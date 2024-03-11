@@ -8,7 +8,7 @@ import Footer from "../Components/Footer/Footer";
 import Cookies from "js-cookie";
 import { useContext } from "react";
 import { ShopContextValues } from "../Components/Context/ShopContext";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 
 function CreateShop() {
   const [shopName, setShopName] = useState("");
@@ -36,7 +36,7 @@ function CreateShop() {
     formData.append("shopOwner", shopOwner);
     formData.append("shopComments", shopComments);
 
-    Axios.post("http://localhost:3000/createShop", formData)
+    Axios.post("http://exponet-app-final.vercel.app/createShop", formData)
       .then(() => {
         getShops();
         limpiarCampos();
@@ -85,7 +85,11 @@ function CreateShop() {
       formData.append("shopComments", shopComments);
       formData.append("shopId", shopId);
 
-      Axios.put("http://localhost:3000/updateShop", formData, {}).then(() => {
+      Axios.put(
+        "http://exponet-app-final.vercel.app/updateShop",
+        formData,
+        {}
+      ).then(() => {
         getShops();
         Swal.fire({
           position: "center",
@@ -111,7 +115,9 @@ function CreateShop() {
     );
 
     if (confirmation) {
-      Axios.put(`http://localhost:3000/deleteShop/${ShopId}`).then(() => {
+      Axios.put(
+        `http://exponet-app-final.vercel.app/deleteShop/${ShopId}`
+      ).then(() => {
         alert("Tienda eliminada");
         limpiarCampos();
         getShops();
@@ -123,7 +129,9 @@ function CreateShop() {
   };
 
   const deleteProducts = (ShopId) => {
-    Axios.put(`http://localhost:3000/deleteProducts/${ShopId}`).then(() => {
+    Axios.put(
+      `http://exponet-app-final.vercel.app/deleteProducts/${ShopId}`
+    ).then(() => {
       limpiarCampos();
       getShops();
     });
@@ -157,12 +165,12 @@ function CreateShop() {
   };
 
   const getShops = (userLogin) => {
-    Axios.get(`http://localhost:3000/shopsListCreateShops/${shopOwner}`).then(
-      (response) => {
-        setShopsList(response.data);
-        console.dir(response.data);
-      }
-    );
+    Axios.get(
+      `http://exponet-app-final.vercel.app/shopsListCreateShops/${shopOwner}`
+    ).then((response) => {
+      setShopsList(response.data);
+      console.dir(response.data);
+    });
   };
 
   const handleFileChange = (event) => {
@@ -265,7 +273,9 @@ function CreateShop() {
             </div>
 
             <div className="input-group mt-3">
-              <label className="select-img-store" htmlFor="file">Seleccionar imagen de la tienda</label>
+              <label className="select-img-store" htmlFor="file">
+                Seleccionar imagen de la tienda
+              </label>
               <input
                 type="file"
                 id="file"
@@ -284,24 +294,15 @@ function CreateShop() {
           <div className="card-footer text-body-secondary d-flex justify-content-center">
             {editar ? (
               <div className="w-52 d-flex justify-content-between">
-                <button
-                  onClick={updateShop}
-                  className="btn-update-store"
-                >
+                <button onClick={updateShop} className="btn-update-store">
                   Actualizar
                 </button>
-                <button
-                  onClick={CancelarUpdate}
-                  className="btn-cancel-store"
-                >
+                <button onClick={CancelarUpdate} className="btn-cancel-store">
                   Cancelar
                 </button>
               </div>
             ) : (
-              <button
-                onClick={addShop}
-                className="btn-new-store"
-              >
+              <button onClick={addShop} className="btn-new-store">
                 Registrar
               </button>
             )}

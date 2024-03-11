@@ -9,7 +9,9 @@ function Comments() {
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/commentsList");
+        const response = await axios.get(
+          "http://exponet-app-final.vercel.app/commentsList"
+        );
         setComments(response.data);
       } catch (error) {
         console.error("Error al obtener la lista de comentarios:", error);

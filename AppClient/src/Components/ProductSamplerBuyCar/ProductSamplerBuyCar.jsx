@@ -125,7 +125,7 @@ function ProductSamplerBuyCar() {
       buyCarState: buyCarState,
     };
 
-    Axios.post("http://localhost:3000/createBuyCar", requestData)
+    Axios.post("http://exponet-app-final.vercel.app/createBuyCar", requestData)
       .then((response) => {
         console.log(response.data);
       })
@@ -173,25 +173,27 @@ function ProductSamplerBuyCar() {
               </div>
             </section>
             <div className="quantity-controls">
-                <button
-                  className="btn-minor shadow-sm"
-                  onClick={() => handleDecrement(product.productId)}
-                >
-                  <span className="span-btn">
-                    <FaMinus />
-                  </span>
-                </button>
-                <span className="span-quan">{selectedQuantities[product.productId] || 0}</span>
-                <button
-                  className="btn-plus shadow-sm"
-                  onClick={() => handleIncrement(product.productId)}
-                  disabled={product.productStock <= 0}
-                >
-                  <span className="span-btn">
-                    <FaPlus />
-                  </span>
-                </button>
-              </div>
+              <button
+                className="btn-minor shadow-sm"
+                onClick={() => handleDecrement(product.productId)}
+              >
+                <span className="span-btn">
+                  <FaMinus />
+                </span>
+              </button>
+              <span className="span-quan">
+                {selectedQuantities[product.productId] || 0}
+              </span>
+              <button
+                className="btn-plus shadow-sm"
+                onClick={() => handleIncrement(product.productId)}
+                disabled={product.productStock <= 0}
+              >
+                <span className="span-btn">
+                  <FaPlus />
+                </span>
+              </button>
+            </div>
           </div>
         ))}
         <div className="box-btn-buyCart">
@@ -200,8 +202,12 @@ function ProductSamplerBuyCar() {
             <p className="value-buyCart">${total}</p>
           </div>
           <div className="flex flex-col gap-1">
-            <button className="btn-buyCart" onClick={handleCompra}>Comprar Productos</button>
-            <button className="btn-buyCart" onClick={handleBorrar}>Borrar </button>
+            <button className="btn-buyCart" onClick={handleCompra}>
+              Comprar Productos
+            </button>
+            <button className="btn-buyCart" onClick={handleBorrar}>
+              Borrar{" "}
+            </button>
           </div>
         </div>
       </div>
@@ -210,4 +216,3 @@ function ProductSamplerBuyCar() {
 }
 
 export default ProductSamplerBuyCar;
-
