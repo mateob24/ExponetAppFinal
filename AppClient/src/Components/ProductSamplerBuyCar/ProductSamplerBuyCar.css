@@ -1,0 +1,62 @@
+/* PERTENECE A LAS CARD Y CONTENEDOR DEL CARRITO  */
+.box-title-cart {
+    width: 100%;
+    height: 6.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+  }
+
+.product-title-cart{
+    margin: 0;
+    width: 100%;
+    font-size: 2.2rem;
+    font-weight: 800;
+    bottom: -5rem;
+    -webkit-text-stroke: 1px #c1e1f6;
+    position: absolute;
+    text-align: center;
+    text-shadow: 4px 4px #c1e1f6;
+    font-style: italic;
+}
+
+
+.box-btn-buyCart{
+    width: 20rem;
+    top: 8rem;
+    right: 5.5rem;
+    padding: 0.2rem;
+    border-radius: 8px;
+    border: 1px solid #c1e1f6;
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.subtitle-buyCart{
+    margin: 0;
+    padding: 0;
+    letter-spacing: 0.05rem;
+    font-size: 0.7rem;
+    color: #bdbdbd;
+    text-align: center;
+}
+
+.value-buyCart{
+    margin: 0;
+    padding-bottom: 2rem;
+    height: 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.btn-buyCart{
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 3px 6px;
+    border-radius: 8px;
+    background-color: #c1e1f6;
+}

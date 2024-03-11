@@ -7,8 +7,8 @@ function BuyCar() {
   return (
     <>
       <Header />
-      <div className="box-title-principal">
-        <h1 className="product-title-principal">Carrito De Compras </h1>
+      <div className="box-title-cart">
+        <h1 className="product-title-cart">Carrito De Compras </h1>
       </div>
       <ProductSamplerBuyCar />
       <Footer />

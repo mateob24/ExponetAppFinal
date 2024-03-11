@@ -1,16 +1,18 @@
 .orders-container {
-    list-style-type: none;
-    padding: 0;
-    display: flex ;
-    flex-direction: column;
+  width: 100%;
+  padding-top: 14rem;
+  padding-bottom: 4rem;
+  gap: 6rem 10rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   }
   
-  /* .orders-container li {
-    margin-bottom: 20px;
-    padding: 15px;
-    border: 1px solid #ddd;
+  .orders-container li {
+    width: 40%;
+    border: 2px solid #c1e1f6;
     border-radius: 8px;
-  } */
+  }
   
   .subtitles {
     font-weight: bold;
@@ -20,32 +22,31 @@
   
   .product-container {
     list-style-type: none;
-    padding: 0;
-    width: 500px;
-    margin-left: 31%;
   }
   
   .product-container li {
-    padding-left: 8%;
-    padding-right: 8%;
+    padding: 1rem;
+    width: 90%;
     border: 2px solid #c1e1f6;
     box-shadow: 1px 1px 4px rgb(220, 220, 220);
     border-radius: 8px;
     margin-bottom: 5%;
   }
   
-  .invoice-item {
+  /* .invoice-item {
     color: black;
     padding-top: 55%;
-  }
+  } */
 
   .form-control {
     width: 25%;
     margin-top: 1%;
     margin-left: 35%;
     border: 2px solid #c1e1f6;
+    background-color: #c1e1f6;
   }
 
   .form-control:hover {
-    background-color: #56aee0;
+    color: #56aee0;
+    background-color: white;
   }

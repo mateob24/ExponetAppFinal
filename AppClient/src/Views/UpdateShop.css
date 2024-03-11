@@ -1,0 +1,113 @@
+.title-create-prod {
+  margin: 0;
+  width: 100%;
+  font-size: 2.2rem;
+  font-weight: 800;
+  bottom: -5rem;
+  -webkit-text-stroke: 1px #c1e1f6;
+  text-align: center;
+  text-shadow: 4px 4px #c1e1f6;
+  font-style: italic;
+}
+
+.select-img-prod {
+  padding: 0.2rem 0.8rem;
+  font-weight: 600;
+  border-radius: 4px;
+  background-color: #c1e1f6;
+  cursor: pointer;
+}
+
+.result-select-img {
+  padding: 0.2rem;
+  margin: 0;
+  border-radius: 0px 4px 4px 0px;
+  border: 2px solid #c1e1f6;
+}
+
+.btn-update-prod{
+    padding: 6px 8px;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: black;
+    background-color: #1775b2;
+ }
+
+ .btn-update-prod:hover{
+    background-color: #c1e1f6;
+    color: white;
+    box-shadow: 1px 1px 2px 
+ }
+
+ .btn-cancel-prod{
+    padding: 6px 8px;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: black;
+    background-color: #d70000;
+ }
+
+ .btn-cancel-prod:hover{
+    background-color: #ffc8c8;
+    color: white;
+    box-shadow: 1px 1px 2px 
+ }
+
+ .btn-new-prod{
+  padding: 6px 8px;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: black;
+  background-color: #c1e1f6;
+ }
+
+ .btn-new-prod:hover{
+  background-color: white;
+  color: #2493d3;
+  box-shadow: 1px 1px 2px 
+ }
+
+ .table-titles-prod{
+    text-align: center;
+    border: 1px solid #dcdcdc;
+ }
+ 
+ .table-body-prod{
+    text-align: center;
+    border: 1px solid #dcdcdc;
+ }
+
+ .btn-edit-prod {
+    padding: 6px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    text-decoration: none;
+    color: black;
+    background-color: #c1e1f6;
+  }
+  
+  .btn-edit-prod:hover{
+      color: white;
+      background-color: #e3f0fb;
+  }
+
+  .btn-delete-prod {
+    padding: 6px 8px;
+    font-weight: 600;
+    border-radius: 4px;
+    text-decoration: none;
+    color: black;
+    background-color: #d70000;
+  }
+  
+  .btn-delete-prod:hover{
+    background-color: #ffc8c8;
+    color: white;
+  }
+ 

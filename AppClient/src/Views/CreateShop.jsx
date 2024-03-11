@@ -173,15 +173,15 @@ function CreateShop() {
   return (
     <>
       <Header />
-      <div className="container mt-24 pt-2">
+      <div className="container pt-36 pb-8">
         <div className="card text-center">
           <div className="card-header">
-            <h2 className="m-0 fw-bold text-2xl">GESTION DE TIENDAS</h2>
+            <h2 className="title-create-store">Gestión De Tiendas</h2>
           </div>
           <div className="card-body">
             <div className="input-group mb-3">
               <span className="input-group-text fw-semibold" id="basic-addon1">
-                Nombre de la Tienda:
+                Nombre de la tienda:
               </span>
               <input
                 type="text"
@@ -189,8 +189,8 @@ function CreateShop() {
                 onChange={(event) => {
                   setShopName(event.target.value);
                 }}
-                className="form-control"
-                placeholder="Nombre tienda"
+                className="form-control m-0"
+                placeholder="Nombre la tienda"
               />
             </div>
 
@@ -204,14 +204,14 @@ function CreateShop() {
                 onChange={(event) => {
                   setShopTell(event.target.value);
                 }}
-                className="form-control"
+                className="form-control m-0"
                 placeholder="315 000 0000"
               />
             </div>
 
             <div className="input-group mb-3">
               <span className="input-group-text fw-semibold" id="basic-addon1">
-                Correo Electrónico:
+                Correo electrónico:
               </span>
               <input
                 type="email"
@@ -219,7 +219,7 @@ function CreateShop() {
                 onChange={(event) => {
                   setShopMail(event.target.value);
                 }}
-                className="form-control"
+                className="form-control m-0"
                 placeholder="correo@gmail.com"
               />
             </div>
@@ -234,14 +234,14 @@ function CreateShop() {
                 onChange={(event) => {
                   setShopAdress(event.target.value);
                 }}
-                className="form-control"
-                placeholder="Direccion de la tienda"
+                className="form-control m-0"
+                placeholder="Dirección de la tienda"
               />
             </div>
 
             <div className="input-group">
               <span className="input-group-text fw-semibold" id="basic-addon1">
-                Descripcion:
+                Descripción:
               </span>
               <textarea
                 type="text"
@@ -249,13 +249,13 @@ function CreateShop() {
                 onChange={(event) => {
                   setShopComments(event.target.value);
                 }}
-                className="form-control"
-                placeholder="descripcion de la tienda"
+                className="form-control m-0 resize-none"
+                placeholder="Descripción de la tienda"
               />
             </div>
 
-            <div className="input-group">
-              <label htmlFor="file">Imagen:</label>
+            <div className="input-group mt-3">
+              <label className="select-img-store" htmlFor="file">Seleccionar imagen de la tienda</label>
               <input
                 type="file"
                 id="file"
@@ -265,7 +265,7 @@ function CreateShop() {
               />
               {selectedFile && (
                 <div className="file-info">
-                  <p>{selectedFile.name}</p>
+                  <p className="result-select-img">{selectedFile.name}</p>
                   {/* Puedes agregar más información sobre el archivo si lo deseas */}
                 </div>
               )}
@@ -273,16 +273,16 @@ function CreateShop() {
           </div>
           <div className="card-footer text-body-secondary d-flex justify-content-center">
             {editar ? (
-              <div className="w-25 d-flex justify-content-between">
+              <div className="w-52 d-flex justify-content-between">
                 <button
                   onClick={updateShop}
-                  className="btn-update-store fw-semibold"
+                  className="btn-update-store"
                 >
                   Actualizar
                 </button>
                 <button
                   onClick={CancelarUpdate}
-                  className="btn-cancel-store fw-semibold"
+                  className="btn-cancel-store"
                 >
                   Cancelar
                 </button>
@@ -290,7 +290,7 @@ function CreateShop() {
             ) : (
               <button
                 onClick={addShop}
-                className="btn btn-primary text-dark fw-medium mb-2"
+                className="btn-new-store"
               >
                 Registrar
               </button>
@@ -298,8 +298,8 @@ function CreateShop() {
           </div>
         </div>
 
-        <table className="table table-striped">
-          <thead>
+        <table className="table table-hover mt-12">
+          <thead className="table-titles">
             <tr>
               <th scope="col">Nombre</th>
               <th scope="col">Teléfono</th>
@@ -309,7 +309,7 @@ function CreateShop() {
               <th scope="col">Acciones</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="table-body">
             {shopsList.map((val, key) => (
               <tr key={val.shopId} className="">
                 <td>{val.shopName}</td>
@@ -319,7 +319,7 @@ function CreateShop() {
                 <td>{val.shopComments}</td>
                 <td>
                   <div
-                    className="btn-group"
+                    className="flex items-center justify-center gap-1"
                     role="group"
                     aria-label="Basic example"
                   >
@@ -329,18 +329,9 @@ function CreateShop() {
                         console.log("soy val shop id", val.shopId);
                         editarTienda(val);
                       }}
-                      className="btn btn-success text-dark fw-medium"
+                      className="btn-edit-store"
                     >
                       Editar
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        deleteProducts(shopOwner), deleteShop(val.shopId);
-                      }}
-                      className="btn btn-danger text-dark fw-medium"
-                    >
-                      Eliminar
                     </button>
                     <button
                       type="button"
@@ -348,7 +339,7 @@ function CreateShop() {
                         setGlobalShopId(val.shopId);
                         navigate("/UpdateShop");
                       }}
-                      className="btn btn-primary text-dark fw-medium"
+                      className="btn-link-store"
                     >
                       Productos
                     </button>
@@ -357,9 +348,18 @@ function CreateShop() {
                         GoToOrdersManagment(val.shopId);
                         navigate("/OrdersManagment");
                       }}
-                      className="btn btn-primary text-dark fw-medium"
+                      className="btn-delivery-store"
                     >
                       Entregas
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        deleteProducts(shopOwner), deleteShop(val.shopId);
+                      }}
+                      className="btn-delete-store"
+                    >
+                      Eliminar
                     </button>
                   </div>
                 </td>

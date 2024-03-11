@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { FaPlus, FaMinus } from "react-icons/fa";
 import { ShopContextValues } from "../Context/ShopContext";
+import { MdDeleteForever } from "react-icons/md";
 import "../ProductsSampler/ProductSampler.css";
 
 function ProductSampler({ products, stock, quantityCards, Route }) {
@@ -107,10 +108,36 @@ function ProductSampler({ products, stock, quantityCards, Route }) {
 
   return (
     <>
-      <div className="product-container">
+      <div className="product-container-stores">
         {filteredProducts.slice(0, quantityCards).map((product) => (
           <div key={product.productId} className="product-card">
-            <h3 className="prod-title">{product.productName}</h3>
+            <section className="box-btn">
+              <button
+                className="card-btn"
+                onClick={() =>
+                  addToBuyCar(
+                    product.productId,
+                    product.productName,
+                    product.productDescription,
+                    product.productPrize,
+                    product.productStock,
+                    product.productCategory,
+                    product.productimgurl,
+                    productState
+                  )
+                }
+              >
+                Comprar
+              </button>
+              <button
+                className="delete-icon"
+                onClick={() => {
+                  borrarCarrito();
+                }}
+              >
+                <MdDeleteForever/>
+              </button>
+            </section>
             <div className="box-img">
               <img
                 src={product.productimgurl}
@@ -118,14 +145,28 @@ function ProductSampler({ products, stock, quantityCards, Route }) {
                 className="prod-img"
               />
             </div>
-            <p className="subtitle-descrip w-8">Descripción</p>
-            <p className="value-descrip">{product.productDescription}</p>
+            <h3 className="prod-title">{product.productName}</h3>
+            <div className="card-item-descrip">
+              <p className="subtitle-descrip">Descripción</p>
+              <p className="value-descrip">{product.productDescription}</p>
+            </div>
             <section className="card-dates">
-              <div className="card-left">
+              <div className="card-item">
                 <p className="subtitle">Precio</p>
                 <p className="value">${product.productPrize}</p>
-                <p className="subtitle">Cantidad</p>
-                <div className="quantity-controls">
+              </div>
+              <div className="card-item">
+                <p className="subtitle">Stock</p>
+                <p className="value">{stock[product.productId]}</p>
+              </div>
+              <div className="card-item">
+                <p className="subtitle">Total</p>
+                <p className="value">
+                  ${calculateTotalPrice(product.productId)}
+                </p>
+              </div>
+            </section>
+            <div className="quantity-controls">
                   <button
                     className="btn-minor shadow-sm"
                     onClick={() => handleDecrement(product.productId)}
@@ -134,7 +175,7 @@ function ProductSampler({ products, stock, quantityCards, Route }) {
                       <FaMinus />
                     </span>
                   </button>
-                  <span>{selectedProducts[product.productId] || 0}</span>
+                  <span className="span-quan">{selectedProducts[product.productId] || 0}</span>
                   <button
                     className="btn-plus shadow-sm"
                     onClick={() => handleIncrement(product.productId)}
@@ -144,41 +185,6 @@ function ProductSampler({ products, stock, quantityCards, Route }) {
                     </span>
                   </button>
                 </div>
-              </div>
-              <div className="card-right">
-                <p className="subtitle">Total</p>
-                <p className="value">
-                  ${calculateTotalPrice(product.productId)}
-                </p>
-                <p className="subtitle">Stock</p>
-                <p className="value">{stock[product.productId]}</p>
-              </div>
-            </section>
-            <button
-              className="card-btn shadow-md"
-              onClick={() =>
-                addToBuyCar(
-                  product.productId,
-                  product.productName,
-                  product.productDescription,
-                  product.productPrize,
-                  product.productStock,
-                  product.productCategory,
-                  product.productimgurl,
-                  productState
-                )
-              }
-            >
-              Comprar
-            </button>
-            <button
-              className="card-btn shadow-md"
-              onClick={() => {
-                borrarCarrito();
-              }}
-            >
-              borrar
-            </button>
           </div>
         ))}
       </div>

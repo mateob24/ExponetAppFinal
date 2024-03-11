@@ -30,7 +30,7 @@ function OrdersManagment() {
     console.log("soy funcion");
     console.dir(buyCarContent);
 
-   const newBuyCarContent = ChangeState(buyCarContent, globalShopId)
+    const newBuyCarContent = ChangeState(buyCarContent, globalShopId)
 
     const parsedContent = JSON.parse(buyCarContent);
     console.dir(parsedContent);
@@ -76,15 +76,15 @@ function OrdersManagment() {
     console.dir(parsedContent);
 
     parsedContent.products.forEach(product => {
-        if (product.productShopOwner === globalShopId && product.productState === "pendiente") {
-            product.productState = "Despachado";
-        } else if (product.productState === "pendiente") {
-            product.productState = "pendiente";
-        }
+      if (product.productShopOwner === globalShopId && product.productState === "pendiente") {
+        product.productState = "Despachado";
+      } else if (product.productState === "pendiente") {
+        product.productState = "pendiente";
+      }
     });
 
     return JSON.stringify(parsedContent);
-}
+  }
 
 
 
@@ -107,7 +107,9 @@ function OrdersManagment() {
       <Header />
 
       <div>
-        <h2>Lista de Órdenes de Compra</h2>
+        <div className="box-title-historial">
+          <h2 className="product-title-historial">Lista De Ordenes De Compra</h2>
+        </div>
         <ul className="orders-container">
           {orders.map((order, index) => (
             <li key={index}>
@@ -148,7 +150,7 @@ function OrdersManagment() {
                   orderDelivered(order.buyCarContent);
                 }}
               >
-                despachar Entrega
+                Enviar Entrega
               </button>
               <button
                 className="form-control"

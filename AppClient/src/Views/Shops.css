@@ -1,7 +1,8 @@
 .shops-container{
     width: 100%;
-    padding-top: 11rem;
-    gap: 7rem;
+    padding-top: 14rem;
+    padding-bottom: 4rem;
+    gap: 6rem 10rem;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -11,7 +12,7 @@
 .box-title-shop{
     width: 100%;
     height: 6rem;
-    top: 5rem;
+    top: 7rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,57 +21,74 @@
 
 .product-title-shop{
     margin: 0;
+    width: 100%;
     font-size: 2.2rem;
     font-weight: 800;
-    /* -webkit-text-stroke: 1.5px rgb(22, 118, 182); */
+    -webkit-text-stroke: 1px #c1e1f6;
+    position: absolute;
     text-align: center;
-    color: black;
+    text-shadow: 4px 4px #c1e1f6;
+    font-style: italic;
+    /* text-shadow: 0 1px 0 #ddd, 0 2px 0 #ccc, 0 3px 0 #bbb, 0 4px 0 #aaa, 0 5px 0 #acacac, 0 6px 1px rgba(0,0,0,0.1), 0 0 5px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.3), 0 3px 5px rgba(0,0,0,0.2), 0 5px 10px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.2), 0 20px 20px rgba(0,0,0,0.15); */
 }
 
 /* -------------------------------- */
 
 .shop-card{
-    height: 100%;
-    width: 70%;
-    padding: 1.4rem;
-    border-radius: 12px;
+    height: 28rem;
+    padding: 1rem;
+    border-radius: 10px;
     gap: 10px;
     display: flex;
     align-items: center;
     background-color: whitesmoke;
     justify-content: space-between;
-    border: 1px solid rgb(238, 238, 238);
+    border: 1px solid #c1e1f6;
 }
 
+.shop-card{
+    height: 16rem;
+    padding: 0.2rem;
+    width: 35%;
+    border: 2px solid #c1e1f6;
+    box-shadow: 1px 1px 4px rgb(220, 220, 220);
+}
+
+
+
 .box-img-shops{
-    width: 54%;
+    width: 100%;
     height: 100%;
-    border-radius: 12px;
+    border-radius: 8px;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+.shops-img{
+    height: 100%;
+    width: 100%;
+}
+
 .shops-info{
     height: 100%;
-    width: 40%;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .shops-title{
-    height: 4rem;
-    font-size: 2rem;
+    font-size: 1.6rem;
     font-weight: 700;
     text-align: center;
 }
 
 .shops-descrip{
-    padding-top: 5rem;
-    height: 12rem;
     text-align: center;
+
 }
 
 .shops-btn{
@@ -79,10 +97,11 @@
     font-weight: 700;
     text-align: center;
     align-self: center;
-    color: rgb(22, 118, 182);
+    background-color: #c1e1f6;
 }
 
 .shops-btn:hover{
-    color: black;
-    background-color: rgb(24, 135, 209);
+    background-color: white;
+    color: #2493d3;
+    box-shadow: 1px 1px 2px 
 }

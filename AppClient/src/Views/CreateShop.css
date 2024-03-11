@@ -1,48 +1,140 @@
-    /* .container-create-store{
-    margin-top: 6rem;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.title-create-store {
+  margin: 0;
+  width: 100%;
+  font-size: 2.2rem;
+  font-weight: 800;
+  bottom: -5rem;
+  -webkit-text-stroke: 1px #c1e1f6;
+  text-align: center;
+  text-shadow: 4px 4px #c1e1f6;
+  font-style: italic;
 }
 
-.card-create-store{
-    width: 75%;
-    border: 1px solid rgb(220, 220, 220);
-    border-radius: 6px;
+.select-img-store {
+  padding: 0.2rem 0.8rem;
+  font-weight: 600;
+  border-radius: 4px;
+  background-color: #c1e1f6;
+  cursor: pointer;
 }
 
-.box-title-store{
+.result-select-img {
+  padding: 0.2rem;
+  margin: 0;
+  border-radius: 0px 4px 4px 0px;
+  border: 2px solid #c1e1f6;
+}
+
+.btn-update-store {
+  padding: 6px 8px;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: black;
+  background-color: #1775b2;
+}
+
+.btn-update-store:hover {
+  background-color: #c1e1f6;
+  color: white;
+  box-shadow: 1px 1px 2px;
+}
+
+.btn-cancel-store {
+  padding: 6px 8px;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: black;
+  background-color: #d70000;
+}
+
+.btn-cancel-store:hover {
+  background-color: #ffc8c8;
+  color: white;
+  box-shadow: 1px 1px 2px;
+}
+
+.btn-new-store {
+  padding: 6px 8px;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: black;
+  background-color: #c1e1f6;
+}
+
+.btn-new-store:hover {
+  background-color: white;
+  color: #2493d3;
+  box-shadow: 1px 1px 2px;
+}
+
+.table-titles {
+  text-align: center;
+  border: 1px solid #dcdcdc;
+}
+
+.table-body {
+  text-align: center;
+  border: 1px solid #dcdcdc;
+}
+
+.btn-edit-store {
+  padding: 6px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+  text-decoration: none;
+  color: black;
+  background-color: #c1e1f6;
+}
+
+.btn-edit-store:hover{
+    color: white;
+    background-color: #e3f0fb;
+}
+
+.btn-delete-store {
+  padding: 6px 8px;
+  font-weight: 600;
+  border-radius: 4px;
+  text-decoration: none;
+  color: black;
+  background-color: #d70000;
+}
+
+.btn-delete-store:hover{
+  background-color: #ffc8c8;
+  color: white;
+}
+
+.btn-link-store{
+  padding: 6px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+  text-decoration: none;
+  color: black;
+  background-color: #4cade4;
+}
+
+.btn-link-store:hover{
+  background-color: #c1e1f6;
+  color: white;
+}
+
+.btn-delivery-store{
     padding: 6px 8px;
-    width: 100%;
-    border-bottom: 1px solid rgb(238, 238, 238);
-    background-color: whitesmoke;
-}
-
-.title-create-store{
-    margin: 0;
-    font-size: 1.2rem;
-    font-weight: 800;
-    text-align: center;
-}
-
-.body-create-store{
-    padding: 10px 8px;
-}
-
-.btn-update-store{
-    margin-bottom: 10px;
-    border-radius: 6px;
-    padding: 8px 6px;
-    background-color: seagreen;
+    border-radius: 4px;
+    font-weight: 600;
+    text-decoration: none;
     color: black;
+    background-color: #1775b2;
 }
 
-.btn-cancel-store{
-    margin-bottom: 10px;
-    border-radius: 6px;
-    padding: 8px 6px;
-    background-color: rgb(230, 78, 78);
-    color: black;
-} */
+.btn-delivery-store:hover{
+    color: white;
+    background-color: #4cade4;
+}

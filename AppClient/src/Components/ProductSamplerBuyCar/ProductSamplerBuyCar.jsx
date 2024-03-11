@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { FaPlus, FaMinus } from "react-icons/fa";
 import Axios from "axios";
 import { ShopContextValues } from "../Context/ShopContext";
-import "./ProductSamplerBuyCar.css";
 import Cookies from "js-cookie";
+import "./ProductSamplerBuyCar.css";
 
 function ProductSamplerBuyCar() {
   const { buyCarProducts, setBuyCarProducts } = useContext(ShopContextValues);
@@ -143,7 +143,7 @@ function ProductSamplerBuyCar() {
 
   return (
     <>
-      <div className="product-container-home">
+      <div className="product-container-stores">
         {buyCarProducts.map((product) => (
           <div key={product.productId} className="product-card-home">
             <div className="box-img-home">
@@ -153,22 +153,26 @@ function ProductSamplerBuyCar() {
                 className="prod-img-home"
               />
             </div>
-            <p className="subtitle-descrip-home w-8">Descripción</p>
-            <p className="value-descrip-home">{product.productDescription}</p>
-            <section className="card-dates-home">
-              <div className="card-left-home">
+            <h3 className="prod-title">{product.productName}</h3>
+            <div className="card-item-descrip">
+              <p className="subtitle-descrip">Descripción</p>
+              <p className="value-descrip">{product.productDescription}</p>
+            </div>
+            <section className="card-dates">
+              <div className="card-item">
                 <p className="subtitle">Precio</p>
                 <p className="value">${product.productPrize}</p>
               </div>
-              <div className="card-right-home">
-                <p className="subtitle-home">Existencias</p>
-                <p className="value-home">{product.productStock}</p>
+              <div className="card-item">
+                <p className="subtitle">Existencias</p>
+                <p className="value">{product.productStock}</p>
               </div>
-              <div>
-                <p className="subtitle-Home">Total</p>
-                <p className="value-home">${product.productTotal}</p>
+              <div className="card-item">
+                <p className="subtitle">Total</p>
+                <p className="value">${product.productTotal}</p>
               </div>
-              <div className="quantity-controls">
+            </section>
+            <div className="quantity-controls">
                 <button
                   className="btn-minor shadow-sm"
                   onClick={() => handleDecrement(product.productId)}
@@ -177,7 +181,7 @@ function ProductSamplerBuyCar() {
                     <FaMinus />
                   </span>
                 </button>
-                <p>{selectedQuantities[product.productId] || 0}</p>
+                <span className="span-quan">{selectedQuantities[product.productId] || 0}</span>
                 <button
                   className="btn-plus shadow-sm"
                   onClick={() => handleIncrement(product.productId)}
@@ -188,15 +192,18 @@ function ProductSamplerBuyCar() {
                   </span>
                 </button>
               </div>
-            </section>
           </div>
         ))}
-      </div>
-      <div>
-        <p className="subtitle">Valor Total De La Compra</p>
-        <p>${total}</p>
-        <button onClick={handleCompra}>Comprar Productos</button>
-        <button onClick={handleBorrar}>Borrar </button>
+        <div className="box-btn-buyCart">
+          <div>
+            <p className="subtitle-buyCart">Valor Total De La Compra</p>
+            <p className="value-buyCart">${total}</p>
+          </div>
+          <div className="flex flex-col gap-1">
+            <button className="btn-buyCart" onClick={handleCompra}>Comprar Productos</button>
+            <button className="btn-buyCart" onClick={handleBorrar}>Borrar </button>
+          </div>
+        </div>
       </div>
     </>
   );

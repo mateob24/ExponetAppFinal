@@ -26,11 +26,14 @@ function UserHistory() {
   return (
     <>
       <Header />
-      <div className="shops-container">
+      <div className="box-title-historial">
+        <h2 className="product-title-historial">Historial De Compra</h2>
+      </div>
+      <div className="shops-container-historial">
         {buyCars
           .filter((buyCar) => buyCar.buyCarUser === parseInt(buyCarUser))
           .map((filteredBuyCar) => (
-            <div key={filteredBuyCar.buyCarId} className="shop-card">
+            <div key={filteredBuyCar.buyCarId} className="shop-card-historial">
               <div className="shops-info">
                 <h4 className="shops-title m-0">Detalle de Compra</h4>
                 {Array.isArray(JSON.parse(filteredBuyCar.buyCarContent).products) &&

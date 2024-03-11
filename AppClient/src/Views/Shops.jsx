@@ -52,11 +52,11 @@ function Shops() {
                 className="shops-img"
               />
             </div>
-            <div className="shops-info">
+            <div className="shops-info p-0">
               <h4 className="shops-title m-0">{shop.shopName}</h4>
               <p className="shops-descrip m-0">{shop.shopComments}</p>
               <button
-                className="shops-btn shadow-md"
+                className="shops-btn"
                 onClick={() => handleEnterShop(shop.shopId, shop.shopName)}
               >
                 Entrar

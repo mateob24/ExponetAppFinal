@@ -15,10 +15,11 @@
     font-size: 2.2rem;
     font-weight: 800;
     bottom: -5rem;
-    -webkit-text-stroke: 1.5px #c1e1f6;
+    -webkit-text-stroke: 1px #c1e1f6;
     position: absolute;
     text-align: center;
     text-shadow: 4px 4px #c1e1f6;
+    font-style: italic;
     /* text-shadow: 0 1px 0 #ddd, 0 2px 0 #ccc, 0 3px 0 #bbb, 0 4px 0 #aaa, 0 5px 0 #acacac, 0 6px 1px rgba(0,0,0,0.1), 0 0 5px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.3), 0 3px 5px rgba(0,0,0,0.2), 0 5px 10px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.2), 0 20px 20px rgba(0,0,0,0.15); */
   }
   
@@ -28,7 +29,7 @@
     width: 100%;
     padding-top: 8rem;
     padding-bottom: 3.5rem;
-    gap: 6rem 12rem;
+    gap: 6rem 8rem;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -44,17 +45,18 @@
     align-items: center;
     background-color: #efefef;
     transition: transform 0.3s ease;
+    border: 1px solid #c1e1f6;
   }
   
   .product-card-home:hover {
     transform: scale(1.05);
-    box-shadow: 0px 0px 3px #8ac9ef;
+    box-shadow: 0px 0px 2px #8ac9ef;
   }
   
   .card-btn-home {
     width: 7rem;
-    top: 1.4rem;
-    right: 1.4rem;
+    top: 1rem;
+    right: 1rem;
     font-size: 0.8rem;
     font-weight: 700;
     padding: 0.2rem 1rem;
@@ -82,7 +84,8 @@
   }
     
   .prod-img-home {
-      width: 90%;
+      width: 92%;
+      border-radius: 0.4rem;
       height: auto;
       display: block;
   }
@@ -90,7 +93,7 @@
   .prod-title-home {
     font-size: 1.1rem;
     margin: 0;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     font-weight: 700;
     text-align: center;
   }
@@ -106,7 +109,7 @@
   .value-descrip-home {
     margin: 0;
     line-height: 0.8rem;
-    height: 28px;
+    height: 32px;
     font-size: 0.8rem;
     text-align: center;
   }

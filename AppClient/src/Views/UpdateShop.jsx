@@ -153,10 +153,10 @@ function UpdateProduct() {
   return (
     <>
       <Header />
-      <div className="container mt-20 pt-2">
+      <div className="container pt-36 pb-8">
         <div className="card text-center">
           <div className="card-header">
-            <h2 className="m-0 fw-bold text-2xl">GESTION DE PRODUCTOS</h2>
+            <h2 className="title-create-prod">Gestión De Productos</h2>
           </div>
           <div className="card-body">
             <div className="input-group mb-3">
@@ -169,7 +169,7 @@ function UpdateProduct() {
                 onChange={(Event) => {
                   setProductName(Event.target.value);
                 }}
-                className="form-control"
+                className="form-control m-0"
                 placeholder="Ingrese un producto"
                 aria-label="Username"
                 aria-describedby="basic-addon1"
@@ -186,7 +186,7 @@ function UpdateProduct() {
                 onChange={(Event) => {
                   setProductStock(Event.target.value);
                 }}
-                className="form-control"
+                className="form-control m-0"
                 placeholder="Ingrese la cantidad"
                 aria-label="Username"
                 aria-describedby="basic-addon1"
@@ -203,7 +203,7 @@ function UpdateProduct() {
                 onChange={(Event) => {
                   setProductCategory(Event.target.value);
                 }}
-                className="form-control"
+                className="form-control m-0"
                 placeholder="Ingrese la categoría"
                 aria-label="Username"
                 aria-describedby="basic-addon1"
@@ -220,7 +220,7 @@ function UpdateProduct() {
                 onChange={(Event) => {
                   setProductDescription(Event.target.value);
                 }}
-                className="form-control"
+                className="form-control m-0 resize-none"
                 placeholder="Ingrese la descripción"
                 aria-label="Username"
                 aria-describedby="basic-addon1"
@@ -237,14 +237,14 @@ function UpdateProduct() {
                 onChange={(Event) => {
                   setProductPrize(Event.target.value);
                 }}
-                className="form-control"
+                className="form-control m-0"
                 aria-label="Username"
                 aria-describedby="basic-addon1"
               />
             </div>
-            <div className="input-group mb-2 flex justify-center">
-              <label className="input-group-text fw-semibold" htmlFor="file">
-                Imagen:
+            <div className="input-group mt-3">
+              <label className="select-img-prod" htmlFor="file">
+                Seleccionar imagen del producto
               </label>
               <input
                 className="h-10 pl-2 self-center"
@@ -256,26 +256,26 @@ function UpdateProduct() {
               />
               {selectedFile && (
                 <div className="file-info">
-                  <p>{selectedFile.name}</p>
+                  <p className="result-select-img">{selectedFile.name}</p>
                   {/* Puedes agregar más información sobre el archivo si lo deseas */}
                 </div>
               )}
             </div>
           </div>
-          <div className="card-footer text-body-secondary">
+          <div className="card-footer text-body-secondary d-flex justify-content-center">
             {editar ? (
-              <div>
+              <div className="w-52 d-flex justify-content-between">
                 <button
                   onClick={() => {
                     update();
                   }}
-                  className="btn btn-primary text-dark fw-medium mr-3"
+                  className="btn-update-prod"
                 >
                   Actualizar
                 </button>
                 <button
                   onClick={CancelarUpdate}
-                  className="btn btn-danger text-dark fw-medium"
+                  className="btn-cancel-prod"
                 >
                   Cancelar
                 </button>
@@ -283,7 +283,7 @@ function UpdateProduct() {
             ) : (
               <button
                 onClick={add}
-                className="btn btn-primary text-dark fw-medium"
+                className="btn-new-prod"
               >
                 Registrar
               </button>
@@ -291,8 +291,8 @@ function UpdateProduct() {
           </div>
         </div>
 
-        <table className="table table-striped">
-          <thead>
+        <table className="table table-hover mt-12">
+          <thead className="table-titles-prod">
             <tr>
               <th scope="col">Productos</th>
               <th scope="col">Cantidad</th>
@@ -302,7 +302,7 @@ function UpdateProduct() {
               <th scope="col">Acciones</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="table-body-prod">
             {productsList.map((val, key) => {
               return (
                 <tr key={val.productId}>
@@ -313,7 +313,7 @@ function UpdateProduct() {
                   <td>{val.productPrize}</td>
                   <td>
                     <div
-                      className="btn-group"
+                      className="flex items-center justify-center gap-1"
                       role="group"
                       aria-label="Basic example"
                     >
@@ -323,7 +323,7 @@ function UpdateProduct() {
                           editarProducto(val);
                           console.log("soy val en el boton", val);
                         }}
-                        className="btn btn-success text-dark fw-medium"
+                        className="btn-edit-prod"
                       >
                         Editar
                       </button>
@@ -332,7 +332,7 @@ function UpdateProduct() {
                         onClick={() => {
                           deleteProducto(val.productId);
                         }}
-                        className="btn btn-danger text-dark fw-medium"
+                        className="btn-delete-prod"
                       >
                         Eliminar
                       </button>
