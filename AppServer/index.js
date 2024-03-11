@@ -5,6 +5,7 @@ const bcrypt = require("bcryptjs");
 const cors = require("cors");
 const multer = require("multer");
 const bodyParser = require("body-parser");
+const nodemailer = require("nodemailer")
 
 storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -28,6 +29,20 @@ const db = mysql.createPool({
   insecureAuth: true,
 });
 
+let transporter = nodemailer.createTransport({
+  host:"smtp.gmail.com",
+  port: 587,
+  secure: false,
+  auth: {
+    user: "darom3t48@gmail.com",
+    pass: "evskhrsbrxeejwys"
+  },
+})
+
+transporter.verify().then(()=> {
+  console.log("Ready to send mails")
+})
+
 db.getConnection(function (err) {
   if (err) throw err;
   console.log("esta conectado a mysql");
@@ -48,19 +63,34 @@ app.post("/createUser", async (req, res) => {
     connection.query(
       "INSERT INTO appUsers (userName, userMail, userPassword, userAdress, userRoll) VALUES (?, ?, ?, ?, ?)",
       [userName, userMail, hashedPassword, userAdress, userRole],
-      (error, result) => {
+      async (error, result) => {
         connection.release();
 
         if (error) {
           console.log(error);
           res.status(500).send("Error al registrar el usuario");
         } else {
-          res.status(200).send("Registro de usuario exitoso");
+          // Envío de correo electrónico al usuario registrado
+          try {
+            await transporter.sendMail({
+              from: `forgot password <Exponet.Com>`,
+              to: userMail,
+              subject: "Bienvenido a Exponet.com",
+              html: `<h1>Bienvenido a Exponet.com</h1>
+                     <p>Gracias por registrarte en Exponet.com</p>`
+            });
+            console.log("Correo electrónico de bienvenida enviado correctamente a:", userMail);
+            res.status(200).send("Registro de usuario exitoso");
+          } catch (emailError) {
+            console.log("Error al enviar el correo electrónico de bienvenida:", emailError);
+            res.status(500).send("Error al enviar el correo electrónico de bienvenida");
+          }
         }
       }
     );
   });
 });
+
 
 app.post("/userRead", (req, res) => {
   const { userMail, userPassword } = req.body;
@@ -372,8 +402,8 @@ app.get("/buyCarOrdersManagment", (req, res) => {
 app.post("/ProductStockUpdate", (req, res) => {
   const productIds = req.body.productsIds;
   const productQuantities = req.body.productsQuantities;
-  const buyCarState = req.body.buyCarState;
   const productsShopOwners = req.body.productsShopOwners;
+  const newBuyCarContent = req.body.newBuyCarContent;
 
   // Variable para llevar el registro de cuántas actualizaciones se han completado
   let updatedProductsCount = 0;
@@ -411,12 +441,12 @@ app.post("/ProductStockUpdate", (req, res) => {
 
         if (currentProductShopOwner === originalProductShopOwner) {
           db.query(
-            "UPDATE appProducts SET productStock = GREATEST(productStock - ?, 0), buyCarState = ? WHERE productId = ? AND productShopOwner = ?",
+            "UPDATE appProducts SET productStock = GREATEST(productStock - ?, 0), buyCarState = ? WHERE productId = ? AND productShopOwner = ?, buyCarContent = ?",
             [
               currentProductQuantity,
-              buyCarState,
               currentProductId,
               currentProductShopOwner,
+              newBuyCarContent
             ],
             (err, result) => {
               if (err) {

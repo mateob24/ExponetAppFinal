@@ -30,6 +30,8 @@ function OrdersManagment() {
     console.log("soy funcion");
     console.dir(buyCarContent);
 
+   const newBuyCarContent = ChangeState(buyCarContent, globalShopId)
+
     const parsedContent = JSON.parse(buyCarContent);
     console.dir(parsedContent);
 
@@ -50,14 +52,14 @@ function OrdersManagment() {
 
     console.dir(productsShopOwners);
 
-    const buyCarState = "Despachado";
+
 
     axios
       .post("http://localhost:3000/ProductStockUpdate", {
         productsIds,
         productsQuantities,
         productsShopOwners,
-        buyCarState,
+        newBuyCarContent
       })
       .then((response) => {
         // Maneja la respuesta si es necesario
@@ -69,20 +71,22 @@ function OrdersManagment() {
       });
   }
 
-  function ChangeState (buyCarContent, globalShopId) {
+  function ChangeState(buyCarContent, globalShopId) {
     const parsedContent = JSON.parse(buyCarContent);
     console.dir(parsedContent);
 
-    const productOwners = parsedContent.map(
-      (Owners) => Owners.productShopOwner
-    )
+    parsedContent.products.forEach(product => {
+        if (product.productShopOwner === globalShopId && product.productState === "pendiente") {
+            product.productState = "Despachado";
+        } else if (product.productState === "pendiente") {
+            product.productState = "pendiente";
+        }
+    });
 
-    const newParsedContent = parsedContent.map(
-      (product) => product.productState = "Despachado"
-    )
+    return JSON.stringify(parsedContent);
+}
 
-    return(newParsedContent)
-  }
+
 
   const DeleteBuyCar = (buyCarId) => {
     const confirmation = window.confirm(
@@ -131,7 +135,7 @@ function OrdersManagment() {
                       <p className="invoice-item">Categoría:</p>
                       <p>{product.productCategory}</p>
 
-                      <p className="invoice-item">Estado: {}</p>
+                      <p className="invoice-item">Estado: {product.productState}</p>
                     </li>
                   )
                 )}
@@ -149,7 +153,7 @@ function OrdersManagment() {
               <button
                 className="form-control"
                 onClick={() => {
-                  DeleteBuyCar(order.buyCarId);
+                  DeleteBuyCar(order.buyCarId, globalShopId);
                 }}
               >
                 Borrar Carrito
