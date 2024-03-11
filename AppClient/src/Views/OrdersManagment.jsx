@@ -16,7 +16,7 @@ function OrdersManagment() {
     const fetchBuyCars = async () => {
       try {
         const response = await axios.get(
-          "http://exponet-app-final.vercel.app/buyCarOrdersManagment"
+          "http://localhost:3000/buyCarOrdersManagment"
         );
         setOrders(response.data);
       } catch (error) {
@@ -53,7 +53,7 @@ function OrdersManagment() {
     console.dir(productsShopOwners);
 
     axios
-      .post("http://exponet-app-final.vercel.app/ProductStockUpdate", {
+      .post("http://localhost:3000/ProductStockUpdate", {
         productsIds,
         productsQuantities,
         productsShopOwners,
@@ -103,7 +103,7 @@ function OrdersManagment() {
       return;
     }
 
-    axios.put(`http://exponet-app-final.vercel.app/deleteBuyCar/${buyCarId}`).then(() => {
+    axios.put(`http://localhost:3000/deleteBuyCar/${buyCarId}`).then(() => {
       Swal.fire({
         position: "center",
         icon: "success",
