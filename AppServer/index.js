@@ -95,6 +95,9 @@ app.post("/createUser", async (req, res) => {
 app.post("/userRead", (req, res) => {
   const { userMail, userPassword } = req.body;
 
+  console.log(userMail);
+  console.log(userPassword);
+
   db.query(
     "SELECT * FROM appUsers WHERE userMail = ?",
     [userMail],
