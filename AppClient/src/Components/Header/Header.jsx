@@ -44,7 +44,7 @@ const Header = () => {
             </li>
             <li className="box-select-category">
               <select name="" id="" placeholder="Categorías">
-                <option value="">Ensayo1</option>
+                <option value="">Categorias</option>
                 <option value="">Ensayo2</option>
               </select>
             </li>
@@ -82,6 +82,11 @@ const Header = () => {
                       <button onClick={handleLogout} className="link-header-b">
                         Cerrar Sesión
                       </button>
+                    </li>
+                    <li>
+                      <Link to="/UserHistory" className="link-header-b">
+                        Historial
+                      </Link>
                     </li>
                     <li>
                       <Link to="/BuyCar">

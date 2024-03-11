@@ -438,6 +438,22 @@ app.post("/ProductStockUpdate", (req, res) => {
               }
             }
           );
+
+
+
+          db.query("UPDATE buyCarContent FROM appBuyCar WHERE buyCarId = ?",[currentProductId]),
+          (err, result) => {
+            if(err){
+              console.log(err);
+              // Si hay un error, puedes enviar una respuesta de error
+              res
+                .status(500)
+                .send("Error al actualizar el estado del producto");
+            } else {
+              console.log(result);
+              res.status(500).send("actualisacion de estado del producto exitosa")
+            }
+          }
         } else {
           // Si productShopOwner no coincide, continúa con la siguiente iteración sin hacer cambios
           updatedProductsCount++;

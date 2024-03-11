@@ -25,6 +25,7 @@ function OrdersManagment() {
     fetchBuyCars();
   }, []);
 
+
   function orderDelivered(buyCarContent) {
     console.log("soy funcion");
     console.dir(buyCarContent);
@@ -61,10 +62,26 @@ function OrdersManagment() {
       .then((response) => {
         // Maneja la respuesta si es necesario
         console.log(response.data);
+        alert("pedido despachado")
       })
       .catch((error) => {
         console.error("Error al actualizar el stock del producto:", error);
       });
+  }
+
+  function ChangeState (buyCarContent, globalShopId) {
+    const parsedContent = JSON.parse(buyCarContent);
+    console.dir(parsedContent);
+
+    const productOwners = parsedContent.map(
+      (Owners) => Owners.productShopOwner
+    )
+
+    const newParsedContent = parsedContent.map(
+      (product) => product.productState = "Despachado"
+    )
+
+    return(newParsedContent)
   }
 
   const DeleteBuyCar = (buyCarId) => {
