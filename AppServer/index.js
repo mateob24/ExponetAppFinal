@@ -91,12 +91,10 @@ app.post("/createUser", async (req, res) => {
       );
     });
   } catch (err) {
-    console.log("Error en la función createUser:", err);
+    console.log(err);
     res.status(500).send("Error interno del servidor");
   }
 });
-
-
 
 app.post("/userRead", (req, res) => {
   const { userMail, userPassword } = req.body;
