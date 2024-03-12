@@ -6,16 +6,16 @@ const cors = require("cors");
 const multer = require("multer");
 const bodyParser = require("body-parser");
 const nodemailer = require("nodemailer")
+const path = require('path');
 
 storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "../AppClient/public");
-  },
-  filename: (req, file, cb) => {
-    cb(null, file.originalname);
-  },
-});
-upload = multer({ storage });
+    destination: (req, file, cb) => {
+        cb(null, path.join(__dirname, 'public'));
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.originalname);
+    },
+});;
 
 app.use(cors());
 app.use(express.json());
@@ -134,7 +134,7 @@ app.post("/createShop", upload.single("file"), (req, res) => {
 
   const imageUrl = req.file ? req.file.path : null;
 
-  const start = "../../" + imageUrl.slice(12);
+  const start = "https://exponetappfinal.onrender.com/public/" + imageUrl.slice(12);
 
   db.query(
     "INSERT INTO appShops (shopName, shopTell, shopMail, shopAdress, shopOwner, shopComments, shopImgUrl) VALUES (?, ?, ?, ?, ?, ?, ?)",
@@ -156,7 +156,7 @@ app.put("/updateShop", upload.single("file"), (req, res) => {
 
   const imageUrl = req.file ? req.file.path : null;
 
-  const start = "../../" + imageUrl.slice(12);
+  const start = "https://exponetappfinal.onrender.com/public/" + imageUrl.slice(12);
 
   db.query(
     "UPDATE appShops SET shopName=?, shopAdress=?, shopTell=?, shopMail=?, shopComments=?, shopImgUrl=? WHERE shopId=?",
@@ -245,7 +245,7 @@ app.post("/createProduct", upload.single("file"), (req, res) => {
 
   const imageUrl = req.file ? req.file.path : null;
 
-  const start = "../../" + imageUrl.slice(12);
+  const start = "https://exponetappfinal.onrender.com/public/" + imageUrl.slice(12);
 
   db.query(
     "INSERT INTO appProducts(productName, productDescription, productPrize, productStock, productCategory, productImgUrl, productShopOwner ) VALUES (?, ?, ?, ?, ?, ?, ?)",
@@ -324,7 +324,7 @@ app.put("/updateProduct", upload.single("file"), (req, res) => {
     productPrize,
   } = req.body;
 
-  const imageUrl = req.file ? "../../" + req.file.path.slice(12) : null;
+  const imageUrl = req.file ? "https://exponetappfinal.onrender.com/public/" + req.file.path.slice(12) : null;
 
   db.query(
     "UPDATE appProducts SET productName=?, productDescription=?, productPrize=?, productStock=?, productCategory=?, productimgurl=? WHERE productId=?",
