@@ -62,7 +62,7 @@ function RegisterForm() {
     }
 
     try {
-      const response = await axios.post("https://exponet-app-final.vercel.app/createUser", {
+      const response = await axios.post("https://exponetappfinal.onrender.com/createUser", {
         userName: formData.userName,
         userMail: formData.userMail,
         userPassword: formData.userPassword,

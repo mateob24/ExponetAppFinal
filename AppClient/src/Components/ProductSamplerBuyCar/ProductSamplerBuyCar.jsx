@@ -125,7 +125,7 @@ function ProductSamplerBuyCar() {
       buyCarState: buyCarState,
     };
 
-    Axios.post("https://exponet-app-final.vercel.app/createBuyCar", requestData)
+    Axios.post("https://exponetappfinal.onrender.com/createBuyCar", requestData)
       .then((response) => {
         console.log(response.data);
       })

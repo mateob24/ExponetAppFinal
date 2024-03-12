@@ -36,7 +36,7 @@ function CreateShop() {
     formData.append("shopOwner", shopOwner);
     formData.append("shopComments", shopComments);
 
-    Axios.post("https://exponet-app-final.vercel.app/createShop", formData)
+    Axios.post("https://exponetappfinal.onrender.com/createShop", formData)
       .then(() => {
         getShops();
         limpiarCampos();
@@ -86,7 +86,7 @@ function CreateShop() {
       formData.append("shopId", shopId);
 
       Axios.put(
-        "https://exponet-app-final.vercel.app/updateShop",
+        "https://exponetappfinal.onrender.com/updateShop",
         formData,
         {}
       ).then(() => {
@@ -116,7 +116,7 @@ function CreateShop() {
 
     if (confirmation) {
       Axios.put(
-        `https://exponet-app-final.vercel.app/deleteShop/${ShopId}`
+        `https://exponetappfinal.onrender.com/deleteShop/${ShopId}`
       ).then(() => {
         alert("Tienda eliminada");
         limpiarCampos();
@@ -130,7 +130,7 @@ function CreateShop() {
 
   const deleteProducts = (ShopId) => {
     Axios.put(
-      `https://exponet-app-final.vercel.app/deleteProducts/${ShopId}`
+      `https://exponetappfinal.onrender.com/deleteProducts/${ShopId}`
     ).then(() => {
       limpiarCampos();
       getShops();
@@ -166,7 +166,7 @@ function CreateShop() {
 
   const getShops = (userLogin) => {
     Axios.get(
-      `https://exponet-app-final.vercel.app/shopsListCreateShops/${shopOwner}`
+      `https://exponetappfinal.onrender.com/shopsListCreateShops/${shopOwner}`
     ).then((response) => {
       setShopsList(response.data);
       console.dir(response.data);
