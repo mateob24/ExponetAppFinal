@@ -34,7 +34,7 @@ function Login() {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://exponet-app-final.vercel.app/UserRead", {
+      const response = await axios.post("https://exponet-app-final.vercel.app/UserRead", {
         userMail: formData.userMail,
         userPassword: formData.userPassword,
         userRoll: formData.userRoll,

@@ -17,7 +17,7 @@ function Home() {
     globalShopId.setGlobalShopId(0);
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://exponet-app-final.vercel.app/productsList");
+        const response = await axios.get("https://exponet-app-final.vercel.app/productsList");
         setProducts(response.data);
 
         const stockData = response.data.reduce((acc, product) => {

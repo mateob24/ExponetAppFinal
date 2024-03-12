@@ -10,7 +10,7 @@ function Comments() {
     const fetchComments = async () => {
       try {
         const response = await axios.get(
-          "http://exponet-app-final.vercel.app/commentsList"
+          "https://exponet-app-final.vercel.app/commentsList"
         );
         setComments(response.data);
       } catch (error) {
