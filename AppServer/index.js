@@ -49,47 +49,53 @@ db.getConnection(function (err) {
 });
 
 app.post("/createUser", async (req, res) => {
-  const { userName, userMail, userPassword, userAdress, userRole } = req.body;
+  try {
+    const { userName, userMail, userPassword, userAdress, userRole } = req.body;
 
-  const hashedPassword = await bcrypt.hash(userPassword, 10);
+    const hashedPassword = await bcrypt.hash(userPassword, 10);
 
-  db.getConnection((err, connection) => {
-    if (err) {
-      console.log(err);
-      res.status(500).send("Error de conexión a la base de datos");
-      return;
-    }
+    db.getConnection((err, connection) => {
+      if (err) {
+        console.log(err);
+        res.status(500).send("Error de conexión a la base de datos");
+        return;
+      }
 
-    connection.query(
-      "INSERT INTO appUsers (userName, userMail, userPassword, userAdress, userRoll) VALUES (?, ?, ?, ?, ?)",
-      [userName, userMail, hashedPassword, userAdress, userRole],
-      async (error, result) => {
-        connection.release();
+      connection.query(
+        "INSERT INTO appUsers (userName, userMail, userPassword, userAdress, userRoll) VALUES (?, ?, ?, ?, ?)",
+        [userName, userMail, hashedPassword, userAdress, userRole],
+        async (error, result) => {
+          connection.release();
 
-        if (error) {
-          console.log(error);
-          res.status(500).send("Error al registrar el usuario");
-        } else {
-          // Envío de correo electrónico al usuario registrado
-          try {
-            await transporter.sendMail({
-              from: `forgot password <Exponet.Com>`,
-              to: userMail,
-              subject: "Bienvenido a Exponet.com",
-              html: `<h1>Bienvenido a Exponet.com</h1>
-                     <p>Gracias por registrarte en Exponet.com</p>`
-            });
-            console.log("Correo electrónico de bienvenida enviado correctamente a:", userMail);
-            res.status(200).send("Registro de usuario exitoso");
-          } catch (emailError) {
-            console.log("Error al enviar el correo electrónico de bienvenida:", emailError);
-            res.status(500).send("Error al enviar el correo electrónico de bienvenida");
+          if (error) {
+            console.log(error);
+            res.status(500).send("Error al registrar el usuario");
+          } else {
+            // Envío de correo electrónico al usuario registrado
+            try {
+              await transporter.sendMail({
+                from: `forgot password <Exponet.Com>`,
+                to: userMail,
+                subject: "Bienvenido a Exponet.com",
+                html: `<h1>Bienvenido a Exponet.com</h1>
+                       <p>Gracias por registrarte en Exponet.com</p>`
+              });
+              console.log("Correo electrónico de bienvenida enviado correctamente a:", userMail);
+              res.status(200).send("Registro de usuario exitoso");
+            } catch (emailError) {
+              console.log("Error al enviar el correo electrónico de bienvenida:", emailError);
+              res.status(500).send("Error al enviar el correo electrónico de bienvenida");
+            }
           }
         }
-      }
-    );
-  });
+      );
+    });
+  } catch (err) {
+    console.log("Error en la función createUser:", err);
+    res.status(500).send("Error interno del servidor");
+  }
 });
+
 
 
 app.post("/userRead", (req, res) => {
