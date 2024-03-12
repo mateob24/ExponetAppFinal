@@ -168,6 +168,9 @@ function RegisterForm() {
                 <option value="comprador">Comprador</option>
               </select>
             </div>
+            <button type="submit" className="btn-register">
+              Registrarse
+            </button>
           </form>
           <section className="right-section">
             <h1 className="right-title">EXPONET</h1>
@@ -177,13 +180,6 @@ function RegisterForm() {
                 <IoStorefrontSharp /> Inicio
               </Link>
               <hr />
-              <button
-                type="submit"
-                className="btn-register"
-                onClick={handleSubmit}
-              >
-                Registrarse
-              </button>
             </div>
           </section>
         </section>
