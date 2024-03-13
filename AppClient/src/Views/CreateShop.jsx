@@ -38,6 +38,7 @@ function CreateShop() {
 
     Axios.post("https://exponetappfinal.onrender.com/createShop", formData)
       .then(() => {
+        console.log(file)
         getShops();
         limpiarCampos();
         alert("Tienda registrada");
@@ -175,6 +176,7 @@ function CreateShop() {
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]); // Cambiado de file a selectedFile
+    console.log("handlefilechange", selectedFile)
   };
 
   const GoToOrdersManagment = (shopId) => {
