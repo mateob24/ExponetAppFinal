@@ -16,6 +16,7 @@ function UserHistory() {
         const response = await axios.get(
           "https://exponet-app-final.vercel.app/buyCarsList"
         );
+        console.dir(response.data)
         setBuyCars(response.data);
       } catch (error) {
         console.error("Error al obtener la lista de carritos de compras:", error);
