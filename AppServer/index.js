@@ -240,7 +240,7 @@ app.put("/deleteProducts/:shopId"),
     );
   };
 
-app.post("/createProduct", upload.single("file"), (req, res) => {
+  app.post("/createProduct", multerUpload.single("file"), (req, res) => {
   const {
     productName,
     productStock,
@@ -321,7 +321,7 @@ app.put("/deleteProduct/:productId", (req, res) => {
   );
 });
 
-app.put("/updateProduct", upload.single("file"), (req, res) => {
+app.put("/updateProduct", multerUpload.single("file"), (req, res) => {
   const {
     productId,
     productName,
