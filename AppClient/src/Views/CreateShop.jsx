@@ -275,23 +275,25 @@ function CreateShop() {
             </div>
 
             <div className="input-group mt-3">
-              <label className="select-img-store" htmlFor="file">
-                Seleccionar imagen de la tienda
-              </label>
-              <input
-                type="file"
-                id="file"
-                name="file"
-                onChange={handleFileChange}
-                style={{ display: "none" }} // Oculta el input de tipo archivo
-              />
-              {selectedFile && (
-                <div className="file-info">
-                  <p className="result-select-img">{selectedFile.name}</p>
-                  {/* Puedes agregar más información sobre el archivo si lo deseas */}
-                </div>
-              )}
-            </div>
+  <label className="select-img-store" htmlFor="file">
+    Seleccionar imagen de la tienda
+  </label>
+  <input
+    type="file"
+    id="file"
+    name="file"
+    onChange={handleFileChange}
+    // Elimina la propiedad style para hacer visible el input
+  />
+  {selectedFile && (
+    <div className="file-info">
+      <p className="result-select-img">{selectedFile.name}</p>
+      {/* Puedes agregar más información sobre el archivo si lo deseas */}
+    </div>
+  )}
+</div>
+
+         
           </div>
           <div className="card-footer text-body-secondary d-flex justify-content-center">
             {editar ? (
