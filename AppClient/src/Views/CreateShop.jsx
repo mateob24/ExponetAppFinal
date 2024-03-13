@@ -38,7 +38,6 @@ function CreateShop() {
 
     Axios.post("https://exponetappfinal.onrender.com/createShop", formData)
       .then(() => {
-        console.log(file)
         getShops();
         limpiarCampos();
         alert("Tienda registrada");
@@ -47,7 +46,6 @@ function CreateShop() {
         console.error("Error al enviar la solicitud:", error);
       });
   };
-
   const updateShop = () => {
     // Almacena los valores originales antes de la actualización
     const originalShopName =
@@ -139,7 +137,7 @@ function CreateShop() {
   };
 
   const limpiarCampos = () => {
-    setSelectedFile("");
+    setSelectedFile(null); // Cambiado de "" a null
     setShopName("");
     setShopTell("");
     setShopMail("");
@@ -175,8 +173,8 @@ function CreateShop() {
   };
 
   const handleFileChange = (event) => {
-    setSelectedFile(event.target.files[0]); // Cambiado de file a selectedFile
-    console.log("handlefilechange", selectedFile)
+    setSelectedFile(event.target.files[0]);
+    console.log("handlefilechange", selectedFile);
   };
 
   const GoToOrdersManagment = (shopId) => {
@@ -275,7 +273,7 @@ function CreateShop() {
             </div>
 
             <div className="input-group mt-3">
-  <label className="select-img-store" htmlFor="file">
+            <label className="select-img-store" htmlFor="file">
     Seleccionar imagen de la tienda
   </label>
   <input
