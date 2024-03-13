@@ -22,6 +22,7 @@ const upload = multer({ storage: storage });
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
+app.use('/public', express.static(path.join(__dirname, 'public')));
 
 const db = mysql.createPool({
   host: "be2akte2ntisg7onaynu-mysql.services.clever-cloud.com",
@@ -134,7 +135,7 @@ app.post("/createShop", upload.single("file"), (req, res) => {
   const { shopName, shopTell, shopMail, shopAdress, shopOwner, shopComments } =
     req.body;
 
-  const imageUrl = req.file ? req.file.path : null;
+    const imageUrl = req.file ? `/public/${req.file.filename}` : null;
 
   db.query(
     "INSERT INTO appShops (shopName, shopTell, shopMail, shopAdress, shopOwner, shopComments, shopImgUrl) VALUES (?, ?, ?, ?, ?, ?, ?)",
@@ -154,7 +155,7 @@ app.put("/updateShop", upload.single("file"), (req, res) => {
   const { shopName, shopAdress, shopTell, shopMail, shopComments, shopId } =
     req.body;
 
-  const imageUrl = req.file ? req.file.path : null;
+    const imageUrl = req.file ? `/public/${req.file.filename}` : null;
 
   db.query(
     "UPDATE appShops SET shopName=?, shopAdress=?, shopTell=?, shopMail=?, shopComments=?, shopImgUrl=? WHERE shopId=?",
@@ -241,7 +242,7 @@ app.post("/createProduct", upload.single("file"), (req, res) => {
     productShopOwner,
   } = req.body;
 
-  const imageUrl = req.file ? req.file.path : null;
+  const imageUrl = req.file ? `/public/${req.file.filename}` : null;
 
   
 
@@ -322,7 +323,7 @@ app.put("/updateProduct", upload.single("file"), (req, res) => {
     productPrize,
   } = req.body;
 
-  const imageUrl = req.file 
+  const imageUrl = req.file ? `/public/${req.file.filename}` : null;
 
   db.query(
     "UPDATE appProducts SET productName=?, productDescription=?, productPrize=?, productStock=?, productCategory=?, productimgurl=? WHERE productId=?",
