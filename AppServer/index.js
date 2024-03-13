@@ -6,16 +6,18 @@ const cors = require("cors");
 const multer = require("multer");
 const bodyParser = require("body-parser");
 const nodemailer = require("nodemailer")
+const path = require('path');
 
 storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "../AppClient/public");
-  },
-  filename: (req, file, cb) => {
-    cb(null, file.originalname);
-  },
-});
-upload = multer({ storage });
+    destination: (req, file, cb) => {
+        cb(null, path.join( './public'));
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.originalname);
+    },
+});;
+
+const upload = multer({ storage: storage });
 
 app.use(cors());
 app.use(express.json());
@@ -49,48 +51,52 @@ db.getConnection(function (err) {
 });
 
 app.post("/createUser", async (req, res) => {
-  const { userName, userMail, userPassword, userAdress, userRole } = req.body;
+  try {
+    const { userName, userMail, userPassword, userAdress, userRole } = req.body;
 
-  const hashedPassword = await bcrypt.hash(userPassword, 10);
+    const hashedPassword = await bcrypt.hash(userPassword, 10);
 
-  db.getConnection((err, connection) => {
-    if (err) {
-      console.log(err);
-      res.status(500).send("Error de conexión a la base de datos");
-      return;
-    }
+    db.getConnection((err, connection) => {
+      if (err) {
+        console.log(err);
+        res.status(500).send("Error de conexión a la base de datos");
+        return;
+      }
 
-    connection.query(
-      "INSERT INTO appUsers (userName, userMail, userPassword, userAdress, userRoll) VALUES (?, ?, ?, ?, ?)",
-      [userName, userMail, hashedPassword, userAdress, userRole],
-      async (error, result) => {
-        connection.release();
+      connection.query(
+        "INSERT INTO appUsers (userName, userMail, userPassword, userAdress, userRoll) VALUES (?, ?, ?, ?, ?)",
+        [userName, userMail, hashedPassword, userAdress, userRole],
+        async (error, result) => {
+          connection.release();
 
-        if (error) {
-          console.log(error);
-          res.status(500).send("Error al registrar el usuario");
-        } else {
-          // Envío de correo electrónico al usuario registrado
-          try {
-            await transporter.sendMail({
-              from: `forgot password <Exponet.Com>`,
-              to: userMail,
-              subject: "Bienvenido a Exponet.com",
-              html: `<h1>Bienvenido a Exponet.com</h1>
-                     <p>Gracias por registrarte en Exponet.com</p>`
-            });
-            console.log("Correo electrónico de bienvenida enviado correctamente a:", userMail);
-            res.status(200).send("Registro de usuario exitoso");
-          } catch (emailError) {
-            console.log("Error al enviar el correo electrónico de bienvenida:", emailError);
-            res.status(500).send("Error al enviar el correo electrónico de bienvenida");
+          if (error) {
+            console.log(error);
+            res.status(500).send("Error al registrar el usuario");
+          } else {
+            // Envío de correo electrónico al usuario registrado
+            try {
+              await transporter.sendMail({
+                from: `forgot password <Exponet.Com>`,
+                to: userMail,
+                subject: "Bienvenido a Exponet.com",
+                html: `<h1>Bienvenido a Exponet.com</h1>
+                       <p>Gracias por registrarte en Exponet.com</p>`
+              });
+              console.log("Correo electrónico de bienvenida enviado correctamente a:", userMail);
+              res.status(200).send("Registro de usuario exitoso");
+            } catch (emailError) {
+              console.log("Error al enviar el correo electrónico de bienvenida:", emailError);
+              res.status(500).send("Error al enviar el correo electrónico de bienvenida");
+            }
           }
         }
-      }
-    );
-  });
+      );
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("Error interno del servidor");
+  }
 });
-
 
 app.post("/userRead", (req, res) => {
   const { userMail, userPassword } = req.body;
@@ -130,7 +136,7 @@ app.post("/createShop", upload.single("file"), (req, res) => {
 
   const imageUrl = req.file ? req.file.path : null;
 
-  const start = "../../" + imageUrl.slice(12);
+  const start = "/public" + imageUrl.slice(12);
 
   db.query(
     "INSERT INTO appShops (shopName, shopTell, shopMail, shopAdress, shopOwner, shopComments, shopImgUrl) VALUES (?, ?, ?, ?, ?, ?, ?)",
@@ -152,7 +158,7 @@ app.put("/updateShop", upload.single("file"), (req, res) => {
 
   const imageUrl = req.file ? req.file.path : null;
 
-  const start = "../../" + imageUrl.slice(12);
+  const start = "/public" + imageUrl.slice(12);
 
   db.query(
     "UPDATE appShops SET shopName=?, shopAdress=?, shopTell=?, shopMail=?, shopComments=?, shopImgUrl=? WHERE shopId=?",
@@ -241,7 +247,7 @@ app.post("/createProduct", upload.single("file"), (req, res) => {
 
   const imageUrl = req.file ? req.file.path : null;
 
-  const start = "../../" + imageUrl.slice(12);
+  const start = "/public" + imageUrl.slice(12);
 
   db.query(
     "INSERT INTO appProducts(productName, productDescription, productPrize, productStock, productCategory, productImgUrl, productShopOwner ) VALUES (?, ?, ?, ?, ?, ?, ?)",
@@ -320,7 +326,7 @@ app.put("/updateProduct", upload.single("file"), (req, res) => {
     productPrize,
   } = req.body;
 
-  const imageUrl = req.file ? "../../" + req.file.path.slice(12) : null;
+  const imageUrl = req.file ? "/public" + req.file.path.slice(12) : null;
 
   db.query(
     "UPDATE appProducts SET productName=?, productDescription=?, productPrize=?, productStock=?, productCategory=?, productimgurl=? WHERE productId=?",
@@ -518,6 +524,6 @@ app.put("/deleteBuyCar/:buyCarId", (req, res) => {
   );
 });
 
-app.listen(3000, () => {
-  console.log(`Servidor escuchando en el puerto 3000`);
+app.listen(3001, () => {
+  console.log(`Servidor escuchando en el puerto 3001`);
 });
