@@ -17,7 +17,9 @@ function Home() {
     globalShopId.setGlobalShopId(0);
     const fetchData = async () => {
       try {
-        const response = await axios.get("https://exponetappfinal.onrender.com/productsList");
+        const response = await axios.get(
+          "https://exponetappfinal.onrender.com/productsList"
+        );
         setProducts(response.data);
 
         const stockData = response.data.reduce((acc, product) => {
@@ -39,7 +41,7 @@ function Home() {
         <Header />
         <About />
         <div className="box-title-sampler">
-          <h2 className="product-title-sampler">Productos De Interés</h2>
+          <h2 className="product-title-sampler">Productos de interés</h2>
         </div>
         <ProductSamplerHome
           products={products}

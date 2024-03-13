@@ -28,19 +28,19 @@
 @media screen and (max-width: 480px) {
     .about-container{
         padding-top: 0;
-        height: 46vh;
+        height: 60vh;
         background-attachment: initial;
 
     }
 
     .about-title{
-        font-size: 1.6rem;
+        font-size: 1.5rem;
         font-weight: 800;
     }
     
     .about-txt{
         font-size: 0.8rem;
-        width: 65%;
+        width: 80%;
     }
 }
 

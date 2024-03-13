@@ -110,7 +110,7 @@ function Login() {
             </div>
             <div className="info" id="buttonbox">
               <button type="submit" className="btn-login">
-                Iniciar Sesión
+                Iniciar sesión
               </button>
               <hr />
               <button

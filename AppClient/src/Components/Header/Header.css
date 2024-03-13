@@ -89,7 +89,7 @@ color: #4cbfd5; */
 }
 
 .logo-header {
-  height: 3.4rem;
+  height: 3.2rem;
 }
 
 .box-select-category {
@@ -184,40 +184,13 @@ color: #4cbfd5; */
   box-shadow: 1px 1px 2px;
 }
 
-<<<<<<< HEAD
 
-/* Media Query de 1200px  */
-
-@media screen and (max-width: 1200px) {
-  
-}
-
-
-/* Media Query de 992px  */
-
-@media screen and (max-width: 992px) {
-  
-}
-
-
-/* Media Query de 768px  */
-
-@media screen and (max-width: 768px) {
-  
-}
-
-
+/* MEDIA QUERY DEL HEADER */
 /* Media Query de 480px  */
 
 @media screen and (max-width: 480px) {
-  
-}
-=======
-/* MEDIA QUERY DEL HEADER */
-
-@media screen and (max-width: 480px) {
   .header-home {
-    height: 14vh;
+    height: 16vh;
     position: relative;
   }
 
@@ -234,10 +207,11 @@ color: #4cbfd5; */
     width: 9rem;
     padding: 2px 0;
     padding-left: 1.5rem;
+    padding-right: 0.3rem;
   }
 
   .icon-search {
-    width: 12%;
+    width: 13%;
     padding: 0.2rem;
   }
 
@@ -248,6 +222,8 @@ color: #4cbfd5; */
   .icon-txt {
     padding-left: 1rem;
     font-size: 1.4rem;
+    -webkit-text-stroke: 0.5px #c1e1f6;
+    text-shadow: 4px 2px #c1e1f6;
   }
   
   .logo-header {
@@ -265,7 +241,7 @@ color: #4cbfd5; */
   }
   
   .links-nav {
-    gap: 3rem;
+    gap: 2rem;
   }
   
   .logout {
@@ -274,9 +250,17 @@ color: #4cbfd5; */
   }
   
   .link-header-b {
-    padding: 4px 8px;
+    padding: 2px 6px;
     font-size: 0.8rem;
   }
-  
+
+  .link-header-cart {
+    padding: 0.3rem;
+    border-radius: 4px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: black;
+    background-color: #c1e1f6;
+  }
 }
->>>>>>> c14acd0ac7f9382d55753524474d444d620eed08
