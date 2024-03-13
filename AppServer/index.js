@@ -136,7 +136,7 @@ app.post("/createShop", upload.single("file"), (req, res) => {
 
   const imageUrl = req.file ? req.file.path : null;
 
-  const start = "https://exponetappfinal.onrender.com/public/" + imageUrl.slice(12);
+  const start = "/opt/render/project/src/AppServer/public/" + imageUrl.slice(12);
 
   db.query(
     "INSERT INTO appShops (shopName, shopTell, shopMail, shopAdress, shopOwner, shopComments, shopImgUrl) VALUES (?, ?, ?, ?, ?, ?, ?)",
@@ -158,7 +158,7 @@ app.put("/updateShop", upload.single("file"), (req, res) => {
 
   const imageUrl = req.file ? req.file.path : null;
 
-  const start = "https://exponetappfinal.onrender.com/public/" + imageUrl.slice(12);
+  const start = "/opt/render/project/src/AppServer/public/" + imageUrl.slice(12);
 
   db.query(
     "UPDATE appShops SET shopName=?, shopAdress=?, shopTell=?, shopMail=?, shopComments=?, shopImgUrl=? WHERE shopId=?",
@@ -247,7 +247,7 @@ app.post("/createProduct", upload.single("file"), (req, res) => {
 
   const imageUrl = req.file ? req.file.path : null;
 
-  const start = "https://exponetappfinal.onrender.com/public/" + imageUrl.slice(12);
+  const start = "/opt/render/project/src/AppServer/public/" + imageUrl.slice(12);
 
   db.query(
     "INSERT INTO appProducts(productName, productDescription, productPrize, productStock, productCategory, productImgUrl, productShopOwner ) VALUES (?, ?, ?, ?, ?, ?, ?)",
@@ -326,7 +326,7 @@ app.put("/updateProduct", upload.single("file"), (req, res) => {
     productPrize,
   } = req.body;
 
-  const imageUrl = req.file ? "https://exponetappfinal.onrender.com/public/" + req.file.path.slice(12) : null;
+  const imageUrl = req.file ? "/opt/render/project/src/AppServer/public/" + req.file.path.slice(12) : null;
 
   db.query(
     "UPDATE appProducts SET productName=?, productDescription=?, productPrize=?, productStock=?, productCategory=?, productimgurl=? WHERE productId=?",
