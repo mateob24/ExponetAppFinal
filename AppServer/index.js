@@ -384,7 +384,7 @@ app.post("/createBuyCar", (req, res) => {
 app.get("/buyCarsList", async (req, res) => {
   try {
     const result = await new Promise((resolve, reject) => {
-      db.query("SELECT * FROM appBuyCars", (err, result) => {
+      db.query("SELECT * FROM appBuyCars ", (err, result) => {
         if (err) {
           reject(err);
         } else {

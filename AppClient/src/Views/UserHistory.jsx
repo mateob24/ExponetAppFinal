@@ -19,6 +19,7 @@ function UserHistory() {
         );
         console.dir(response.data);
         setBuyCars(response.data);
+        setBuyCarUser(Cookies.get("userId"))
         setLoading(false); // Cambia el estado de carga a falso cuando se completa la solicitud
       } catch (error) {
         if (error.response) {
