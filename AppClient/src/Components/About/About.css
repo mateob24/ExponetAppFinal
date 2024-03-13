@@ -16,20 +16,31 @@
 .about-title{
     font-size: 2.2rem;
     font-weight: 800;
-    /* -webkit-text-stroke: 1.5px rgb(22, 118, 182); */
 }
 
 .about-txt{
     width: 60%;
 }
 
-@media screen and (max-width: 1200px) {
-    .about-container {
-        padding-bottom: 41px;
+
+/* MEDIA QUERY DE ABOUT */
+
+@media screen and (max-width: 480px) {
+    .about-container{
+        padding-top: 0;
+        height: 46vh;
+        background-attachment: initial;
+
     }
 
     .about-title{
-        padding-bottom: 22px;
+        font-size: 1.6rem;
+        font-weight: 800;
+    }
+    
+    .about-txt{
+        font-size: 0.8rem;
+        width: 65%;
     }
 }
 
@@ -43,8 +54,4 @@
 
 @media screen and (max-width: 600px) {
 
-}
-
-@media screen and (max-width: 480px) {
-    
 }
