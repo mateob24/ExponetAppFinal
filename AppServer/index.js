@@ -5,19 +5,29 @@ const bcrypt = require("bcryptjs");
 const cors = require("cors");
 const multer = require("multer");
 const bodyParser = require("body-parser");
-const nodemailer = require("nodemailer")
+const nodemailer = require("nodemailer");
 const path = require('path');
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
+const cloudinary = require('cloudinary').v2;
 
-storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, 'public'));
-  },
-  filename: (req, file, cb) => {
-      cb(null, file.originalname);
+cloudinary.config({
+  cloud_name: 'tu_cloud_name',
+  api_key: 'tu_api_key',
+  api_secret: 'tu_api_secret',
+});
+
+const cloudinaryStorage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: 'uploads',
+    allowed_formats: ['jpg', 'jpeg', 'png'],
   },
 });
 
-const upload = multer({ storage: storage });
+
+
+
+const multerUpload = multer({ storage: cloudinaryStorage });
 
 app.use(cors());
 app.use(express.json());
@@ -131,11 +141,10 @@ app.post("/userRead", (req, res) => {
   );
 });
 
-app.post("/createShop", upload.single("file"), (req, res) => {
-  const { shopName, shopTell, shopMail, shopAdress, shopOwner, shopComments } =
-    req.body;
+app.post("/createShop", multerUpload.single("file"), (req, res) => {
+  const { shopName, shopTell, shopMail, shopAdress, shopOwner, shopComments } = req.body;
 
-    const imageUrl = req.file ? `/public/${req.file.filename}` : null;
+  const imageUrl = req.file ? req.file.path : null;
 
   db.query(
     "INSERT INTO appShops (shopName, shopTell, shopMail, shopAdress, shopOwner, shopComments, shopImgUrl) VALUES (?, ?, ?, ?, ?, ?, ?)",
@@ -151,11 +160,10 @@ app.post("/createShop", upload.single("file"), (req, res) => {
   );
 });
 
-app.put("/updateShop", upload.single("file"), (req, res) => {
-  const { shopName, shopAdress, shopTell, shopMail, shopComments, shopId } =
-    req.body;
+app.put("/updateShop", multerUpload.single("file"), (req, res) => {
+  const { shopName, shopAdress, shopTell, shopMail, shopComments, shopId } = req.body;
 
-    const imageUrl = req.file ? `/public/${req.file.filename}` : null;
+  const imageUrl = req.file ? req.file.path : null;
 
   db.query(
     "UPDATE appShops SET shopName=?, shopAdress=?, shopTell=?, shopMail=?, shopComments=?, shopImgUrl=? WHERE shopId=?",
