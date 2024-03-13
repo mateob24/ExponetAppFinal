@@ -29,7 +29,7 @@ const Header = () => {
               type="text"
               name=""
               id=""
-              placeholder="Busca un producto"
+              placeholder="Buscar producto"
             />
           </li>
           {/* AQUÍ CAMBIÉ PASÉ EL COMPONENTE 'ICON-BOX' A UNA ETIQUETA 'Link' PARA QUE REDIRIJA AL INICIO YA QUE ANTERIORMENTE ERA UN 'BUTTON' SIN FUNCIÓN */}
