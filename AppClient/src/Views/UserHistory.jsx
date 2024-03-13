@@ -18,10 +18,10 @@ function UserHistory() {
         );
         setBuyCars(response.data);
       } catch (error) {
-        console.error("Error al obtener la lista de tiendas:", error);
+        console.error("Error al obtener la lista de carritos de compras:", error);
       }
     };
-
+  
     fetchShops();
   }, []);
 
