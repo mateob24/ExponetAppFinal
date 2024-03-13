@@ -138,3 +138,30 @@
     color: white;
     background-color: #4cade4;
 }
+
+/* Media Query de 1200px  */
+
+@media screen and (max-width: 1200px) {
+
+}
+
+
+/* Media Query de 992px  */
+
+@media screen and (max-width: 992px) {
+  
+}
+
+
+/* Media Query de 768px  */
+
+@media screen and (max-width: 768px) {
+  
+}
+
+
+/* Media Query de 480px  */
+
+@media screen and (max-width: 480px) {
+  
+}

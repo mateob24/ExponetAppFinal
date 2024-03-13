@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 import { IoStorefrontSharp } from "react-icons/io5";
 import { ShopContextValues } from "../Components/Context/ShopContext";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 // import Header from '../Components/Header/Header';
 // import Footer from '../Components/Footer/Footer';
 
@@ -34,11 +34,14 @@ function Login() {
     e.preventDefault();
 
     try {
-      const response = await axios.post("https://exponetappfinal.onrender.com/UserRead", {
-        userMail: formData.userMail,
-        userPassword: formData.userPassword,
-        userRoll: formData.userRoll,
-      });
+      const response = await axios.post(
+        "https://exponetappfinal.onrender.com/UserRead",
+        {
+          userMail: formData.userMail,
+          userPassword: formData.userPassword,
+          userRoll: formData.userRoll,
+        }
+      );
 
       console.log(response.data);
 
@@ -67,16 +70,20 @@ function Login() {
         <section className="second-section">
           <section className="left-section">
             <h1 className="left-title">EXPONET</h1>
-            <img className="left-logo" src="https://media.discordapp.net/attachments/1088828343731900429/1215287895284518912/Captura_de_pantalla_2024-03-07_080922-removebg-preview.png?ex=65fc340d&is=65e9bf0d&hm=bd96221de684f02eb50594f4791686e8ada3664468ab3100ad71003a35943a34&=&format=webp&quality=lossless&width=622&height=482" alt="" />
+            <img
+              className="left-logo"
+              src="https://media.discordapp.net/attachments/1088828343731900429/1215287895284518912/Captura_de_pantalla_2024-03-07_080922-removebg-preview.png?ex=65fc340d&is=65e9bf0d&hm=bd96221de684f02eb50594f4791686e8ada3664468ab3100ad71003a35943a34&=&format=webp&quality=lossless&width=622&height=482"
+              alt=""
+            />
             <Link className="left-link" to={"/"}>
-              <IoStorefrontSharp /> Inicio
+              <IoStorefrontSharp className="left-link-icon" /> Inicio
             </Link>
           </section>
           <form onSubmit={handleSubmit} className="form-login">
             <h4 className="form-title">Acceso</h4>
             <div className="info">
               <label htmlFor="userMail" className="login-label">
-                Correo Electrónico
+                Correo electrónico
               </label>
               <input
                 className="date-input"

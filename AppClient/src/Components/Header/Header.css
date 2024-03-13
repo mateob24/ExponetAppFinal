@@ -184,6 +184,35 @@ color: #4cbfd5; */
   box-shadow: 1px 1px 2px;
 }
 
+<<<<<<< HEAD
+
+/* Media Query de 1200px  */
+
+@media screen and (max-width: 1200px) {
+  
+}
+
+
+/* Media Query de 992px  */
+
+@media screen and (max-width: 992px) {
+  
+}
+
+
+/* Media Query de 768px  */
+
+@media screen and (max-width: 768px) {
+  
+}
+
+
+/* Media Query de 480px  */
+
+@media screen and (max-width: 480px) {
+  
+}
+=======
 /* MEDIA QUERY DEL HEADER */
 
 @media screen and (max-width: 480px) {
@@ -250,3 +279,4 @@ color: #4cbfd5; */
   }
   
 }
+>>>>>>> c14acd0ac7f9382d55753524474d444d620eed08
