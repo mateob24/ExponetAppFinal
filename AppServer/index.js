@@ -136,11 +136,9 @@ app.post("/createShop", upload.single("file"), (req, res) => {
 
   const imageUrl = req.file ? req.file.path : null;
 
-  const start = "./" + imageUrl
-
   db.query(
     "INSERT INTO appShops (shopName, shopTell, shopMail, shopAdress, shopOwner, shopComments, shopImgUrl) VALUES (?, ?, ?, ?, ?, ?, ?)",
-    [shopName, shopTell, shopMail, shopAdress, shopOwner, shopComments, start],
+    [shopName, shopTell, shopMail, shopAdress, shopOwner, shopComments, imageUrl],
     (err, result) => {
       if (err) {
         console.log(err);
@@ -158,11 +156,9 @@ app.put("/updateShop", upload.single("file"), (req, res) => {
 
   const imageUrl = req.file ? req.file.path : null;
 
-  const start = "./" + imageUrl
-
   db.query(
     "UPDATE appShops SET shopName=?, shopAdress=?, shopTell=?, shopMail=?, shopComments=?, shopImgUrl=? WHERE shopId=?",
-    [shopName, shopAdress, shopTell, shopMail, shopComments, start, shopId],
+    [shopName, shopAdress, shopTell, shopMail, shopComments, imageUrl, shopId],
     (err, result) => {
       if (err) {
         console.log(err);
@@ -247,7 +243,7 @@ app.post("/createProduct", upload.single("file"), (req, res) => {
 
   const imageUrl = req.file ? req.file.path : null;
 
-  const start = "./" + imageUrl
+  
 
   db.query(
     "INSERT INTO appProducts(productName, productDescription, productPrize, productStock, productCategory, productImgUrl, productShopOwner ) VALUES (?, ?, ?, ?, ?, ?, ?)",
@@ -257,7 +253,7 @@ app.post("/createProduct", upload.single("file"), (req, res) => {
       productPrize,
       productStock,
       productCategory,
-      start,
+      imageUrl,
       productShopOwner,
     ],
     (err, result) => {
@@ -326,7 +322,7 @@ app.put("/updateProduct", upload.single("file"), (req, res) => {
     productPrize,
   } = req.body;
 
-  const imageUrl = req.file ? "./" + req.file.path : null;
+  const imageUrl = req.file 
 
   db.query(
     "UPDATE appProducts SET productName=?, productDescription=?, productPrize=?, productStock=?, productCategory=?, productimgurl=? WHERE productId=?",
