@@ -5,7 +5,7 @@ footer{
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: center ;
+  /* justify-content: center; da scroll horizontal  */
   text-align: center;
   background-color: whitesmoke;
 }
@@ -114,4 +114,12 @@ footer{
   bottom: -7px;
   transform: translateX(-50%) rotate(45deg);
   transition: all 0.4s cubic-bezier(0.68,-0.55,0.265,1.55);
+}
+
+
+/* Media Query de 1200px  */
+@media screen and (max-width: 1200px) {
+
+  
+
 }
