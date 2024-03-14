@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const mysql = require("mysql");
+const mysql = require("mysql2/promise");
 const bcrypt = require("bcryptjs");
 const cors = require("cors");
 const multer = require("multer");
@@ -31,15 +31,13 @@ app.use(express.json());
 app.use(bodyParser.json());
 
 const pool = mysql.createPool({
-  connectionLimit: 10, // Establece el límite de conexiones simultáneas
-  host: "be2akte2ntisg7onaynu-mysql.services.clever-cloud.com",
-  user: "umitr9ccarbghg5i",
-  password: "i1JW2NSotnKXIjkAkHTR",
-  database: "be2akte2ntisg7onaynu",
-  insecureAuth: true,
+  connectionLimit: 10,
+  host: "tu_host",
+  user: "tu_usuario",
+  password: "tu_contraseña",
+  database: "tu_base_de_datos"
 });
 
-const db = pool.promise();
 
 let transporter = nodemailer.createTransport({
   host:"smtp.gmail.com",
@@ -66,90 +64,73 @@ app.post("/createUser", async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(userPassword, 10);
 
-    db.getConnection((err, connection) => {
-      if (err) {
-        console.log(err);
-        res.status(500).send("Error de conexión a la base de datos");
-        return;
-      }
-
-      connection.query(
+    const connection = await pool.getConnection();
+    try {
+      await connection.execute(
         "INSERT INTO appUsers (userName, userMail, userPassword, userAdress, userRoll) VALUES (?, ?, ?, ?, ?)",
-        [userName, userMail, hashedPassword, userAdress, userRole],
-        async (error, result) => {
-          connection.release();
-
-          if (error) {
-            console.log(error);
-            res.status(500).send("Error al registrar el usuario");
-          } else {
-            // Envío de correo electrónico al usuario registrado
-            try {
-              await transporter.sendMail({
-                from: `forgot password <Exponet.Com>`,
-                to: userMail,
-                subject: "Bienvenido a Exponet.com",
-                html: `<h1>Bienvenido a Exponet.com</h1>
-                       <p>Gracias por registrarte en Exponet.com</p>`
-              });
-              console.log("Correo electrónico de bienvenida enviado correctamente a:", userMail);
-              res.status(200).send("Registro de usuario exitoso");
-            } catch (emailError) {
-              console.log("Error al enviar el correo electrónico de bienvenida:", emailError);
-              res.status(500).send("Error al enviar el correo electrónico de bienvenida");
-            }
-          }
-        }
+        [userName, userMail, hashedPassword, userAdress, userRole]
       );
-    });
+
+      // Envío de correo electrónico al usuario registrado
+      try {
+        await transporter.sendMail({
+          from: `forgot password <Exponet.Com>`,
+          to: userMail,
+          subject: "Bienvenido a Exponet.com",
+          html: `<h1>Bienvenido a Exponet.com</h1>
+                 <p>Gracias por registrarte en Exponet.com</p>`
+        });
+        console.log("Correo electrónico de bienvenida enviado correctamente a:", userMail);
+        res.status(200).send("Registro de usuario exitoso");
+      } catch (emailError) {
+        console.log("Error al enviar el correo electrónico de bienvenida:", emailError);
+        res.status(500).send("Error al enviar el correo electrónico de bienvenida");
+      }
+    } finally {
+      // Siempre liberar la conexión, incluso si ocurrió un error
+      connection.release();
+    }
   } catch (err) {
     console.log(err);
     res.status(500).send("Error interno del servidor");
   }
 });
 
-app.post("/userRead", (req, res) => {
-  const { userMail, userPassword } = req.body;
+app.post("/userRead", async (req, res) => {
+  try {
+    const { userMail, userPassword } = req.body;
 
-  console.log(userMail);
-  console.log(userPassword);
+    console.log(userMail);
+    console.log(userPassword);
 
-  db.query(
-    "SELECT * FROM appUsers WHERE userMail = ?",
-    [userMail],
-    async (err, result) => {
-      if (err) {
-        console.log(err);
-        res.status(500).send("Error interno del servidor");
+    const [rows] = await pool.query("SELECT * FROM appUsers WHERE userMail = ?", [userMail]);
+
+    if (rows.length > 0) {
+      const match = await bcrypt.compare(userPassword, rows[0].userPassword);
+      if (match) {
+        res.status(200).json(rows[0]);
       } else {
-        if (result.length > 0) {
-          const match = await bcrypt.compare(
-            userPassword,
-            result[0].userPassword
-          );
-          if (match) {
-            res.status(200).json(result[0]);
-          } else {
-            res.status(401).send("Contraseña incorrecta");
-          }
-        } else {
-          res.status(404).send("Usuario no encontrado");
-        }
+        res.status(401).send("Contraseña incorrecta");
       }
+    } else {
+      res.status(404).send("Usuario no encontrado");
     }
-  );
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Error interno del servidor");
+  }
 });
 
 app.post("/createShop", multerUpload.single("file"), async (req, res) => {
   try {
     const { shopName, shopTell, shopMail, shopAdress, shopOwner, shopComments } = req.body;
-    console.log(shopName, shopAdress, shopComments, shopId, shopMail, shopTell)
+    console.log(shopName, shopAdress, shopComments, shopId, shopMail, shopTell);
     console.log(JSON.stringify(req.body));
     console.log("shopName:", req.body.shopName);
     console.log("shopAdress:", req.body.shopAdress);
     console.log("shopComments:", req.body.shopComments);
     console.log("shop tell", req.body.shopTell);
-    console.log("shopId", req.body.shopId );
+    console.log("shopId", req.body.shopId);
     console.log("shopMail", req.body.shopMail);
     // Obtener la URL de la imagen subida desde Cloudinary
     let imageUrl = null;
@@ -166,20 +147,14 @@ app.post("/createShop", multerUpload.single("file"), async (req, res) => {
       }
     }
 
-    console.log(imageUrl)
+    console.log(imageUrl);
 
-    db.query(
+    const [rows] = await pool.query(
       "INSERT INTO appShops (shopName, shopTell, shopMail, shopAdress, shopOwner, shopComments, shopImgUrl) VALUES (?, ?, ?, ?, ?, ?, ?)",
-      [shopName, shopTell, shopMail, shopAdress, shopOwner, shopComments, imageUrl],
-      (err, result) => {
-        if (err) {
-          console.error("Error al ejecutar la consulta en la base de datos:", err);
-          res.status(500).send("Error al crear la tienda");
-        } else {
-          res.status(200).send(result);
-        }
-      }
+      [shopName, shopTell, shopMail, shopAdress, shopOwner, shopComments, imageUrl]
     );
+
+    res.status(200).send(rows);
   } catch (error) {
     console.error("Error general en la función de creación de tienda:", error);
     res.status(500).send("Error al crear la tienda");
@@ -195,7 +170,7 @@ app.put("/updateShop", multerUpload.single("file"), async (req, res) => {
     console.log("shopAdress:", req.body.shopAdress);
     console.log("shopComments:", req.body.shopComments);
     console.log("shop tell", req.body.shopTell);
-    console.log("shopId", req.body.shopId );
+    console.log("shopId", req.body.shopId);
     console.log("shopMail", req.body.shopMail);
     let imageUrl = null;
     if (req.file) {
@@ -211,20 +186,14 @@ app.put("/updateShop", multerUpload.single("file"), async (req, res) => {
       }
     }
 
-    console.log(imageUrl)
+    console.log(imageUrl);
 
-    db.query(
+    const [rows] = await pool.query(
       "UPDATE appShops SET shopName=?, shopAdress=?, shopTell=?, shopMail=?, shopComments=?, shopImgUrl=? WHERE shopId=?",
-      [shopName, shopAdress, shopTell, shopMail, shopComments, imageUrl, shopId],
-      (err, result) => {
-        if (err) {
-          console.error("Error al ejecutar la consulta en la base de datos:", err);
-          res.status(500).send("Error al actualizar la tienda");
-        } else {
-          res.status(200).send(result);
-        }
-      }
+      [shopName, shopAdress, shopTell, shopMail, shopComments, imageUrl, shopId]
     );
+
+    res.status(200).send(rows);
   } catch (error) {
     console.error("Error general en la función de actualización de tienda:", error);
     res.status(500).send("Error al actualizar la tienda");
@@ -233,85 +202,86 @@ app.put("/updateShop", multerUpload.single("file"), async (req, res) => {
 
 
 
-app.get("/shopsList", (req, res) => {
-  db.query("SELECT * FROM appShops", (err, result) => {
-    if (err) {
-      console.log(err);
-      res.status(500).send("Error al obtener la lista de tiendas");
-    } else {
-      res.status(200).send(result);
-      console.log(result);
-    }
-  });
+
+app.get("/shopsList", async (req, res) => {
+  try {
+    const [rows] = await pool.query("SELECT * FROM appShops");
+    console.log(rows);
+    res.status(200).send(rows);
+  } catch (error) {
+    console.error("Error al obtener la lista de tiendas:", error);
+    res.status(500).send("Error al obtener la lista de tiendas");
+  }
 });
 
-app.get("/shopsListCreateShops/:shopOwner", (req, res) => {
+app.get("/shopsListCreateShops/:shopOwner", async (req, res) => {
   const shopOwner = req.params.shopOwner;
 
-  db.query(
-    "SELECT * FROM appShops WHERE shopOwner = ?",
-    shopOwner,
-    (err, result) => {
-      if (err) {
-        console.log(err);
-        res.status(500).send("Error al obtener la lista de tiendas");
-      } else {
-        res.status(200).send(result);
-        console.log(result);
-      }
-    }
-  );
-});
-
-app.put("/deleteShop/:shopId", (req, res) => {
-  const ShopId = req.params.shopId;
-
-  db.query("DELETE FROM appShops WHERE shopId=?", ShopId, (err, result) => {
-    if (err) {
-      console.log(err);
-      res.status(500).send("Error al eliminar la tienda ");
-    } else {
-      res.status(200).send(result);
-    }
-  });
-});
-
-app.put("/deleteProducts/:shopId"),
-  (req, res) => {
-    const ShopId = req.params.shopId;
-
-    db.query(
-      "DELETE FROM appProducts Where productShopOwner = ?",
-      ShopId,
-      (err, result) => {
-        if (err) {
-          console.log(err);
-          res.status(500).send("Error al eliminar los productos de la tienda");
-        } else {
-          res.status(200).send(result);
-        }
-      }
+  try {
+    const [rows] = await pool.query(
+      "SELECT * FROM appShops WHERE shopOwner = ?",
+      [shopOwner]
     );
-  };
+    console.log(rows);
+    res.status(200).send(rows);
+  } catch (error) {
+    console.error("Error al obtener la lista de tiendas:", error);
+    res.status(500).send("Error al obtener la lista de tiendas");
+  }
+});
 
-  app.post("/createProduct", multerUpload.single("file"), (req, res) => {
-    const {
-      productName,
-      productStock,
-      productCategory,
-      productDescription,
-      productPrize,
-      productShopOwner,
-    } = req.body;
-  
+
+app.put("/deleteShop/:shopId", async (req, res) => {
+  const shopId = req.params.shopId;
+
+  try {
+    const [result] = await pool.query(
+      "DELETE FROM appShops WHERE shopId = ?",
+      [shopId]
+    );
+    res.status(200).send(result);
+  } catch (error) {
+    console.error("Error al eliminar la tienda:", error);
+    res.status(500).send("Error al eliminar la tienda");
+  }
+});
+;
+
+app.put("/deleteProducts/:shopId", async (req, res) => {
+  const shopId = req.params.shopId;
+
+  try {
+    const [result] = await pool.query(
+      "DELETE FROM appProducts WHERE productShopOwner = ?",
+      [shopId]
+    );
+    res.status(200).send(result);
+  } catch (error) {
+    console.error("Error al eliminar los productos de la tienda:", error);
+    res.status(500).send("Error al eliminar los productos de la tienda");
+  }
+});
+
+
+app.post("/createProduct", multerUpload.single("file"), async (req, res) => {
+  const {
+    productName,
+    productStock,
+    productCategory,
+    productDescription,
+    productPrize,
+    productShopOwner,
+  } = req.body;
+
+  try {
     // Obtener la URL de la imagen subida desde Cloudinary
-    const imageUrl = req.file ? cloudinary.url(req.file.filename, {
+    const imageUrl = req.file ? await cloudinary.url(req.file.filename, {
       width: 100,
       height: 150,
       crop: 'fill'
     }) : null;
-  
-    db.query(
+
+    const [result] = await pool.query(
       "INSERT INTO appProducts(productName, productDescription, productPrize, productStock, productCategory, productImgUrl, productShopOwner) VALUES (?, ?, ?, ?, ?, ?, ?)",
       [
         productName,
@@ -321,66 +291,57 @@ app.put("/deleteProducts/:shopId"),
         productCategory,
         imageUrl,
         productShopOwner,
-      ],
-      (err, result) => {
-        if (err) {
-          console.log(err);
-          res.status(500).send("Error al registrar el producto");
-        } else {
-          console.log("URL de la imagen en Cloudinary:", imageUrl);
-          res.status(200).send("Registro de producto exitoso");
-        }
-      }
+      ]
     );
-  });
+
+    console.log("URL de la imagen en Cloudinary:", imageUrl);
+    res.status(200).send("Registro de producto exitoso");
+  } catch (error) {
+    console.error("Error al registrar el producto:", error);
+    res.status(500).send("Error al registrar el producto");
+  }
+});
+
   
 
-app.get("/productsList", (req, res) => {
-  db.query("SELECT * FROM appProducts", (err, result) => {
-    if (err) {
-      console.log(err);
-      res.status(500).send("Error al obtener la lista de productos");
-    } else {
-      res.status(200).send(result);
-    }
-  });
+app.get("/productsList", async (req, res) => {
+  try {
+    const [rows, fields] = await pool.query("SELECT * FROM appProducts");
+    res.status(200).send(rows);
+  } catch (error) {
+    console.error("Error al obtener la lista de productos:", error);
+    res.status(500).send("Error al obtener la lista de productos");
+  }
 });
 
-app.get("/productsListUpdateProducts/:productShopOwner", (req, res) => {
+
+app.get("/productsListUpdateProducts/:productShopOwner", async (req, res) => {
   const productShopOwner = req.params.productShopOwner;
-
-  db.query(
-    "SELECT * FROM appProducts WHERE productShopOwner = ?",
-    productShopOwner,
-    (err, result) => {
-      if (err) {
-        console.log(err);
-        res.status(500).send("Error al obtener la lista de productos");
-      } else {
-        res.status(200).send(result);
-      }
-    }
-  );
+  
+  try {
+    const [rows, fields] = await pool.query("SELECT * FROM appProducts WHERE productShopOwner = ?", [productShopOwner]);
+    res.status(200).send(rows);
+  } catch (error) {
+    console.error("Error al obtener la lista de productos:", error);
+    res.status(500).send("Error al obtener la lista de productos");
+  }
 });
 
-app.put("/deleteProduct/:productId", (req, res) => {
+
+app.put("/deleteProduct/:productId", async (req, res) => {
   const productId = req.params.productId;
 
-  db.query(
-    "DELETE FROM appProducts WHERE productId=?",
-    productId,
-    (err, result) => {
-      if (err) {
-        console.log(err);
-        res.status(500).send("Error al eliminar el producto ");
-      } else {
-        res.status(200).send(result);
-      }
-    }
-  );
+  try {
+    await pool.query("DELETE FROM appProducts WHERE productId=?", [productId]);
+    res.status(200).send("Producto eliminado correctamente");
+  } catch (error) {
+    console.error("Error al eliminar el producto:", error);
+    res.status(500).send("Error al eliminar el producto");
+  }
 });
 
-app.put("/updateProduct", multerUpload.single("file"), (req, res) => {
+
+app.put("/updateProduct", multerUpload.single("file"), async (req, res) => {
   const {
     productId,
     productName,
@@ -390,96 +351,92 @@ app.put("/updateProduct", multerUpload.single("file"), (req, res) => {
     productPrize,
   } = req.body;
 
-  // Obtener la URL de la imagen subida desde Cloudinary
-  const imageUrl = req.file ? cloudinary.url(req.file.filename, {
-    width: 100,
-    height: 150,
-    crop: 'fill'
-  }) : null;
+  try {
+    // Obtener la URL de la imagen subida desde Cloudinary
+    const imageUrl = req.file ? await cloudinary.url(req.file.filename, {
+      width: 100,
+      height: 150,
+      crop: 'fill'
+    }) : null;
 
-  db.query(
-    "UPDATE appProducts SET productName=?, productDescription=?, productPrize=?, productStock=?, productCategory=?, productImgUrl=? WHERE productId=?",
-    [
-      productName,
-      productDescription,
-      productPrize,
-      productStock,
-      productCategory,
-      imageUrl,
-      productId,
-    ],
-    (err, result) => {
-      if (err) {
-        console.log(err);
-        res.status(500).send("Error al actualizar el producto");
-      } else {
-        console.log("URL de la imagen en Cloudinary:", imageUrl);
-        res.status(200).send(result);
-      }
-    }
-  );
+    await pool.query(
+      "UPDATE appProducts SET productName=?, productDescription=?, productPrize=?, productStock=?, productCategory=?, productImgUrl=? WHERE productId=?",
+      [
+        productName,
+        productDescription,
+        productPrize,
+        productStock,
+        productCategory,
+        imageUrl,
+        productId,
+      ]
+    );
+
+    console.log("URL de la imagen en Cloudinary:", imageUrl);
+    res.status(200).send("Producto actualizado correctamente");
+  } catch (error) {
+    console.error("Error al actualizar el producto:", error);
+    res.status(500).send("Error al actualizar el producto");
+  }
 });
 
 
-app.get("/commentsList", (req, res) => {
-  db.query("CALL GetCommentsWithUser()", (err, result) => {
-    if (err) {
-      console.log(err);
-      res.status(500).send("Error al obtener la lista de comentarios");
-    } else {
-      res.status(200).send(result[0]);
-    }
-  });
+
+app.get("/commentsList", async (req, res) => {
+  try {
+    const [rows] = await pool.query("CALL GetCommentsWithUser()");
+    res.status(200).send(rows);
+  } catch (error) {
+    console.error("Error al obtener la lista de comentarios:", error);
+    res.status(500).send("Error al obtener la lista de comentarios");
+  }
 });
+
 
 // carrito compras
 
-app.post("/createBuyCar", (req, res) => {
-  const { buyCarContent, buyCarUser, buyCarState } = req.body;
+app.post("/createBuyCar", async (req, res) => {
+  try {
+    const { buyCarContent, buyCarUser, buyCarState } = req.body;
 
-  console.log(buyCarContent);
-  console.log(buyCarUser);
-  console.log(buyCarState);
+    console.log(buyCarContent);
+    console.log(buyCarUser);
+    console.log(buyCarState);
 
-  db.query(
-    "INSERT INTO appBuyCars (buyCarContent, buyCarUser, buyCarState) VALUES (?, ?, ?)",
-    [buyCarContent, buyCarUser, buyCarState],
-    (err, result) => {
-      if (err) {
-        console.log(err);
-        res.status(500).send("Error al crear el carrito de compras ");
-      } else {
-        res.status(200).send(result);
-      }
-    }
-  );
-});
+    const [result] = await pool.query(
+      "INSERT INTO appBuyCars (buyCarContent, buyCarUser, buyCarState) VALUES (?, ?, ?)",
+      [buyCarContent, buyCarUser, buyCarState]
+    );
 
-app.get("/buyCarsList", (req, res) => {
-  db.query("SELECT * FROM appBuyCars", (err, result) => {
-    if (err) {
-      console.log(err);
-      res.status(500).send("Error al obtener la lista de carritos");
-    } else {
-      res.status(200).send(result);
-    }
-  });
+    res.status(200).send(result);
+  } catch (error) {
+    console.error("Error al crear el carrito de compras:", error);
+    res.status(500).send("Error al crear el carrito de compras");
+  }
 });
 
 
-app.get("/buyCarOrdersManagment", (req, res) => {
-  db.query("CALL GetBuyCarsAndUsers()", (err, result) => {
-    if (err) {
-      console.error(err);
-      res.status(500).send("Error al obtener los pedidos");
-    } else {
-      res.status(200).json(result[0]); // Cambiado a status 200 y result[0]
-      console.log(result);
-    }
-  });
+app.get("/buyCarsList", async (req, res) => {
+  try {
+    const [result] = await pool.query("SELECT * FROM appBuyCars");
+    res.status(200).send(result);
+  } catch (error) {
+    console.error("Error al obtener la lista de carritos:", error);
+    res.status(500).send("Error al obtener la lista de carritos");
+  }
 });
 
-app.post("/ProductStockUpdate", (req, res) => {
+app.get("/buyCarOrdersManagment", async (req, res) => {
+  try {
+    const [result] = await pool.query("CALL GetBuyCarsAndUsers()");
+    res.status(200).json(result[0]);
+  } catch (error) {
+    console.error("Error al obtener los pedidos:", error);
+    res.status(500).send("Error al obtener los pedidos");
+  }
+});
+
+app.post("/ProductStockUpdate", async (req, res) => {
   const productIds = req.body.productsIds;
   const productQuantities = req.body.productsQuantities;
   const productsShopOwners = req.body.productsShopOwners;
@@ -488,96 +445,68 @@ app.post("/ProductStockUpdate", (req, res) => {
   // Variable para llevar el registro de cuántas actualizaciones se han completado
   let updatedProductsCount = 0;
 
-  // Itera sobre los IDs y cantidades para actualizar el stock de cada producto
-  for (let i = 0; i < productIds.length; i++) {
-    const currentProductId = productIds[i];
-    const currentProductQuantity = productQuantities[i];
-    const currentProductShopOwner = productsShopOwners[i];
-    let originalProductShopOwner;
+  try {
+    for (let i = 0; i < productIds.length; i++) {
+      const currentProductId = productIds[i];
+      const currentProductQuantity = productQuantities[i];
+      const currentProductShopOwner = productsShopOwners[i];
 
-    // Utiliza una función que espera la respuesta antes de continuar con la lógica
-    const getProductShopOwner = () => {
-      return new Promise((resolve, reject) => {
-        db.query(
-          "SELECT productShopOwner FROM appProducts WHERE productId = ?",
-          [currentProductId],
-          (err, result) => {
-            if (err) {
-              console.log(err);
-              reject("Error al obtener el ProductShopOwner Original");
-            } else {
-              console.log(result);
-              resolve(result[0].productShopOwner);
-            }
-          }
-        );
-      });
-    };
+      // Función para obtener el productShopOwner original de manera asíncrona
+      const originalProductShopOwner = await getProductShopOwner(currentProductId);
 
-    // Realiza la actualización del stock y buyCarState solo si productShopOwner coincide
-    getProductShopOwner()
-      .then((result) => {
-        originalProductShopOwner = result;
+      if (currentProductShopOwner === originalProductShopOwner) {
+        await updateProductStock(currentProductId, currentProductQuantity, currentProductShopOwner, newBuyCarContent);
+        updatedProductsCount++;
+      } else {
+        updatedProductsCount++;
+      }
+    }
 
-        if (currentProductShopOwner === originalProductShopOwner) {
-          db.query(
-            "UPDATE appProducts SET productStock = GREATEST(productStock - ?, 0), buyCarState = ? WHERE productId = ? AND productShopOwner = ?, buyCarContent = ?",
-            [
-              currentProductQuantity,
-              currentProductId,
-              currentProductShopOwner,
-              newBuyCarContent
-            ],
-            (err, result) => {
-              if (err) {
-                console.log(err);
-                // Si hay un error, puedes enviar una respuesta de error
-                res
-                  .status(500)
-                  .send("Error al actualizar el stock del producto");
-              } else {
-                console.log(result);
-                // Actualización exitosa para el producto actual
-                updatedProductsCount++;
-
-                // Verifica si todas las actualizaciones han sido completadas
-                if (updatedProductsCount === productIds.length) {
-                  // Todas las actualizaciones han sido completadas, envía una respuesta de éxito
-                  res.status(200).send("Actualización de stock exitosa");
-                }
-              }
-            }
-          );
-
-
-
-          db.query("UPDATE buyCarContent FROM appBuyCar WHERE buyCarId = ?",[currentProductId]),
-          (err, result) => {
-            if(err){
-              console.log(err);
-              // Si hay un error, puedes enviar una respuesta de error
-              res
-                .status(500)
-                .send("Error al actualizar el estado del producto");
-            } else {
-              console.log(result);
-              res.status(500).send("actualisacion de estado del producto exitosa")
-            }
-          }
-        } else {
-          // Si productShopOwner no coincide, continúa con la siguiente iteración sin hacer cambios
-          updatedProductsCount++;
-          if (updatedProductsCount === productIds.length) {
-            res.status(200).send("Actualización de stock exitosa");
-          }
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-        res.status(500).send(error);
-      });
+    if (updatedProductsCount === productIds.length) {
+      res.status(200).send("Actualización de stock exitosa");
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error al actualizar el stock del producto");
   }
 });
+
+// Función para obtener el productShopOwner original de manera asíncrona
+function getProductShopOwner(productId) {
+  return new Promise((resolve, reject) => {
+    db.query(
+      "SELECT productShopOwner FROM appProducts WHERE productId = ?",
+      [productId],
+      (err, result) => {
+        if (err) {
+          console.error(err);
+          reject("Error al obtener el ProductShopOwner Original");
+        } else {
+          resolve(result[0].productShopOwner);
+        }
+      }
+    );
+  });
+}
+
+// Función para actualizar el stock del producto
+function updateProductStock(productId, quantity, shopOwner, buyCarContent) {
+  return new Promise((resolve, reject) => {
+    db.query(
+      "UPDATE appProducts SET productStock = GREATEST(productStock - ?, 0), buyCarState = ? WHERE productId = ? AND productShopOwner = ?",
+      [quantity, buyCarContent, productId, shopOwner],
+      (err, result) => {
+        if (err) {
+          console.error(err);
+          reject("Error al actualizar el stock del producto");
+        } else {
+          resolve();
+        }
+      }
+    );
+  });
+}
+
 
 app.put("/deleteBuyCar/:buyCarId", (req, res) => {
   const buyCarId = req.params.buyCarId;
@@ -594,6 +523,7 @@ app.put("/deleteBuyCar/:buyCarId", (req, res) => {
     }
   );
 });
+
 
 app.listen(3001, () => {
   console.log(`Servidor escuchando en el puerto 3001`);
