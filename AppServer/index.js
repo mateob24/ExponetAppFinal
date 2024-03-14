@@ -145,6 +145,12 @@ app.post("/createShop", multerUpload.single("file"), async (req, res) => {
     const { shopName, shopTell, shopMail, shopAdress, shopOwner, shopComments } = req.body;
     console.log(shopName, shopAdress, shopComments, shopId, shopMail, shopTell)
     console.log(JSON.stringify(req.body));
+    console.log("shopName:", req.body.shopName);
+    console.log("shopAdress:", req.body.shopAdress);
+    console.log("shopComments:", req.body.shopComments);
+    console.log("shop tell", req.body.shopTell);
+    console.log("shopId", req.body.shopId );
+    console.log("shopMail", req.body.shopMail);
     // Obtener la URL de la imagen subida desde Cloudinary
     let imageUrl = null;
     if (req.file) {
@@ -185,7 +191,12 @@ app.put("/updateShop", multerUpload.single("file"), async (req, res) => {
   try {
     const { shopName, shopAdress, shopTell, shopMail, shopComments, shopId } = req.body;
     console.log(JSON.stringify(req.body));
-    console.log(shopName, shopAdress, shopComments, shopId, shopMail, shopTell)
+    console.log("shopName:", req.body.shopName);
+    console.log("shopAdress:", req.body.shopAdress);
+    console.log("shopComments:", req.body.shopComments);
+    console.log("shop tell", req.body.shopTell);
+    console.log("shopId", req.body.shopId );
+    console.log("shopMail", req.body.shopMail);
     let imageUrl = null;
     if (req.file) {
       try {
