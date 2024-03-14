@@ -144,7 +144,12 @@ app.post("/userRead", (req, res) => {
 app.post("/createShop", multerUpload.single("file"), (req, res) => {
   const { shopName, shopTell, shopMail, shopAdress, shopOwner, shopComments } = req.body;
 
-  const imageUrl = req.file ? req.file.path : null;
+  // Obtener la URL de la imagen subida desde Cloudinary
+  const imageUrl = req.file ? cloudinary.url(req.file.filename, {
+    width: 100,
+    height: 150,
+    crop: 'fill'
+  }) : null;
 
   db.query(
     "INSERT INTO appShops (shopName, shopTell, shopMail, shopAdress, shopOwner, shopComments, shopImgUrl) VALUES (?, ?, ?, ?, ?, ?, ?)",
@@ -154,19 +159,23 @@ app.post("/createShop", multerUpload.single("file"), (req, res) => {
         console.log(err);
         res.status(500).send("Error al crear la tienda");
       } else {
-        cloudinary.uploader.upload(req.file,
-  { public_id: "olympic_flag" }, 
-  function(error, result) {console.log(result); });
+        console.log("URL de la imagen en Cloudinary:", imageUrl);
         res.status(200).send(result);
       }
     }
   );
 });
 
+
 app.put("/updateShop", multerUpload.single("file"), (req, res) => {
   const { shopName, shopAdress, shopTell, shopMail, shopComments, shopId } = req.body;
 
-  const imageUrl = req.file ? req.file.path : null;
+  // Obtener la URL de la imagen subida desde Cloudinary
+  const imageUrl = req.file ? cloudinary.url(req.file.filename, {
+    width: 100,
+    height: 150,
+    crop: 'fill'
+  }) : null;
 
   db.query(
     "UPDATE appShops SET shopName=?, shopAdress=?, shopTell=?, shopMail=?, shopComments=?, shopImgUrl=? WHERE shopId=?",
@@ -176,14 +185,13 @@ app.put("/updateShop", multerUpload.single("file"), (req, res) => {
         console.log(err);
         res.status(500).send("Error al actualizar la tienda");
       } else {
-        cloudinary.uploader.upload(req.file,
-          { public_id: "olympic_flag" }, 
-          function(error, result) {console.log(result); });
+        console.log("URL de la imagen en Cloudinary:", imageUrl);
         res.status(200).send(result);
       }
     }
   );
 });
+
 
 app.get("/shopsList", (req, res) => {
   db.query("SELECT * FROM appShops", (err, result) => {
@@ -247,43 +255,45 @@ app.put("/deleteProducts/:shopId"),
   };
 
   app.post("/createProduct", multerUpload.single("file"), (req, res) => {
-  const {
-    productName,
-    productStock,
-    productCategory,
-    productDescription,
-    productPrize,
-    productShopOwner,
-  } = req.body;
-
-  const imageUrl = req.file ? `/public/${req.file.filename}` : null;
-
-  
-
-  db.query(
-    "INSERT INTO appProducts(productName, productDescription, productPrize, productStock, productCategory, productImgUrl, productShopOwner ) VALUES (?, ?, ?, ?, ?, ?, ?)",
-    [
+    const {
       productName,
-      productDescription,
-      productPrize,
       productStock,
       productCategory,
-      imageUrl,
+      productDescription,
+      productPrize,
       productShopOwner,
-    ],
-    (err, result) => {
-      if (err) {
-        console.log(err);
-        res.status(500).send("Error al registrar el producto");
-      } else {
-        cloudinary.uploader.upload(req.file,
-          { public_id: "olympic_flag" }, 
-          function(error, result) {console.log(result); });
-        res.status(200).send("Registro de producto exitoso");
+    } = req.body;
+  
+    // Obtener la URL de la imagen subida desde Cloudinary
+    const imageUrl = req.file ? cloudinary.url(req.file.filename, {
+      width: 100,
+      height: 150,
+      crop: 'fill'
+    }) : null;
+  
+    db.query(
+      "INSERT INTO appProducts(productName, productDescription, productPrize, productStock, productCategory, productImgUrl, productShopOwner) VALUES (?, ?, ?, ?, ?, ?, ?)",
+      [
+        productName,
+        productDescription,
+        productPrize,
+        productStock,
+        productCategory,
+        imageUrl,
+        productShopOwner,
+      ],
+      (err, result) => {
+        if (err) {
+          console.log(err);
+          res.status(500).send("Error al registrar el producto");
+        } else {
+          console.log("URL de la imagen en Cloudinary:", imageUrl);
+          res.status(200).send("Registro de producto exitoso");
+        }
       }
-    }
-  );
-});
+    );
+  });
+  
 
 app.get("/productsList", (req, res) => {
   db.query("SELECT * FROM appProducts", (err, result) => {
@@ -340,10 +350,15 @@ app.put("/updateProduct", multerUpload.single("file"), (req, res) => {
     productPrize,
   } = req.body;
 
-  const imageUrl = req.file ? `/public/${req.file.filename}` : null;
+  // Obtener la URL de la imagen subida desde Cloudinary
+  const imageUrl = req.file ? cloudinary.url(req.file.filename, {
+    width: 100,
+    height: 150,
+    crop: 'fill'
+  }) : null;
 
   db.query(
-    "UPDATE appProducts SET productName=?, productDescription=?, productPrize=?, productStock=?, productCategory=?, productimgurl=? WHERE productId=?",
+    "UPDATE appProducts SET productName=?, productDescription=?, productPrize=?, productStock=?, productCategory=?, productImgUrl=? WHERE productId=?",
     [
       productName,
       productDescription,
@@ -356,16 +371,15 @@ app.put("/updateProduct", multerUpload.single("file"), (req, res) => {
     (err, result) => {
       if (err) {
         console.log(err);
-        res.status(500).send("Error al actualizar la tienda");
+        res.status(500).send("Error al actualizar el producto");
       } else {
-        cloudinary.uploader.upload(req.file,
-          { public_id: "olympic_flag" }, 
-          function(error, result) {console.log(result); });
+        console.log("URL de la imagen en Cloudinary:", imageUrl);
         res.status(200).send(result);
       }
     }
   );
 });
+
 
 app.get("/commentsList", (req, res) => {
   db.query("CALL GetCommentsWithUser()", (err, result) => {
