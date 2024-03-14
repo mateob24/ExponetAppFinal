@@ -32,7 +32,6 @@ const multerUpload = multer({ storage: cloudinaryStorage });
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
-app.use('/public', express.static(path.join(__dirname, 'public')));
 
 const db = mysql.createPool({
   host: "be2akte2ntisg7onaynu-mysql.services.clever-cloud.com",
