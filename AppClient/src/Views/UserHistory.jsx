@@ -46,41 +46,46 @@ function UserHistory() {
         <p>Cargando historial de compras...</p>
       ) : (
         <div className="shops-container-historial">
-          {buyCars
-            .filter((buyCar) => buyCar.buyCarUser === parseInt(buyCarUser))
-            .map((filteredBuyCar) => (
-              <div key={filteredBuyCar.buyCarId} className="shop-card-historial">
-                <div className="shops-info">
-                  <h4 className="shops-title m-0">Detalle de Compra</h4>
-                  {Array.isArray(
-                    JSON.parse(filteredBuyCar.buyCarContent).products
-                  ) &&
-                    JSON.parse(filteredBuyCar.buyCarContent).products.map(
-                      (product, index) => (
-                        <div key={product.productId}>
-                          <p className="invoice-item">nombre del producto</p>
-                          <h5>{product.productName}</h5>
-                          <p className="invoice-item">Descripcion</p>
-                          <p>{product.productDescription}</p>
-                          <p className="invoice-item">precio: </p>
-                          <p>{product.productPrize}</p>
-                          <p className="invoice-item">Estado</p>
-                          <p>{product.productState}</p>
-                          <p className="invoice-item">Cantidad</p>
-                          <p>
-                            {Array.isArray(
-                              JSON.parse(filteredBuyCar.buyCarContent).quantities
-                            ) &&
-                              JSON.parse(filteredBuyCar.buyCarContent).quantities[
-                                index
-                              ].quantity}
-                          </p>
-                        </div>
-                      )
-                    )}
-                </div>
-              </div>
-            ))}
+          <table className="shop-table">
+            <thead>
+              <tr>
+                <th>Nombre del Producto</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+                <th>Estado</th>
+                <th>Cantidad</th>
+              </tr>
+            </thead>
+            <tbody>
+              {buyCars
+                .filter((buyCar) => buyCar.buyCarUser === parseInt(buyCarUser))
+                .map((filteredBuyCar) => (
+                  <tr key={filteredBuyCar.buyCarId}>
+                    {Array.isArray(
+                      JSON.parse(filteredBuyCar.buyCarContent).products
+                    ) &&
+                      JSON.parse(filteredBuyCar.buyCarContent).products.map(
+                        (product, index) => (
+                          <React.Fragment key={product.productId}>
+                            <td>{product.productName}</td>
+                            <td>{product.productDescription}</td>
+                            <td>{product.productPrize}</td>
+                            <td>{product.productState}</td>
+                            <td>
+                              {Array.isArray(
+                                JSON.parse(filteredBuyCar.buyCarContent).quantities
+                              ) &&
+                                JSON.parse(filteredBuyCar.buyCarContent).quantities[
+                                  index
+                                ].quantity}
+                            </td>
+                          </React.Fragment>
+                        )
+                      )}
+                  </tr>
+                ))}
+            </tbody>
+          </table>
         </div>
       )}
       <Footer />
