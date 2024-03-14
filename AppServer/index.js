@@ -140,56 +140,81 @@ app.post("/userRead", (req, res) => {
   );
 });
 
-app.post("/createShop", multerUpload.single("file"), (req, res) => {
-  const { shopName, shopTell, shopMail, shopAdress, shopOwner, shopComments } = req.body;
+app.post("/createShop", multerUpload.single("file"), async (req, res) => {
+  try {
+    const { shopName, shopTell, shopMail, shopAdress, shopOwner, shopComments } = req.body;
 
-  // Obtener la URL de la imagen subida desde Cloudinary
-  const imageUrl = req.file ? cloudinary.url(req.file.filename, {
-    width: 100,
-    height: 150,
-    crop: 'fill'
-  }) : null;
-
-  db.query(
-    "INSERT INTO appShops (shopName, shopTell, shopMail, shopAdress, shopOwner, shopComments, shopImgUrl) VALUES (?, ?, ?, ?, ?, ?, ?)",
-    [shopName, shopTell, shopMail, shopAdress, shopOwner, shopComments, imageUrl],
-    (err, result) => {
-      if (err) {
-        console.log(err);
-        res.status(500).send("Error al crear la tienda");
-      } else {
+    // Obtener la URL de la imagen subida desde Cloudinary
+    let imageUrl = null;
+    if (req.file) {
+      try {
+        imageUrl = await cloudinary.url(req.file.filename, {
+          width: 100,
+          height: 150,
+          crop: 'fill'
+        });
         console.log("URL de la imagen en Cloudinary:", imageUrl);
-        res.status(200).send(result);
+      } catch (urlErr) {
+        console.error("Error al obtener la URL de la imagen desde Cloudinary:", urlErr);
       }
     }
-  );
+
+    db.query(
+      "INSERT INTO appShops (shopName, shopTell, shopMail, shopAdress, shopOwner, shopComments, shopImgUrl) VALUES (?, ?, ?, ?, ?, ?, ?)",
+      [shopName, shopTell, shopMail, shopAdress, shopOwner, shopComments, imageUrl],
+      (err, result) => {
+        if (err) {
+          console.error("Error al ejecutar la consulta en la base de datos:", err);
+          res.status(500).send("Error al crear la tienda");
+        } else {
+          res.status(200).send(result);
+        }
+      }
+    );
+  } catch (error) {
+    console.error("Error general en la función de creación de tienda:", error);
+    res.status(500).send("Error al crear la tienda");
+  }
 });
 
 
-app.put("/updateShop", multerUpload.single("file"), (req, res) => {
-  const { shopName, shopAdress, shopTell, shopMail, shopComments, shopId } = req.body;
+app.put("/updateShop", multerUpload.single("file"), async (req, res) => {
+  try {
+    const { shopName, shopAdress, shopTell, shopMail, shopComments, shopId } = req.body;
 
-  // Obtener la URL de la imagen subida desde Cloudinary
-  const imageUrl = req.file ? cloudinary.url(req.file.filename, {
-    width: 100,
-    height: 150,
-    crop: 'fill'
-  }) : null;
-
-  db.query(
-    "UPDATE appShops SET shopName=?, shopAdress=?, shopTell=?, shopMail=?, shopComments=?, shopImgUrl=? WHERE shopId=?",
-    [shopName, shopAdress, shopTell, shopMail, shopComments, imageUrl, shopId],
-    (err, result) => {
-      if (err) {
-        console.log(err);
-        res.status(500).send("Error al actualizar la tienda");
-      } else {
+    // Obtener la URL de la imagen subida desde Cloudinary
+    let imageUrl = null;
+    if (req.file) {
+      try {
+        imageUrl = await cloudinary.url(req.file.filename, {
+          width: 100,
+          height: 150,
+          crop: 'fill'
+        });
         console.log("URL de la imagen en Cloudinary:", imageUrl);
-        res.status(200).send(result);
+      } catch (urlErr) {
+        console.error("Error al obtener la URL de la imagen desde Cloudinary:", urlErr);
       }
     }
-  );
+
+    db.query(
+      "UPDATE appShops SET shopName=?, shopAdress=?, shopTell=?, shopMail=?, shopComments=?, shopImgUrl=? WHERE shopId=?",
+      [shopName, shopAdress, shopTell, shopMail, shopComments, imageUrl, shopId],
+      (err, result) => {
+        if (err) {
+          console.error("Error al ejecutar la consulta en la base de datos:", err);
+          res.status(500).send("Error al actualizar la tienda");
+        } else {
+          res.status(200).send(result);
+        }
+      }
+    );
+  } catch (error) {
+    console.error("Error general en la función de actualización de tienda:", error);
+    res.status(500).send("Error al actualizar la tienda");
+  }
 });
+
 
 
 app.get("/shopsList", (req, res) => {
