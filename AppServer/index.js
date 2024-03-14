@@ -32,12 +32,11 @@ app.use(bodyParser.json());
 
 const pool = mysql.createPool({
   connectionLimit: 10,
-  host: "tu_host",
-  user: "tu_usuario",
-  password: "tu_contraseña",
-  database: "tu_base_de_datos"
+  host: "be2akte2ntisg7onaynu-mysql.services.clever-cloud.com",
+  user: "umitr9ccarbghg5i",
+  password: "i1JW2NSotnKXIjkAkHTR",
+  database: "be2akte2ntisg7onaynu"
 });
-
 
 let transporter = nodemailer.createTransport({
   host:"smtp.gmail.com",
@@ -53,9 +52,12 @@ transporter.verify().then(()=> {
   console.log("Ready to send mails")
 })
 
-db.getConnection(function (err) {
-  if (err) throw err;
-  console.log("esta conectado a mysql");
+pool.getConnection(function (err) {
+  if (err) {
+    console.error("Error al conectar a la base de datos:", err);
+    throw err;
+  }
+  console.log("Conexión a la base de datos establecida");
 });
 
 app.post("/createUser", async (req, res) => {
