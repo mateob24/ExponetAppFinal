@@ -15,7 +15,7 @@ function UserHistory() {
     const fetchShops = async () => {
       try {
         const response = await axios.get(
-          "https://exponet-app-final.vercel.app/buyCarsList"
+          "https://exponet-app-final.vercel.app/buyCarList"
         );
         console.dir(response.data);
         setBuyCars(response.data);

@@ -455,25 +455,17 @@ app.post("/createBuyCar", (req, res) => {
   );
 });
 
-app.get("/buyCarsList", async (req, res) => {
-  try {
-    const result = await new Promise((resolve, reject) => {
-      db.query("SELECT * FROM appBuyCars ", (err, result) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(result);
-        }
-      });
-    });
-
-    res.status(200).send(result);
-    console.log(result);
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Error al obtener la lista de carritos de compras");
-  }
+app.get("/buyCarList", (req, res) => {
+  db.query("SELECT * FROM appBuyCars", (err, result) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Error al obtener la lista de carritos");
+    } else {
+      res.status(200).send(result);
+    }
+  });
 });
+
 
 app.get("/buyCarOrdersManagment", (req, res) => {
   db.query("CALL GetBuyCarsAndUsers()", (err, result) => {
