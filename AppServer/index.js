@@ -455,7 +455,7 @@ app.post("/createBuyCar", (req, res) => {
   );
 });
 
-app.get("/buyCarList", (req, res) => {
+app.get("/buyCarsList", (req, res) => {
   db.query("SELECT * FROM appBuyCars", (err, result) => {
     if (err) {
       console.log(err);
