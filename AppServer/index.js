@@ -154,6 +154,9 @@ app.post("/createShop", multerUpload.single("file"), (req, res) => {
         console.log(err);
         res.status(500).send("Error al crear la tienda");
       } else {
+        cloudinary.uploader.upload(req.file,
+  { public_id: "olympic_flag" }, 
+  function(error, result) {console.log(result); });
         res.status(200).send(result);
       }
     }
@@ -173,6 +176,9 @@ app.put("/updateShop", multerUpload.single("file"), (req, res) => {
         console.log(err);
         res.status(500).send("Error al actualizar la tienda");
       } else {
+        cloudinary.uploader.upload(req.file,
+          { public_id: "olympic_flag" }, 
+          function(error, result) {console.log(result); });
         res.status(200).send(result);
       }
     }
@@ -270,6 +276,9 @@ app.put("/deleteProducts/:shopId"),
         console.log(err);
         res.status(500).send("Error al registrar el producto");
       } else {
+        cloudinary.uploader.upload(req.file,
+          { public_id: "olympic_flag" }, 
+          function(error, result) {console.log(result); });
         res.status(200).send("Registro de producto exitoso");
       }
     }
@@ -349,6 +358,9 @@ app.put("/updateProduct", multerUpload.single("file"), (req, res) => {
         console.log(err);
         res.status(500).send("Error al actualizar la tienda");
       } else {
+        cloudinary.uploader.upload(req.file,
+          { public_id: "olympic_flag" }, 
+          function(error, result) {console.log(result); });
         res.status(200).send(result);
       }
     }
