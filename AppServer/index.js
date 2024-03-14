@@ -24,22 +24,22 @@ const cloudinaryStorage = new CloudinaryStorage({
   },
 });
 
-
-
-
 const multerUpload = multer({ storage: cloudinaryStorage });
 
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
 
-const db = mysql.createPool({
+const pool = mysql.createPool({
+  connectionLimit: 10, // Establece el límite de conexiones simultáneas
   host: "be2akte2ntisg7onaynu-mysql.services.clever-cloud.com",
   user: "umitr9ccarbghg5i",
   password: "i1JW2NSotnKXIjkAkHTR",
   database: "be2akte2ntisg7onaynu",
   insecureAuth: true,
 });
+
+const db = pool.promise();
 
 let transporter = nodemailer.createTransport({
   host:"smtp.gmail.com",
