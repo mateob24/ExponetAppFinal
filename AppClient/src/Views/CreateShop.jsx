@@ -281,14 +281,7 @@ function CreateShop() {
     id="file"
     name="file"
     onChange={handleFileChange}
-    // Elimina la propiedad style para hacer visible el input
   />
-  {selectedFile && (
-    <div className="file-info">
-      <p className="result-select-img">{selectedFile.name}</p>
-      {/* Puedes agregar más información sobre el archivo si lo deseas */}
-    </div>
-  )}
 </div>
 
          
