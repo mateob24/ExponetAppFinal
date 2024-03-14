@@ -143,7 +143,7 @@ app.post("/userRead", (req, res) => {
 app.post("/createShop", multerUpload.single("file"), async (req, res) => {
   try {
     const { shopName, shopTell, shopMail, shopAdress, shopOwner, shopComments } = req.body;
-
+    console.log(shopName, shopAdress, shopComments, shopId, shopMail, shopTell)
     // Obtener la URL de la imagen subida desde Cloudinary
     let imageUrl = null;
     if (req.file) {
@@ -158,6 +158,8 @@ app.post("/createShop", multerUpload.single("file"), async (req, res) => {
         console.error("Error al obtener la URL de la imagen desde Cloudinary:", urlErr);
       }
     }
+
+    console.log(imageUrl)
 
     db.query(
       "INSERT INTO appShops (shopName, shopTell, shopMail, shopAdress, shopOwner, shopComments, shopImgUrl) VALUES (?, ?, ?, ?, ?, ?, ?)",
@@ -182,7 +184,7 @@ app.put("/updateShop", multerUpload.single("file"), async (req, res) => {
   try {
     const { shopName, shopAdress, shopTell, shopMail, shopComments, shopId } = req.body;
 
-    // Obtener la URL de la imagen subida desde Cloudinary
+    console.log(shopName, shopAdress, shopComments, shopId, shopMail, shopTell)
     let imageUrl = null;
     if (req.file) {
       try {
@@ -196,6 +198,8 @@ app.put("/updateShop", multerUpload.single("file"), async (req, res) => {
         console.error("Error al obtener la URL de la imagen desde Cloudinary:", urlErr);
       }
     }
+
+    console.log(imageUrl)
 
     db.query(
       "UPDATE appShops SET shopName=?, shopAdress=?, shopTell=?, shopMail=?, shopComments=?, shopImgUrl=? WHERE shopId=?",
