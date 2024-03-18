@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { ShopContextValues } from "../Context/ShopContext";
 import { MdShoppingCart } from "react-icons/md";
@@ -18,6 +18,8 @@ const Header = () => {
     setUserId("");
     navigate("/");
   };
+
+  const location = useLocation();
 
   return (
     <>
@@ -39,7 +41,7 @@ const Header = () => {
           </ul>
           <ul className="links-nav">
             <li>
-              <Link to="/" className="link-header-b">
+              <Link to="/" className={`link-header ${location.pathname === '/' ? 'bg-blue-400' : 'hover:bg-blue-400'}`}>
                 Inicio
               </Link>
             </li>
@@ -48,7 +50,7 @@ const Header = () => {
                 {userRoll === "vendedor" && (
                   <>
                     <li>
-                      <Link to="/CreateShop" className="link-header-b">
+                      <Link to="/CreateShop" className={`link-header`}>
                         Crear tienda
                       </Link>
                     </li>
@@ -62,17 +64,17 @@ const Header = () => {
                 {userRoll === "comprador" && (
                   <>
                     <li>
-                      <Link to="/Shops" className="link-header-b">
+                      <Link to="/Shops" className={`link-header`}>
                         Tiendas
                       </Link>
                     </li>
                     <li>
-                      <Link to="/UserHistory" className="link-header-b">
+                      <Link to="/UserHistory" className={`link-header`}>
                         Historial
                       </Link>
                     </li>
                     <li>
-                      <button onClick={handleLogout} className="link-header-b">
+                      <button onClick={handleLogout} className={`link-header`}>
                         Cerrar sesión
                       </button>
                     </li>
@@ -87,13 +89,13 @@ const Header = () => {
             ) : (
               <>
                 <li>
-                  <Link to="/Login" className="link-header-b">
+                  <Link to="/Login" className={`link-header`}>
                     Iniciar sesión
                   </Link>
                 </li>
                 {/* Agrega la condición para mostrar el botón de Tiendas cuando el usuario no está autenticado */}
                 <li>
-                  <Link to="/Shops" className="link-header-b">
+                  <Link to="/Shops" className={`link-header ${location.pathname === '/Shops' ? 'bg-blue-200 shadow-md' : 'hover:bg-blue-400'}`}>
                     Tiendas
                   </Link>
                 </li>
