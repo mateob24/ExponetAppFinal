@@ -1,13 +1,12 @@
 footer{
-  height: 80px;
+  height: 10vh;
   width: 100%;
-  gap: 58rem;
-  position: relative;
+  gap: 60rem;
   display: flex;
   align-items: center;
-  /* justify-content: center; da scroll horizontal  */
+  justify-content: center;
   text-align: center;
-  background-color: whitesmoke;
+  background-color: #efefef;
 }
 
 .box-footer-txt{
@@ -16,8 +15,8 @@ footer{
 
 .box-footer-txt h4{
   margin: 0;
-  font-size: 1rem;
-  font-weight: 700;
+  font-size: 1.1rem;
+  font-weight: 600;
 }
 
 .social-media{
@@ -39,35 +38,37 @@ footer{
 .social-media .icon a{
   height: 40px;
   width: 40px;
-  border-radius: 15%;
+  border-radius: 4px;
   z-index: 2;
   position: relative;
   display: block;
-  background-color: #c1e1f6;
+  background-color: #dcdcdc;
   text-align: center;
   color: black;
 }
 
 .react-icon-mail{
-  margin: 0.4rem;
-  font-size: 1.8rem;
+  margin: 0.3rem;
+  font-size: 1.9rem;
   line-height: 40px;
 }
 
 .react-icon-wpp{
-  margin: 0.5rem;
-  font-size: 1.6rem;
+  margin: 0.4rem;
+  font-size: 1.7rem;
   line-height: 40px;
 }
 
 .social-media .icon:hover a{
+  border-radius: 50%;
+  transition: 0.5s;
   color: white;
 }
 
 .social-media .icon .tool{
   top: 0px;
   font-size: 18px;
-  padding: 10px 18px;
+  padding: 6px 18px;
   border-radius: 25px;
   position: absolute;
   background: white;

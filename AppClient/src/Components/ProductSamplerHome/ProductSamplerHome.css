@@ -15,11 +15,11 @@
     font-size: 2.2rem;
     font-weight: 800;
     bottom: -5rem;
-    -webkit-text-stroke: 1px #c1e1f6;
     position: absolute;
     text-align: center;
-    text-shadow: 4px 4px #c1e1f6;
+    /* text-shadow: -4px -4px #dcdcdc; */
     font-style: italic;
+    /* text-decoration: underline; */
   }
   
   /* ---------------------------------------------- */
@@ -37,7 +37,7 @@
   .product-card-home {
     width: 20rem;
     height: 30rem;
-    border-radius: 12px;
+    border-radius: 8px;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -135,7 +135,7 @@
     height: 0.6rem;
     letter-spacing: 0.05rem;
     font-size: 0.5rem;
-    color: #bdbdbd;
+    color: #aaaaaa;
   }
   
   .value-home {

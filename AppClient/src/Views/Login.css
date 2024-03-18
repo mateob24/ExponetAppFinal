@@ -1,4 +1,16 @@
-.first-section {
+html{
+  height: 100%;
+}
+
+body{
+  height: 100%;
+}
+
+#root{
+  height: 100%;
+}
+
+/* .first-section {
   height: 100vh;
   display: flex;
   align-items: center;
@@ -27,35 +39,34 @@
 
 .left-title {
   margin: 0;
-  /* padding: 3rem; */
   font-size: 2rem;
   font-weight: 800;
   text-align: center;
 }
 
-.left-logo{
+.left-logo {
   height: 12rem;
 }
 
-.left-link{
-    width: 5.3rem;
-    padding: 4px 12px;
-    font-size: 1rem;
-    font-weight: 700;
-    letter-spacing: 0.02rem;
-    border-radius: 4px;
-    text-decoration: none;
-    color: whitesmoke;
-    background-color: rgb(22, 118, 182);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.left-link {
+  width: 5.3rem;
+  padding: 4px 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.02rem;
+  border-radius: 4px;
+  text-decoration: none;
+  color: whitesmoke;
+  background-color: rgb(22, 118, 182);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.left-link:hover{
+.left-link:hover {
   background-color: white;
   color: #2493d3;
-  box-shadow: 1px 1px 2px ;
+  box-shadow: 1px 1px 2px;
 }
 
 .form-login {
@@ -74,7 +85,7 @@
   text-align: center;
 }
 
-.login-label{
+.login-label {
   font-size: 1rem;
   font-weight: 700;
 }
@@ -93,60 +104,55 @@
   flex-direction: column;
 }
 
-.btn-login{
-    padding: 4px 12px;
-    font-size: 1rem;
-    font-weight: 700;
+.btn-login {
+  padding: 4px 12px;
+  font-size: 1rem;
+  font-weight: 700;
   letter-spacing: 0.02rem;
   border-radius: 4px;
-    text-decoration: none;
-    align-self: center;
-    color: whitesmoke;
-    background-color: rgb(22, 118, 182);
+  text-decoration: none;
+  align-self: center;
+  color: #2493d3;
 }
 
-.btn-login:hover{
+.btn-login:hover {
   background-color: white;
   color: #2493d3;
-  box-shadow: 1px 1px 2px ;
+  box-shadow: 1px 1px 2px;
 }
 
-.btn-new-account{
-    padding: 4px 8px;
-    font-size: 1rem;
-    font-weight: 700;
+.btn-new-account {
+  padding: 4px 8px;
+  font-size: 1rem;
+  font-weight: 700;
   letter-spacing: 0.02rem;
   border-radius: 4px;
-    text-decoration: none;
-    align-self: center;
-    color: #0e2b43;
-    background-color: #c1e1f6;
+  text-decoration: none;
+  align-self: center;
+  color: #0e2b43;
+  background-color: #c1e1f6;
 }
 
-.btn-new-account:hover{
+.btn-new-account:hover {
   background-color: white;
   color: #2493d3;
-  box-shadow: 1px 1px 2px ;
-}
+  box-shadow: 1px 1px 2px;
+} */
 
 /* Media Query de 1200px  */
 
 @media screen and (max-width: 1200px) {
-  
 }
 
 /* Media Query de 992px  */
 
 @media screen and (max-width: 992px) {
-  
 }
 
- 
 /* Media Query de 768px  */
 
 @media screen and (max-width: 768px) {
-
-  .first-section {
+  /* .first-section {
     width: 100%;
   }
 
@@ -154,18 +160,17 @@
     width: 80%;
     height: 70%;
   }
-  
+
   .form-login {
     padding: 1rem 1rem;
     width: 50%;
-  }
-  
+  } */
 }
 
 /* Media Query de 480px  */
 
 @media screen and (max-width: 480px) {
-  .second-section {
+  /* .second-section {
     width: 90vw;
     height: 65%;
     border-radius: 5px;
@@ -180,29 +185,29 @@
   .left-title {
     font-size: 1.5rem;
   }
-  
-  .left-logo{
+
+  .left-logo {
     height: 9rem;
     width: 10rem;
   }
-  
-  .left-link{
-      width: 4.1rem;
-      padding: 3px 8px;
-      font-size: 0.8rem;
+
+  .left-link {
+    width: 4.1rem;
+    padding: 3px 8px;
+    font-size: 0.8rem;
   }
-  
+
   .form-login {
-    width: 45vw;   
+    width: 45vw;
     padding: 1rem 0.5rem;
   }
-  
+
   .date-input {
     height: 1.5rem;
     font-size: 0.8rem;
   }
-  
-  .btn-login{
+
+  .btn-login {
     padding: 3px 8px;
     border-radius: 4px;
     font-size: 0.8rem;
@@ -211,15 +216,14 @@
   .form-title {
     font-size: 1.5rem;
   }
-  
-  .login-label{
+
+  .login-label {
     font-size: 0.8rem;
   }
-  
-  .btn-new-account{
-      padding: 3px 8px;
-      font-size: 0.8rem;
-      border-radius: 4px;
-  }
 
+  .btn-new-account {
+    padding: 3px 8px;
+    font-size: 0.8rem;
+    border-radius: 4px;
+  } */
 }

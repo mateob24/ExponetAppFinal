@@ -1,4 +1,16 @@
-.one-section {
+html{
+  height: 100%;
+}
+
+body{
+  height: 100%;
+}
+
+#root{
+  height: 100%;
+}
+
+/* .one-section {
   height: 100vh;
   display: flex;
   align-items: center;
@@ -122,13 +134,13 @@
   background-color: white;
   color: #2493d3;
   box-shadow: 1px 1px 2px ;
-}
+} */
 
 /* Media Query de 1200px  */
 
 @media screen and (max-width: 1200px) {
   
-  .two-section {
+  /* .two-section {
     width: 70%;
     height: 85%;
   }
@@ -179,7 +191,7 @@
     background-color: white;
     color: #2493d3;
     box-shadow: 1px 1px 2px ;
-  }
+  } */
 
 }
 
@@ -188,10 +200,10 @@
 
 @media screen and (max-width: 992px) {
 
-  .two-section {
+  /* .two-section {
     width: 85%;
     height: 85%;
-  }
+  } */
   
 }
 
@@ -200,7 +212,7 @@
 
 @media screen and (max-width: 768px) {
 
-  .one-section {
+  /* .one-section {
     height: 110vh;
   }
   
@@ -246,7 +258,7 @@
     text-decoration: none;
     align-self: center;
     background-color: #c1e1f6;
-  }
+  } */
 }
 
 
@@ -254,7 +266,7 @@
 
 @media screen and (max-width: 480px) {
   
-  .two-section {
+  /* .two-section {
     width: 94%;
   }
   
@@ -299,6 +311,6 @@
   
   .btn-register{
     height: 2rem;
-  }
+  } */
   
 }

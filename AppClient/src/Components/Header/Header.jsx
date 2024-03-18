@@ -22,31 +22,21 @@ const Header = () => {
   return (
     <>
       <header className="header-home">
-        <ul className="filter-nav">
-          <li className="box-input-search">
-            <FaSearch className="icon-search" />
-            <input type="text" name="" id="" placeholder="Buscar producto" />
-          </li>
-          {/* AQUÍ CAMBIÉ PASÉ EL COMPONENTE 'ICON-BOX' A UNA ETIQUETA 'Link' PARA QUE REDIRIJA AL INICIO YA QUE ANTERIORMENTE ERA UN 'BUTTON' SIN FUNCIÓN */}
-          <Link to="/" className="icon-box">
-            <h1 className="icon-txt">EXPONET</h1>
-            <img
-              className="logo-header"
-              src="https://media.discordapp.net/attachments/1088828343731900429/1215287895284518912/Captura_de_pantalla_2024-03-07_080922-removebg-preview.png?ex=65fc340d&is=65e9bf0d&hm=bd96221de684f02eb50594f4791686e8ada3664468ab3100ad71003a35943a34&=&format=webp&quality=lossless&width=622&height=482"
-              alt=""
-            />
-          </Link>
-          <li className="box-select-category">
-            <select name="" id="" placeholder="Categorías">
-              <option value="" disabled selected>
-                Categorías
-              </option>
-              <option value="">Ensayo1</option>
-              <option value="">Ensayo2</option>
-            </select>
-          </li>
-        </ul>
         <nav>
+            <Link to="/" className="icon-box">
+              <h1 className="icon-txt">EXPONET</h1>
+              <img
+                className="logo-header"
+                src="https://media.discordapp.net/attachments/1088828343731900429/1215287895284518912/Captura_de_pantalla_2024-03-07_080922-removebg-preview.png?ex=65fc340d&is=65e9bf0d&hm=bd96221de684f02eb50594f4791686e8ada3664468ab3100ad71003a35943a34&=&format=webp&quality=lossless&width=622&height=482"
+                alt=""
+              />
+            </Link>
+          <ul className="filter-nav">
+            <li className="box-input-search">
+              <FaSearch className="icon-search" />
+              <input type="text" name="" id="" placeholder="Buscar producto" />
+            </li>
+          </ul>
           <ul className="links-nav">
             <li>
               <Link to="/" className="link-header-b">

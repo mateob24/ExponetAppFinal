@@ -3,6 +3,7 @@ import { IoIosMail } from "react-icons/io";
 import { RiWhatsappFill } from "react-icons/ri";
 
 function Footer() {
+
   return (
     <>
       <footer>

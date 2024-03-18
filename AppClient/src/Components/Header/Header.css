@@ -3,7 +3,7 @@ color: #4cbfd5; */
 
 .header-home {
   width: 100%;
-  height: 16vh;
+  height: 9vh;
   z-index: 999;
   top: 0;
   display: flex;
@@ -16,52 +16,51 @@ color: #4cbfd5; */
 }
 
 .filter-nav {
-  height: 100%;
   padding: 0;
   margin: 0;
-  width: 100%;
+  width: 30rem;
   display: flex;
   justify-content: space-around;
   background-color: #efefef;
-  border-bottom: 2px solid #dcdcdc;
+  /* border-bottom: 2px solid #dcdcdc; */
 }
 
 .box-input-search {
-  width: 16rem;
+  width: 22rem;
   align-self: center;
   position: relative;
-  font-size: 1.1rem;
 }
 
 .box-input-search input {
+  width: 90%;
   padding: 2px 8px;
-  padding-left: 2.2rem;
-  border-radius: 4px;
-  font-weight: 600;
+  padding-left: 2.4rem;
+  border-radius: 15px;
+  font-weight: 400;
+  font-size: 1.1rem;
   border: none;
   background-color: #dcdcdc;
 }
 
 .box-input-search input:focus {
-  outline: 1px solid;
+  outline: none;
   background-color: white;
-  box-shadow: 1px 1px 2px;
+  box-shadow: 1px 1px 2px #2493d3;
 }
 
 .icon-search {
-  width: 10%;
+  width: 8%;
   height: 100%;
-  padding: 0.3rem;
+  padding: 0.35rem;
   left: 0;
-  border-radius: 4px 0 0 4px;
+  border-radius: 15px 0 0 15px;
   align-self: center;
   position: absolute;
-  background-color: #c1e1f6;
+  background-color: #2493d3;
 }
 
 .icon-box {
   height: 2.4rem;
-  width: 16rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -84,40 +83,14 @@ color: #4cbfd5; */
   font-size: 2.2rem;
   font-weight: 800;
   color: black;
-  -webkit-text-stroke: 1px #c1e1f6;
-  text-shadow: 4px 4px #c1e1f6;
 }
 
 .logo-header {
-  height: 3.2rem;
-}
-
-.box-select-category {
-  width: 16rem;
-  font-size: 1.1rem;
-  position: relative;
-  display: flex;
-  align-items: center;
-  flex-direction: row-reverse;
-}
-
-.box-select-category select {
-  padding: 2px 8px;
-  border-radius: 4px;
-  font-weight: 700;
-  border: none;
-  cursor: pointer;
-  background-color: #dcdcdc;
-}
-
-.box-select-category select:focus {
-  outline: 1px solid;
-  box-shadow: 1px 1px 2px;
-  background-color: white;
+  height: 2.6rem;
+  /* filter: drop-shadow(-4px -4px #d1d1d1); */
 }
 
 .header-home nav {
-  height: 70%;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -125,72 +98,69 @@ color: #4cbfd5; */
 }
 
 .links-nav {
-  width: 100%;
+  width: 38rem;
   margin: 0;
   padding: 0;
-  gap: 8rem;
+  /* gap: 8rem; */
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content:space-between ;
 }
 
 .logout {
-  padding: 2px 8px;
+  padding: 3px 8px;
   border-radius: 4px;
   font-size: 1.1rem;
-  font-weight: 700;
+  font-weight: 500;
   text-decoration: none;
-  color: black;
-  background-color: #c1e1f6;
-  /* border: 0.1rem solid #4cbfd5; */
+  color: #2493d3;
 }
 
 .logout:hover {
   background-color: white;
   color: #2493d3;
+  transition: 0.2s;
   box-shadow: 1px 1px 2px;
 }
 
 .link-header-b {
-  padding: 2px 8px;
+  padding: 3px 8px;
   border-radius: 4px;
   font-size: 1.1rem;
-  font-weight: 700;
+  font-weight: 500;
   text-decoration: none;
-  color: black;
-  background-color: #c1e1f6;
-  /* border: 0.1rem solid #4cbfd5; */
+  color: #2493d3;
 }
 
 .link-header-b:hover {
   background-color: white;
   color: #2493d3;
   box-shadow: 1px 1px 2px;
+  transition: 0.2s;
 }
 
 .link-header-cart {
-  padding: 0.3rem;
+  padding: 0.2rem;
   border-radius: 4px;
   font-size: 2rem;
-  font-weight: 700;
+  font-weight: 500;
   text-decoration: none;
-  color: black;
-  background-color: #c1e1f6;
+  color: #2493d3;
+  /* background-color: #2493d3; */
 }
 
 .link-header-cart:hover {
   background-color: white;
   color: #2493d3;
+  transition: 0.2s;
   box-shadow: 1px 1px 2px;
 }
 
-
 /* MEDIA QUERY DEL HEADER */
-/* Media Query de 480px  */
 
 @media screen and (max-width: 480px) {
   .header-home {
-    height: 16vh;
+    height: 14vh;
     position: relative;
   }
 
@@ -207,11 +177,10 @@ color: #4cbfd5; */
     width: 9rem;
     padding: 2px 0;
     padding-left: 1.5rem;
-    padding-right: 0.3rem;
   }
 
   .icon-search {
-    width: 13%;
+    width: 12%;
     padding: 0.2rem;
   }
 
@@ -222,8 +191,6 @@ color: #4cbfd5; */
   .icon-txt {
     padding-left: 1rem;
     font-size: 1.4rem;
-    -webkit-text-stroke: 0.5px #c1e1f6;
-    text-shadow: 4px 2px #c1e1f6;
   }
   
   .logo-header {
@@ -241,7 +208,7 @@ color: #4cbfd5; */
   }
   
   .links-nav {
-    gap: 2rem;
+    gap: 3rem;
   }
   
   .logout {
@@ -250,17 +217,8 @@ color: #4cbfd5; */
   }
   
   .link-header-b {
-    padding: 2px 6px;
+    padding: 4px 8px;
     font-size: 0.8rem;
   }
-
-  .link-header-cart {
-    padding: 0.3rem;
-    border-radius: 4px;
-    font-size: 1.5rem;
-    font-weight: 700;
-    text-decoration: none;
-    color: black;
-    background-color: #c1e1f6;
-  }
+  
 }

@@ -37,8 +37,8 @@ function Home() {
   }, []);
   return (
     <>
+    <Header />
       <section>
-        <Header />
         <About />
         <div className="box-title-sampler">
           <h2 className="product-title-sampler">Productos de interés</h2>
@@ -50,8 +50,8 @@ function Home() {
           Route="/PrincipalShop"
         />
         {/* <Comments /> */}
-        <Footer />
       </section>
+        <Footer />
     </>
   );
 }
