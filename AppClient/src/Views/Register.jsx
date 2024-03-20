@@ -62,7 +62,7 @@ function RegisterForm() {
     }
 
     try {
-      const response = await axios.post("https://exponetappfinal.onrender.com/createUser", {
+      const response = await axios.post("https://exponetapp-8fxj.onrender.com/createUser", {
         userName: formData.userName,
         userMail: formData.userMail,
         userPassword: formData.userPassword,

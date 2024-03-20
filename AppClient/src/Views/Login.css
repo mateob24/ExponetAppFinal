@@ -15,6 +15,14 @@ body{
   outline-color: #7bd6e5;
 }
 
+.link-new-password{
+  color: #4cbfd5;
+}
+
+.link-new-password:hover{
+  color: #7bd6e5;
+}
+
 .btn-login{
   background-color: #4cbfd5;
 }
@@ -23,6 +31,21 @@ body{
   background-color: #7bd6e5;
 }
 
+.btn-home-login{
+  background-color: #bdbdbd;
+}
+
+.btn-home-login:hover{
+  background-color: #dcdcdc;
+}
+
+.link-new-account{
+  color: #4cbfd5;
+}
+
+.link-new-account:hover{
+  color: #7bd6e5;
+}
 
 @media screen and (max-width: 1200px) {
 }

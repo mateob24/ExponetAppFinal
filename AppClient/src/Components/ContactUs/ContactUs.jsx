@@ -3,7 +3,7 @@ import '../ContactUs/ContactUs.css'
 
 const ContactUs = () => {
     return (
-        <div className="flex min-h-full flex-1 flex-col justify-center  items-center px-6 py-12 bg-white lg:px-8">
+        <div className="flex min-h-full flex-1 flex-col justify-center  items-center px-6 py-12 bg-white lg:px-8 container-contactus">
             <h1 className="mt-2 mb-4 text-center font-bold leading-9 tracking-tight text-gray-900">Contáctanos</h1>
             <form className="w-1/4 py-8 px-4 flex flex-col items-center justify-center space-y-6 rounded-md shadow-sm bg-gray-50">
                 <div className='min-w-full'>
@@ -35,7 +35,7 @@ const ContactUs = () => {
                 </div>
                 <div className='min-w-full flex items-center justify-center'>
                     <button
-                        className="flex w-20 justify-center rounded-md bg-indigo-600 px-3 py-1 text-sm font-semibold no-underline leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        className="flex w-20 justify-center rounded-md px-3 py-1 text-sm font-semibold leading-6 text-white shadow-sm btn-send"
                         type="button"
                     >
                         Enviar

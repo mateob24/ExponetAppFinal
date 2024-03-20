@@ -1,31 +1,31 @@
 footer{
   height: 10vh;
   width: 100%;
-  gap: 60rem;
+  gap: 72rem;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  background-color: #efefef;
+  background-color: #f8f8f8;
 }
 
 .box-footer-txt{
   width: 14rem;
 }
 
-.box-footer-txt h4{
+.box-footer-txt h3{
   margin: 0;
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-size: 1rem;
+  font-weight: 700;
 }
 
 .social-media{
   height: 100%;
   display: inline-flex;
+  gap: 3rem;
 }
 
 .social-media .icon{
-  margin: 18px 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -36,46 +36,45 @@ footer{
 }
 
 .social-media .icon a{
-  height: 40px;
-  width: 40px;
-  border-radius: 4px;
+  height: 44px;
+  width: 44px;
+  border-radius: 16px;
   z-index: 2;
+  font-size: 1.8rem;
+  box-shadow: 0 0 3px #bdbdbd;
+  /* border: 1px solid #dcdcdc; */
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #dcdcdc;
   text-align: center;
   color: black;
+  background-color: #b1e8f0;
 }
 
 .react-icon-mail{
-  /* margin: 0.3rem; */
-  font-size: 1.9rem;
-  line-height: 40px;
-}
-
-.react-icon-wpp{
-  /* margin: 0.4rem; */
-  font-size: 1.7rem;
-  line-height: 40px;
+  font-size: 2rem;
+  align-self: center;
 }
 
 .social-media .icon:hover a{
   border-radius: 50%;
   transition: 0.5s;
+  box-shadow: 0 0 8px #bdbdbd;
   color: white;
 }
 
 .social-media .icon .tool{
   top: 0px;
-  font-size: 18px;
+  font-size: 1rem;
+  font-weight: 600;
   padding: 6px 18px;
   border-radius: 25px;
+  letter-spacing: 0.05rem;
   position: absolute;
   background: white;
   color: white;
-  box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 0 10px #d1d1d1;
   opacity: 0;
   pointer-events: none;
   transition: all 0.4s cubic-bezier(0.68,-0.55,0.265,1.55);
@@ -95,7 +94,7 @@ footer{
 
 .social-media .icon:hover .tool{
   opacity: 1;
-  top: -72px;
+  top: -54px;
   pointer-events: auto;
 }
 

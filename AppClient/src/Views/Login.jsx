@@ -33,7 +33,7 @@ function Login() {
 
     try {
       const response = await axios.post(
-        "https://exponetappfinal.onrender.com/UserRead",
+        "https://exponetapp-8fxj.onrender.com/UserRead",
         {
           userMail: formData.userMail,
           userPassword: formData.userPassword,
@@ -64,8 +64,8 @@ function Login() {
 
   return (
     <>
-      <section className="flex min-h-full flex-1 flex-col justify-center  items-center px-6 py-12 bg-gray-100 lg:px-8">
-        <div className="w-1/4 py-8 px-4 flex flex-col items-center justify-center rounded-md shadow-sm bg-white">
+      <section className="flex min-h-full flex-1 flex-col justify-center  items-center px-6 py-12 lg:px-8">
+        <div className="w-1/4 py-8 px-4 flex flex-col items-center justify-center rounded-md shadow-sm bg-gray-50">
           <img
             className="mx-auto h-20 w-auto"
             src="https://media.discordapp.net/attachments/1088828343731900429/1215287895284518912/Captura_de_pantalla_2024-03-07_080922-removebg-preview.png?ex=65fc340d&is=65e9bf0d&hm=bd96221de684f02eb50594f4791686e8ada3664468ab3100ad71003a35943a34&=&format=webp&quality=lossless&width=622&height=482"
@@ -98,12 +98,12 @@ function Login() {
                     Contraseña
                   </label>
                   <div className="text-sm">
-                    <a href="#" className="font-semibold no-underline text-indigo-600 hover:text-indigo-500">
+                    <a href="#" className="font-semibold no-underline link-new-password">
                       Forgot password?
                     </a>
                   </div>
                 </div>
-                <div className="mt-2">
+                <div className="mt-2">  
                   <input
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 input-login"
                     type="password"
@@ -117,13 +117,13 @@ function Login() {
                 </div>
               </div>
               <div id="buttonbox">
-                <button type="submit" className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 btn-login">
+                <button type="submit" className="flex w-full justify-center rounded-md px-3 py-1 text-sm font-semibold leading-6 text-white shadow-sm btn-login">
                   Iniciar sesión
                 </button>
                 <hr />
                 <div className="flex items-center justify-center">
-                  <Link className="flex w-20 justify-center rounded-md bg-indigo-600 px-3 py-1 text-sm font-semibold no-underline leading-6 text-white shadow-sm hover:bg-indigo-500 " to={"/"}>
-                    <IoStorefrontSharp className="mx-auto w-auto self-center" /> Inicio
+                  <Link className="flex w-22 justify-center rounded-md px-3 py-1 text-sm font-semibold no-underline leading-6 text-white shadow-sm btn-home-login" to={"/"}>
+                    Inicio <IoStorefrontSharp className="mx-1 w-auto self-center" /> 
                   </Link>
                 </div>
               </div>
@@ -132,7 +132,7 @@ function Login() {
               ¿No se ha registrado?{''}
               <a
                 type="submit"
-                className="ml-1 font-semibold no-underline leading-6 text-indigo-600 hover:text-indigo-500"
+                className="ml-1 font-semibold no-underline leading-6 link-new-account"
                 onClick={navigateToRegister}
               >
                 Cree una nueva cuenta

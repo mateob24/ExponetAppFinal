@@ -32,7 +32,7 @@ function UpdateProduct() {
     formData.append("productShopOwner", productShopOwner);
     formData.append("file", selectedFile);
 
-    Axios.post("https://exponetappfinal.onrender.com/createProduct", formData)
+    Axios.post("https://exponetapp-8fxj.onrender.com/createProduct", formData)
       .then(() => {
         getProductsList();
         limpiarCampos();
@@ -73,7 +73,7 @@ function UpdateProduct() {
     formData.append("productPrize", productPrize);
     formData.append("file", selectedFile);
 
-    Axios.put("https://exponetappfinal.onrender.com/updateProduct", formData)
+    Axios.put("https://exponetapp-8fxj.onrender.com/updateProduct", formData)
       .then(() => {
         Swal.fire({
           position: "center",
@@ -100,7 +100,7 @@ function UpdateProduct() {
       return;
     }
 
-    Axios.put(`https://exponetappfinal.onrender.com/deleteProduct/${productId}`).then(() => {
+    Axios.put(`https://exponetapp-8fxj.onrender.com/deleteProduct/${productId}`).then(() => {
       Swal.fire({
         position: "center",
         icon: "success",
@@ -145,7 +145,7 @@ function UpdateProduct() {
 
   const getProductsList = () => {
     Axios.get(
-      `https://exponetappfinal.onrender.com/productsListUpdateProducts/${productShopOwner}`
+      `https://exponetapp-8fxj.onrender.com/productsListUpdateProducts/${productShopOwner}`
     ).then((response) => {
       setProductsList(response.data);
       console.dir(response.data);

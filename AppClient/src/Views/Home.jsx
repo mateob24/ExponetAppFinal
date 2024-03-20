@@ -19,7 +19,7 @@ function Home() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://exponetappfinal.onrender.com/productsList"
+          "https://exponetapp-8fxj.onrender.com/productsList"
         );
         setProducts(response.data);
 
