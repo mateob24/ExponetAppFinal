@@ -67,18 +67,18 @@ function Login() {
       <section className="flex min-h-full flex-1 flex-col justify-center  items-center px-6 py-12 lg:px-8 general">
         <div className="w-1/4 py-8 px-4 flex flex-col items-center justify-center rounded-md shadow-sm bg-gray-50">
           <img
-            className="mx-auto h-20 w-auto"
+            className="mx-auto h-20 w-auto image"
             src="https://media.discordapp.net/attachments/1088828343731900429/1215287895284518912/Captura_de_pantalla_2024-03-07_080922-removebg-preview.png?ex=65fc340d&is=65e9bf0d&hm=bd96221de684f02eb50594f4791686e8ada3664468ab3100ad71003a35943a34&=&format=webp&quality=lossless&width=622&height=482"
             alt=""
           />
-          <h1 className="mt-2 mb-0 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Accede a tu cuenta</h1>
+          <h1 className="mt-2 mb-0 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 title">Accede a tu cuenta</h1>
           <div className="mt-3 sm:mx-auto sm:w-full sm:max-w-sm">
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6 formulary">
               <div>
-                <label htmlFor="userMail" className="block text-sm font-medium leading-6 text-gray-900">
+                <label htmlFor="userMail" className="block text-sm font-medium leading-6 text-gray-900 gmail">
                   Correo electrónico
                 </label>
-                <div className="mt-2">
+                <div className="mt-2 input-gmail">
                   <input
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm sm:leading-6 input-login"
                     type="email"
@@ -93,12 +93,12 @@ function Login() {
                 </div>
               </div>
               <div>
-                <div className="flex items-center justify-between">
-                  <label htmlFor="userPassword" className="block text-sm font-medium leading-6 text-gray-900">
+                <div className="flex items-center justify-between general-password">
+                  <label htmlFor="userPassword" className="block text-sm font-medium leading-6 text-gray-900 password">
                     Contraseña
                   </label>
                   <div className="text-sm">
-                    <a href="#" className="font-semibold no-underline link-new-password">
+                    <a href="#" className="font-semibold no-underline link-new-password forgot">
                       Forgot password?
                     </a>
                   </div>
@@ -117,18 +117,18 @@ function Login() {
                 </div>
               </div>
               <div id="buttonbox">
-                <button type="submit" className="flex w-full justify-center rounded-md px-3 py-1 text-sm font-semibold leading-6 text-white shadow-sm btn-login">
+                <button type="submit" className="flex w-full justify-center rounded-md px-3 py-1 text-sm font-semibold leading-6 text-white shadow-sm btn-login iniciar-sesion">
                   Iniciar sesión
                 </button>
                 <hr />
-                <div className="flex items-center justify-center">
+                <div className="flex items-center justify-center inicio">
                   <Link className="flex w-22 justify-center rounded-md px-3 py-1 text-sm font-semibold no-underline leading-6 text-white shadow-sm btn-home-login" to={"/"}>
                     Inicio <IoStorefrontSharp className="mx-1 w-auto self-center" /> 
                   </Link>
                 </div>
               </div>
             </form>
-            <p className="mt-4 mb-0 text-center text-sm text-gray-500">
+            <p className="mt-4 mb-0 text-center text-sm text-gray-500 question">
               ¿No se ha registrado?{''}
               <a
                 type="submit"
