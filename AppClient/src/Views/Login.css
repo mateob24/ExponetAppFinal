@@ -47,15 +47,11 @@ body{
   color: #7bd6e5;
 }
 
-@media screen and (max-width: 1200px) {
-}
-
-@media screen and (max-width: 992px) {
-}
-
-@media screen and (max-width: 768px) {
-}
-
-@media screen and (max-width: 480px) {
+/* Media Query's Login  */
+@media only screen and (min-width: 1025px) {
+  
+  .general {
+    width: 37%;
+  }
 
 }

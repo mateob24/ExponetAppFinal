@@ -52,33 +52,8 @@
 
 /* MEDIA QUERY DE ABOUT */
 
-@media screen and (max-width: 480px) {
-    .about-container{
-        padding-top: 0;
-        height: 60vh;
-        background-attachment: initial;
+@media only screen and (min-width: 480px) and (max-width: 600px) {
 
-    }
-
-    .about-title{
-        font-size: 1.5rem;
-        font-weight: 800;
-    }
     
-    .about-txt{
-        font-size: 0.8rem;
-        width: 80%;
-    }
-}
-
-@media screen and (max-width: 992px) {
-
-}
-
-@media screen and (max-width: 768px) {
-
-}
-
-@media screen and (max-width: 600px) {
-
+    
 }

@@ -64,7 +64,7 @@ function Login() {
 
   return (
     <>
-      <section className="flex min-h-full flex-1 flex-col justify-center  items-center px-6 py-12 lg:px-8">
+      <section className="flex min-h-full flex-1 flex-col justify-center  items-center px-6 py-12 lg:px-8 general">
         <div className="w-1/4 py-8 px-4 flex flex-col items-center justify-center rounded-md shadow-sm bg-gray-50">
           <img
             className="mx-auto h-20 w-auto"
