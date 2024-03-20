@@ -10,7 +10,7 @@ function About() {
         </p> */}
         <p className="about-txt">
 
-          "Descubre y apoya a las microempresas locales en ExpoNet: ¡explora productos únicos, apoya tu comunidad y celebra lo mejor de tu ciudad en un solo lugar!"
+        "Apoya a empresas locales. Compra tus productos favoritos cómodamente, estés donde estés."
         </p>
       </section>
     </>
