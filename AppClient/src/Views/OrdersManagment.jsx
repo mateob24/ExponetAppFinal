@@ -52,27 +52,27 @@ function OrdersManagment() {
 
     console.dir(productsShopOwners);
 
-    axios
-      .post("https://exponetapp-8fxj.onrender.com/ProductStockUpdate", {
-        productsIds,
-        productsQuantities,
-        productsShopOwners,
-        newBuyCarContent,
-      })
-      .then((response) => {
+    //axios
+      //.post("https://exponetapp-8fxj.onrender.com/ProductStockUpdate", {
+       // productsIds,
+       // productsQuantities,
+       // productsShopOwners,
+       // newBuyCarContent,
+      //})
+      //.then((response) => {
         // Maneja la respuesta si es necesario
-        console.log(response.data);
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "Pedido despachado",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      })
-      .catch((error) => {
-        console.error("Error al actualizar el stock del producto:", error);
-      });
+       // console.log(response.data);
+       // Swal.fire({
+         // position: "center",
+        //  icon: "success",
+        //  title: "Pedido despachado",
+        //  showConfirmButton: false,
+        //  timer: 1500,
+       // });
+      //})
+      //.catch((error) => {
+       // console.error("Error al actualizar el stock del producto:", error);
+      //});
   }
 
   function ChangeState(buyCarContent, globalShopId) {
