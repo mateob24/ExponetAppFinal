@@ -48,10 +48,14 @@ body{
 }
 
 /* Media Query's Login  */
-@media only screen and (min-width: 1200px) {
+@media only screen and (min-width: 480px) and (max-width: 600px) {
   
   .general {
     width: 100%;
+  }
+
+  .general-2 {
+    width: 120%;
   }
 
   .image {
@@ -95,7 +99,7 @@ body{
   }
 
   .question {
-    
+
   }
 
 }
