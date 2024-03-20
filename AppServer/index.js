@@ -6,21 +6,21 @@ const cors = require("cors");
 const multer = require("multer");
 const bodyParser = require("body-parser");
 const nodemailer = require("nodemailer");
-const path = require('path');
-const { CloudinaryStorage } = require('multer-storage-cloudinary');
-const cloudinary = require('cloudinary').v2;
+const path = require("path");
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
+const cloudinary = require("cloudinary").v2;
 
 cloudinary.config({
-  cloud_name: 'tu_cloud_name',
-  api_key: 'tu_api_key',
-  api_secret: 'tu_api_secret',
+  cloud_name: "dooxttior",
+  api_key: "148272244235469",
+  api_secret: "iGx6mGHsLBGrxiIdXrl60oOyX4s",
 });
 
 const cloudinaryStorage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
-    folder: 'uploads',
-    allowed_formats: ['jpg', 'jpeg', 'png'],
+    folder: "uploads",
+    allowed_formats: ["jpg", "jpeg", "png"],
   },
 });
 
@@ -35,22 +35,22 @@ const pool = mysql.createPool({
   host: "be2akte2ntisg7onaynu-mysql.services.clever-cloud.com",
   user: "umitr9ccarbghg5i",
   password: "i1JW2NSotnKXIjkAkHTR",
-  database: "be2akte2ntisg7onaynu"
+  database: "be2akte2ntisg7onaynu",
 });
 
 let transporter = nodemailer.createTransport({
-  host:"smtp.gmail.com",
+  host: "smtp.gmail.com",
   port: 587,
   secure: false,
   auth: {
     user: "darom3t48@gmail.com",
-    pass: "evskhrsbrxeejwys"
+    pass: "evskhrsbrxeejwys",
   },
-})
+});
 
-transporter.verify().then(()=> {
-  console.log("Ready to send mails")
-})
+transporter.verify().then(() => {
+  console.log("Ready to send mails");
+});
 
 pool.getConnection(function (err) {
   if (err) {
@@ -80,13 +80,21 @@ app.post("/createUser", async (req, res) => {
           to: userMail,
           subject: "Bienvenido a Exponet.com",
           html: `<h1>Bienvenido a Exponet.com</h1>
-                 <p>Gracias por registrarte en Exponet.com</p>`
+                 <p>Gracias por registrarte en Exponet.com</p>`,
         });
-        console.log("Correo electrónico de bienvenida enviado correctamente a:", userMail);
+        console.log(
+          "Correo electrónico de bienvenida enviado correctamente a:",
+          userMail
+        );
         res.status(200).send("Registro de usuario exitoso");
       } catch (emailError) {
-        console.log("Error al enviar el correo electrónico de bienvenida:", emailError);
-        res.status(500).send("Error al enviar el correo electrónico de bienvenida");
+        console.log(
+          "Error al enviar el correo electrónico de bienvenida:",
+          emailError
+        );
+        res
+          .status(500)
+          .send("Error al enviar el correo electrónico de bienvenida");
       }
     } finally {
       // Siempre liberar la conexión, incluso si ocurrió un error
@@ -105,7 +113,10 @@ app.post("/userRead", async (req, res) => {
     console.log(userMail);
     console.log(userPassword);
 
-    const [rows] = await pool.query("SELECT * FROM appUsers WHERE userMail = ?", [userMail]);
+    const [rows] = await pool.query(
+      "SELECT * FROM appUsers WHERE userMail = ?",
+      [userMail]
+    );
 
     if (rows.length > 0) {
       const match = await bcrypt.compare(userPassword, rows[0].userPassword);
@@ -125,7 +136,14 @@ app.post("/userRead", async (req, res) => {
 
 app.post("/createShop", multerUpload.single("file"), async (req, res) => {
   try {
-    const { shopName, shopTell, shopMail, shopAdress, shopOwner, shopComments } = req.body;
+    const {
+      shopName,
+      shopTell,
+      shopMail,
+      shopAdress,
+      shopOwner,
+      shopComments,
+    } = req.body;
     console.log(shopName, shopAdress, shopComments, shopId, shopMail, shopTell);
     console.log(JSON.stringify(req.body));
     console.log("shopName:", req.body.shopName);
@@ -141,11 +159,14 @@ app.post("/createShop", multerUpload.single("file"), async (req, res) => {
         imageUrl = await cloudinary.url(req.file.filename, {
           width: 100,
           height: 150,
-          crop: 'fill'
+          crop: "fill",
         });
         console.log("URL de la imagen en Cloudinary:", imageUrl);
       } catch (urlErr) {
-        console.error("Error al obtener la URL de la imagen desde Cloudinary:", urlErr);
+        console.error(
+          "Error al obtener la URL de la imagen desde Cloudinary:",
+          urlErr
+        );
       }
     }
 
@@ -153,7 +174,15 @@ app.post("/createShop", multerUpload.single("file"), async (req, res) => {
 
     const [rows] = await pool.query(
       "INSERT INTO appShops (shopName, shopTell, shopMail, shopAdress, shopOwner, shopComments, shopImgUrl) VALUES (?, ?, ?, ?, ?, ?, ?)",
-      [shopName, shopTell, shopMail, shopAdress, shopOwner, shopComments, imageUrl]
+      [
+        shopName,
+        shopTell,
+        shopMail,
+        shopAdress,
+        shopOwner,
+        shopComments,
+        imageUrl,
+      ]
     );
 
     res.status(200).send(rows);
@@ -163,10 +192,10 @@ app.post("/createShop", multerUpload.single("file"), async (req, res) => {
   }
 });
 
-
 app.put("/updateShop", multerUpload.single("file"), async (req, res) => {
   try {
-    const { shopName, shopAdress, shopTell, shopMail, shopComments, shopId } = req.body;
+    const { shopName, shopAdress, shopTell, shopMail, shopComments, shopId } =
+      req.body;
     console.log(JSON.stringify(req.body));
     console.log("shopName:", req.body.shopName);
     console.log("shopAdress:", req.body.shopAdress);
@@ -180,11 +209,14 @@ app.put("/updateShop", multerUpload.single("file"), async (req, res) => {
         imageUrl = await cloudinary.url(req.file.filename, {
           width: 100,
           height: 150,
-          crop: 'fill'
+          crop: "fill",
         });
         console.log("URL de la imagen en Cloudinary:", imageUrl);
       } catch (urlErr) {
-        console.error("Error al obtener la URL de la imagen desde Cloudinary:", urlErr);
+        console.error(
+          "Error al obtener la URL de la imagen desde Cloudinary:",
+          urlErr
+        );
       }
     }
 
@@ -197,13 +229,13 @@ app.put("/updateShop", multerUpload.single("file"), async (req, res) => {
 
     res.status(200).send(rows);
   } catch (error) {
-    console.error("Error general en la función de actualización de tienda:", error);
+    console.error(
+      "Error general en la función de actualización de tienda:",
+      error
+    );
     res.status(500).send("Error al actualizar la tienda");
   }
 });
-
-
-
 
 app.get("/shopsList", async (req, res) => {
   try {
@@ -232,23 +264,19 @@ app.get("/shopsListCreateShops/:shopOwner", async (req, res) => {
   }
 });
 
-
 app.put("/deleteShop/:shopId", async (req, res) => {
   const shopId = req.params.shopId;
 
   try {
-    const [result] = await pool.query(
-      "DELETE FROM appShops WHERE shopId = ?",
-      [shopId]
-    );
+    const [result] = await pool.query("DELETE FROM appShops WHERE shopId = ?", [
+      shopId,
+    ]);
     res.status(200).send(result);
   } catch (error) {
     console.error("Error al eliminar la tienda:", error);
     res.status(500).send("Error al eliminar la tienda");
   }
 });
-;
-
 app.put("/deleteProducts/:shopId", async (req, res) => {
   const shopId = req.params.shopId;
 
@@ -264,7 +292,6 @@ app.put("/deleteProducts/:shopId", async (req, res) => {
   }
 });
 
-
 app.post("/createProduct", multerUpload.single("file"), async (req, res) => {
   const {
     productName,
@@ -277,11 +304,13 @@ app.post("/createProduct", multerUpload.single("file"), async (req, res) => {
 
   try {
     // Obtener la URL de la imagen subida desde Cloudinary
-    const imageUrl = req.file ? await cloudinary.url(req.file.filename, {
-      width: 100,
-      height: 150,
-      crop: 'fill'
-    }) : null;
+    const imageUrl = req.file
+      ? await cloudinary.url(req.file.filename, {
+          width: 100,
+          height: 150,
+          crop: "fill",
+        })
+      : null;
 
     const [result] = await pool.query(
       "INSERT INTO appProducts(productName, productDescription, productPrize, productStock, productCategory, productImgUrl, productShopOwner) VALUES (?, ?, ?, ?, ?, ?, ?)",
@@ -304,8 +333,6 @@ app.post("/createProduct", multerUpload.single("file"), async (req, res) => {
   }
 });
 
-  
-
 app.get("/productsList", async (req, res) => {
   try {
     const [rows, fields] = await pool.query("SELECT * FROM appProducts");
@@ -316,19 +343,20 @@ app.get("/productsList", async (req, res) => {
   }
 });
 
-
 app.get("/productsListUpdateProducts/:productShopOwner", async (req, res) => {
   const productShopOwner = req.params.productShopOwner;
-  
+
   try {
-    const [rows, fields] = await pool.query("SELECT * FROM appProducts WHERE productShopOwner = ?", [productShopOwner]);
+    const [rows, fields] = await pool.query(
+      "SELECT * FROM appProducts WHERE productShopOwner = ?",
+      [productShopOwner]
+    );
     res.status(200).send(rows);
   } catch (error) {
     console.error("Error al obtener la lista de productos:", error);
     res.status(500).send("Error al obtener la lista de productos");
   }
 });
-
 
 app.put("/deleteProduct/:productId", async (req, res) => {
   const productId = req.params.productId;
@@ -342,7 +370,6 @@ app.put("/deleteProduct/:productId", async (req, res) => {
   }
 });
 
-
 app.put("/updateProduct", multerUpload.single("file"), async (req, res) => {
   const {
     productId,
@@ -355,11 +382,13 @@ app.put("/updateProduct", multerUpload.single("file"), async (req, res) => {
 
   try {
     // Obtener la URL de la imagen subida desde Cloudinary
-    const imageUrl = req.file ? await cloudinary.url(req.file.filename, {
-      width: 100,
-      height: 150,
-      crop: 'fill'
-    }) : null;
+    const imageUrl = req.file
+      ? await cloudinary.url(req.file.filename, {
+          width: 100,
+          height: 150,
+          crop: "fill",
+        })
+      : null;
 
     await pool.query(
       "UPDATE appProducts SET productName=?, productDescription=?, productPrize=?, productStock=?, productCategory=?, productImgUrl=? WHERE productId=?",
@@ -382,8 +411,6 @@ app.put("/updateProduct", multerUpload.single("file"), async (req, res) => {
   }
 });
 
-
-
 app.get("/commentsList", async (req, res) => {
   try {
     const [rows] = await pool.query("CALL GetCommentsWithUser()");
@@ -393,7 +420,6 @@ app.get("/commentsList", async (req, res) => {
     res.status(500).send("Error al obtener la lista de comentarios");
   }
 });
-
 
 // carrito compras
 
@@ -416,7 +442,6 @@ app.post("/createBuyCar", async (req, res) => {
     res.status(500).send("Error al crear el carrito de compras");
   }
 });
-
 
 app.get("/buyCarsList", async (req, res) => {
   try {
@@ -454,10 +479,17 @@ app.post("/ProductStockUpdate", async (req, res) => {
       const currentProductShopOwner = productsShopOwners[i];
 
       // Función para obtener el productShopOwner original de manera asíncrona
-      const originalProductShopOwner = await getProductShopOwner(currentProductId);
+      const originalProductShopOwner = await getProductShopOwner(
+        currentProductId
+      );
 
       if (currentProductShopOwner === originalProductShopOwner) {
-        await updateProductStock(currentProductId, currentProductQuantity, currentProductShopOwner, newBuyCarContent);
+        await updateProductStock(
+          currentProductId,
+          currentProductQuantity,
+          currentProductShopOwner,
+          newBuyCarContent
+        );
         updatedProductsCount++;
       } else {
         updatedProductsCount++;
@@ -509,7 +541,6 @@ function updateProductStock(productId, quantity, shopOwner, buyCarContent) {
   });
 }
 
-
 app.put("/deleteBuyCar/:buyCarId", (req, res) => {
   const buyCarId = req.params.buyCarId;
   db.query(
@@ -525,7 +556,6 @@ app.put("/deleteBuyCar/:buyCarId", (req, res) => {
     }
   );
 });
-
 
 app.listen(3001, () => {
   console.log(`Servidor escuchando en el puerto 3001`);
