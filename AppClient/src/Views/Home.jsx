@@ -1,6 +1,7 @@
 import ProductSamplerHome from "../Components/ProductSamplerHome/ProductSamplerHome";
 import Footer from "../Components/Footer/Footer";
 import Header from "../Components/Header/Header";
+import ContactUs from "../Components/ContactUs/ContactUs";
 // import Comments from "../Components/Comments/Comments";
 import About from "../Components/About/About";
 import { useState, useEffect, useContext } from "react";
@@ -49,6 +50,7 @@ function Home() {
           quantityCards={quantityCards}
           Route="/PrincipalShop"
         />
+        <ContactUs />
         {/* <Comments /> */}
       </section>
         <Footer />

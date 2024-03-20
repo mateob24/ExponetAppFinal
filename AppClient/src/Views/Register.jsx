@@ -87,15 +87,15 @@ function RegisterForm() {
         <div className="w-1/4 py-8 px-4 flex flex-col items-center justify-center rounded-md shadow-sm bg-white">
           <img className="mx-auto h-20 w-auto" src="https://media.discordapp.net/attachments/1088828343731900429/1215287895284518912/Captura_de_pantalla_2024-03-07_080922-removebg-preview.png?ex=65fc340d&is=65e9bf0d&hm=bd96221de684f02eb50594f4791686e8ada3664468ab3100ad71003a35943a34&=&format=webp&quality=lossless&width=622&height=482" alt="" />
           <h1 className="mt-1 mb-0 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Crea una cuenta</h1>
-          <div className="mt-6 sm:mx-auto sm:w-full sm:max-w-sm">
-            <form onSubmit={handleSubmit} className="space-y-2">
+          <div className="mt-3 sm:mx-auto sm:w-full sm:max-w-sm">
+            <form onSubmit={handleSubmit} className="space-y-3">
               <div>
                 <label htmlFor="userName" className="block text-sm font-medium leading-6 text-gray-900">
                   Nombre de usuario
                 </label>
                 <div className="mt-1">
                   <input
-                    className="block w-full rounded-md border-0 py-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     type="text"
                     id="userName"
                     name="userName"
@@ -111,7 +111,7 @@ function RegisterForm() {
                 </label>
                 <div className="mt-1">
                   <input
-                    className="block w-full rounded-md border-0 py-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     type="email"
                     placeholder="example@mail.com"
                     id="userMail"
@@ -128,7 +128,7 @@ function RegisterForm() {
                 </label>
                 <div className="mt-1">
                   <input
-                    className="block w-full rounded-md border-0 py-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     type="text"
                     id="userAdress"
                     name="userAdress"
@@ -144,7 +144,7 @@ function RegisterForm() {
                 </label>
                 <div className="mt-1">
                   <input
-                    className="block w-full rounded-md border-0 py-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6date-input-b"
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6date-input-b"
                     type="password"
                     id="userPassword"
                     name="userPassword"
@@ -160,7 +160,7 @@ function RegisterForm() {
                 </label>
                 <div className="mt-1">
                   <input
-                    className="block w-full rounded-md border-0 py-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6date-input-b"
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6date-input-b"
                     type="password"
                     id="confirmPassword"
                     name="confirmPassword"
@@ -174,7 +174,7 @@ function RegisterForm() {
                   Rol
                 </label>
                 <select
-                  className="block w-28 rounded-md border-0 py-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6date-input-b"
+                  className="block w-32 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6date-input-b"
                   id="userRole"
                   name="userRole"
                   required
@@ -186,11 +186,11 @@ function RegisterForm() {
                 </select>
               </div>
               <div className="flex">
-                <button type="submit" className="flex mr-1.5 w-full justify-center rounded-md bg-indigo-600 px-3 py-1 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                <button type="submit" className="flex mr-2 w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500">
                   Registrarse
                 </button>
                 <div className="flex items-center justify-center">
-                  <Link className="flex w-20 justify-center rounded-md bg-indigo-600 px-3 py-1 text-sm font-semibold no-underline leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" to={"/"}>
+                  <Link className="flex w-20 justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold no-underline leading-6 text-white shadow-sm hover:bg-indigo-500" to={"/"}>
                     <IoStorefrontSharp className="mx-auto w-auto self-center"/> Inicio
                   </Link>
                 </div>

@@ -72,7 +72,7 @@ function Login() {
             alt=""
           />
           <h1 className="mt-2 mb-0 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Accede a tu cuenta</h1>
-          <div className="mt-6 sm:mx-auto sm:w-full sm:max-w-sm">
+          <div className="mt-3 sm:mx-auto sm:w-full sm:max-w-sm">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="userMail" className="block text-sm font-medium leading-6 text-gray-900">
@@ -80,7 +80,7 @@ function Login() {
                 </label>
                 <div className="mt-2">
                   <input
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm sm:leading-6 input-login"
                     type="email"
                     placeholder="example@mail.com"
                     id="userMail"
@@ -105,7 +105,7 @@ function Login() {
                 </div>
                 <div className="mt-2">
                   <input
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 input-login"
                     type="password"
                     id="userPassword"
                     name="userPassword"
@@ -117,12 +117,12 @@ function Login() {
                 </div>
               </div>
               <div id="buttonbox">
-                <button type="submit" className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                <button type="submit" className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 btn-login">
                   Iniciar sesión
                 </button>
                 <hr />
                 <div className="flex items-center justify-center">
-                  <Link className="flex w-20 justify-center rounded-md bg-indigo-600 px-3 py-1 text-sm font-semibold no-underline leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" to={"/"}>
+                  <Link className="flex w-20 justify-center rounded-md bg-indigo-600 px-3 py-1 text-sm font-semibold no-underline leading-6 text-white shadow-sm hover:bg-indigo-500 " to={"/"}>
                     <IoStorefrontSharp className="mx-auto w-auto self-center" /> Inicio
                   </Link>
                 </div>

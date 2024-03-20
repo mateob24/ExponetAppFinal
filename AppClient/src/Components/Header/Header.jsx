@@ -41,7 +41,7 @@ const Header = () => {
           </ul>
           <ul className="links-nav">
             <li>
-              <Link to="/" className={`link-header ${location.pathname === '/' ? 'bg-blue-400' : 'hover:bg-blue-400'}`}>
+              <Link to="/" className={`link-header ${location.pathname === '/' ? 'link-header-b' : ''}`}>
                 Inicio
               </Link>
             </li>
@@ -64,12 +64,12 @@ const Header = () => {
                 {userRoll === "comprador" && (
                   <>
                     <li>
-                      <Link to="/Shops" className={`link-header`}>
+                      <Link to="/Shops" className={`link-header ${location.pathname === '/Shops' ? 'link-header-b' : ''}`}>
                         Tiendas
                       </Link>
                     </li>
                     <li>
-                      <Link to="/UserHistory" className={`link-header`}>
+                      <Link to="/UserHistory" className={`link-header ${location.pathname === '/UserHistory' ? 'link-header-b' : ''}`}>
                         Historial
                       </Link>
                     </li>
@@ -95,7 +95,7 @@ const Header = () => {
                 </li>
                 {/* Agrega la condición para mostrar el botón de Tiendas cuando el usuario no está autenticado */}
                 <li>
-                  <Link to="/Shops" className={`link-header ${location.pathname === '/Shops' ? 'bg-blue-200 shadow-md' : 'hover:bg-blue-400'}`}>
+                  <Link to="/Shops" className={`link-header ${location.pathname === '/Shops' ? 'link-header-b' : ''}`}>
                     Tiendas
                   </Link>
                 </li>
