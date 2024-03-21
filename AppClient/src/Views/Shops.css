@@ -25,14 +25,14 @@
 }
 
 .shop-card{
-    width: 38%;
+    width: 35%;
     height: 18rem;
     padding: 1rem;
     border-radius: 8px;
     gap: 6px;
     display: flex;
     align-items: center;
-  transition: transform 0.3s ease;
+    transition: transform 0.3s ease;
 }
 
 .shop-card:hover {
@@ -53,6 +53,7 @@
     height: 100%;
     width: 100%;
     border-radius: 8px;
+    object-fit: cover;
 }
 
 .shops-info{
