@@ -10,6 +10,22 @@ body{
   height: 100%;
 }
 
+.btn-register{
+  background-color: #4cbfd5;
+}
+
+.btn-register:hover{
+  background-color: #7bd6e5;
+}
+
+.btn-home-register{
+  background-color: #bdbdbd;
+}
+
+.btn-home-register:hover{
+  background-color: #dcdcdc;
+}
+
 @media screen and (max-width: 1200px) {
  }
 

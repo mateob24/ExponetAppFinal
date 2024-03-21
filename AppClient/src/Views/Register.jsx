@@ -86,6 +86,9 @@ function RegisterForm() {
       <section className="flex min-h-full flex-1 flex-col justify-center  items-center px-6 py-12 bg-white lg:px-8">
         <div className="w-1/4 py-8 px-4 flex flex-col items-center justify-center rounded-md shadow-sm bg-gray-50">
           <img className="mx-auto h-20 w-auto" src="https://media.discordapp.net/attachments/1088828343731900429/1215287895284518912/Captura_de_pantalla_2024-03-07_080922-removebg-preview.png?ex=65fc340d&is=65e9bf0d&hm=bd96221de684f02eb50594f4791686e8ada3664468ab3100ad71003a35943a34&=&format=webp&quality=lossless&width=622&height=482" alt="" />
+      <section className="flex min-h-full flex-1 flex-col justify-center  items-center px-6 py-12 bg-gray-100 lg:px-8">
+        <div className="w-1/4 py-8 px-4 flex flex-col items-center justify-center rounded-md shadow-sm bg-white">
+          <img className="mx-auto h-20 w-auto" src="/exponet-logo.webp" alt="" />
           <h1 className="mt-1 mb-0 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Crea una cuenta</h1>
           <div className="mt-3 sm:mx-auto sm:w-full sm:max-w-sm">
             <form onSubmit={handleSubmit} className="space-y-3">
@@ -186,11 +189,11 @@ function RegisterForm() {
                 </select>
               </div>
               <div className="flex">
-                <button type="submit" className="flex mr-2 w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm">
+                <button type="submit" className="flex mr-2 w-full justify-center rounded-md px-3 py-1 text-sm font-semibold leading-6 text-white shadow-sm btn-register">
                   Registrarse
                 </button>
                 <div className="flex items-center justify-center">
-                  <Link className="flex w-20 justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold no-underline leading-6 text-white shadow-sm" to={"/"}>
+                  <Link className="flex w-20 justify-center rounded-md px-3 py-1 text-sm font-semibold no-underline leading-6 text-white shadow-sm btn-home-register" to={"/"}>
                     <IoStorefrontSharp className="mx-auto w-auto self-center"/> Inicio
                   </Link>
                 </div>

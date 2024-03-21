@@ -68,7 +68,7 @@ function Login() {
         <div className="w-1/4 py-8 px-4 flex flex-col items-center justify-center rounded-md shadow-sm bg-gray-50 general-2">
           <img
             className="mx-auto h-20 w-auto image"
-            src="https://media.discordapp.net/attachments/1088828343731900429/1215287895284518912/Captura_de_pantalla_2024-03-07_080922-removebg-preview.png?ex=65fc340d&is=65e9bf0d&hm=bd96221de684f02eb50594f4791686e8ada3664468ab3100ad71003a35943a34&=&format=webp&quality=lossless&width=622&height=482"
+            src="/exponet-logo.webp"
             alt=""
           />
           <h1 className="mt-2 mb-0 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 title">Accede a tu cuenta</h1>
