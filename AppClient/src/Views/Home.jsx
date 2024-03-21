@@ -41,9 +41,6 @@ function Home() {
     <Header />
       <section>
         <About />
-        <div className="box-title-sampler">
-          <h2 className="product-title-sampler">Productos de interés</h2>
-        </div>
         <ProductSamplerHome
           products={products}
           stock={stock}

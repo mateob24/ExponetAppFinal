@@ -186,11 +186,11 @@ function RegisterForm() {
                 </select>
               </div>
               <div className="flex">
-                <button type="submit" className="flex mr-2 w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500">
+                <button type="submit" className="flex mr-2 w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm">
                   Registrarse
                 </button>
                 <div className="flex items-center justify-center">
-                  <Link className="flex w-20 justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold no-underline leading-6 text-white shadow-sm hover:bg-indigo-500" to={"/"}>
+                  <Link className="flex w-20 justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold no-underline leading-6 text-white shadow-sm" to={"/"}>
                     <IoStorefrontSharp className="mx-auto w-auto self-center"/> Inicio
                   </Link>
                 </div>

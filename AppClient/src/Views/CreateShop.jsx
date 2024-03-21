@@ -191,10 +191,10 @@ function CreateShop() {
   return (
     <>
       <Header />
-      <div className="container pt-36 pb-8">
-        <div className="card text-center">
-          <div className="card-header">
-            <h2 className="title-create-store">Gestión De Tiendas</h2>
+      <div className="container container-create-shop">
+        <div className="card text-center shadow-sm">
+          <div className="card-header bg-gray-50">
+            <h1 className="title-create-store">Gestión De Tiendas</h1>
           </div>
           <div className="card-body">
             <div className="input-group mb-3">
@@ -273,18 +273,18 @@ function CreateShop() {
             </div>
 
             <div className="input-group mt-3">
-            <label className="select-img-store" htmlFor="file">
-    Seleccionar imagen de la tienda
-  </label>
-  <input
-    type="file"
-    id="file"
-    name="file"
-    onChange={handleFileChange}
-  />
-</div>
+              {/* <label className="select-img-store" htmlFor="file">
+                Seleccionar imagen de la tienda
+              </label> */}
+              <input
+                type="file"
+                id="file"
+                name="file"
+                onChange={handleFileChange}
+              />
+            </div>
 
-         
+
           </div>
           <div className="card-footer text-body-secondary d-flex justify-content-center">
             {editar ? (

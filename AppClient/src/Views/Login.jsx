@@ -117,7 +117,7 @@ function Login() {
                 </div>
               </div>
               <div id="buttonbox">
-                <button type="submit" className="flex w-full justify-center rounded-md px-3 py-1 text-sm font-semibold leading-6 text-white shadow-sm btn-login iniciar-sesion">
+                <button type="submit" className="flex w-full justify-center rounded-md px-3 py-1 text-sm font-semibold leading-6 text-white shadow-sm btn-login">
                   Iniciar sesión
                 </button>
                 <hr />

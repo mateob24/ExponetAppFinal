@@ -39,12 +39,12 @@ function Shops() {
   return (
     <>
       <Header />
-      <div className="box-title-shop">
-        <h1 className="product-title-shop">Tiendas Disponibles</h1>
-      </div>
       <div className="shops-container">
+        <div className="box-title-shop">
+          <h1 className="product-title-shop">Tiendas Disponibles</h1>
+        </div>
         {shops.map((shop) => (
-          <div key={shop.shopId} className="shop-card">
+          <div key={shop.shopId} className="shop-card shadow-sm bg-gray-50">
             <div className="box-img-shops">
               <img
                 src={shop.shopimgurl}
@@ -56,7 +56,7 @@ function Shops() {
               <h4 className="shops-title m-0">{shop.shopName}</h4>
               <p className="shops-descrip m-0">{shop.shopComments}</p>
               <button
-                className="shops-btn"
+                className="flex w-20 justify-center rounded-md px-3 py-1 text-sm font-semibold leading-6 text-white shadow-sm shops-btn"
                 onClick={() => handleEnterShop(shop.shopId, shop.shopName)}
               >
                 Entrar

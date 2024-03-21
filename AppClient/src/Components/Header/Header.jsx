@@ -56,7 +56,7 @@ const Header = () => {
                   {userRoll === "vendedor" && (
                     <>
                       <li>
-                        <Link to="/CreateShop" className={`link-header`}>
+                        <Link to="/CreateShop" className={`link-header ${location.pathname === '/CreateShop' ? 'link-header-b' : ''}`}>
                           Crear tienda
                         </Link>
                       </li>
@@ -85,8 +85,8 @@ const Header = () => {
                         </button>
                       </li>
                       <li>
-                        <Link to="/BuyCar">
-                          <MdShoppingCart className="link-header-cart" />
+                        <Link to="/BuyCar" className={`link-header-cart ${location.pathname === '/BuyCar' ? 'link-header-cart-b' : ''}`} >
+                          <MdShoppingCart  />
                         </Link>
                       </li>
                     </>
