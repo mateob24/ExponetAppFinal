@@ -7,6 +7,7 @@ import About from "../Components/About/About";
 import { useState, useEffect, useContext } from "react";
 import { ShopContextValues } from "../Components/Context/ShopContext";
 import axios from "axios";
+import "./Home.css";
 
 function Home() {
   const [products, setProducts] = useState([]);
@@ -38,7 +39,7 @@ function Home() {
   }, []);
   return (
     <>
-    <Header />
+      <Header />
       <section>
         <About />
         <ProductSamplerHome
@@ -50,7 +51,7 @@ function Home() {
         <ContactUs />
         {/* <Comments /> */}
       </section>
-        <Footer />
+      <Footer />
     </>
   );
 }

@@ -33,7 +33,75 @@ body{
 }
 
 @media screen and (max-width: 768px) {
+
+  .general-register {
+    width: 57vw;
+  }
+
+  .title-register {
+    font-size: 25px;
+  }
+
+  .label-register {
+    font-size: 16px;
+    color: rgb(70, 67, 67);
+  }
+
+}
+
+@media screen and (max-width: 600px) {
+
+  .general-register {
+    width: 60vw;
+  }
+
+  .general2-register {
+    width: 51vw;
+  }
+
+  .title-register {
+    font-size: 22px;
+  }
+
+  .label-register {
+    font-size: 14px;
+    color: rgb(70, 67, 67);
+  }
+
+
 }
 
 @media screen and (max-width: 480px) {
- }
+
+  .general-register {
+    width: 60vw;
+  }
+
+  .image-register {
+    height: 11vh;
+  }
+
+  .general2-register {
+    width: 52vw;
+  }
+
+  .title-register {
+    font-size: 19px;
+  }
+
+  .label-register {
+    font-size: 12px;
+    color: rgb(70, 67, 67);
+  }
+
+  .input-register {
+    height: 4vh;
+    font-size: 13px;
+  }
+
+  .input-rol {
+    font-size: 13px;
+  }
+
+
+}
