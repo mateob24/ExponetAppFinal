@@ -8,6 +8,7 @@ body{
 
 #root{
   height: 100%;
+  width: 100%;
 }
 
 .input-login:focus{
@@ -47,15 +48,140 @@ body{
   color: #7bd6e5;
 }
 
-/* Media Query's Login 
-@media screen and (min-width: 480px) {
-  
+/* Media Query's Login  */
+
+
+@media screen and (max-width: 1200px) {
+ }
+
+@media screen and (max-width: 992px) {
+
+  .general-2 {
+    width: 35%;
+  }
+
+}
+
+@media screen and (max-width: 768px) {
+
   .general {
-    width: 100%;
+    height: 100vh;
   }
 
   .general-2 {
-    width: 78%;
+    height: 95vh;
+    width: 55%;
+    padding: 12px;
   }
 
-} */
+  .image {
+    height: 13vh;
+  }
+
+  .title {
+    font-size: 25px;
+  }
+
+  .gmail {
+    font-size: 17px;
+  }
+
+  .password {
+    font-size: 17px;
+  }
+
+  /* .forgot {
+    font-size: 13px;
+  } */
+
+  .input-login {
+    height: 6vh;
+  }
+
+  .buttonbox {
+    height: 5vh;
+  }
+
+}
+
+@media screen and (max-width: 600px) {
+
+  .general {
+    height: 100vh;
+  }
+
+  .general-2 {
+    width: 55%;
+    padding: 12px;
+  }
+
+  .image {
+    height: 12vh;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  .gmail {
+    font-size: 13px;
+  }
+
+  .password {
+    font-size: 13px;
+  }
+
+  .forgot {
+    font-size: 13px;
+  }
+
+  .input-login {
+    height: 5vh;
+  }
+
+  .buttonbox {
+    height: 5vh;
+  }
+
+}
+
+@media screen and (max-width: 480px) {
+
+  .general {
+    height: 100vh;
+  }
+
+  .general-2 {
+    width: 75%;
+    padding: 12px;
+  }
+
+  .image {
+    height: 12vh;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  .gmail {
+    font-size: 13px;
+  }
+
+  .password {
+    font-size: 13px;
+  }
+
+  .forgot {
+    font-size: 13px;
+  }
+
+  .input-login {
+    height: 5vh;
+  }
+
+  .buttonbox {
+    height: 5vh;
+  }
+
+ }

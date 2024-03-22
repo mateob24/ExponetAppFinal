@@ -83,14 +83,14 @@ function RegisterForm() {
 
   return (
     <>
-      <section className="flex min-h-full flex-1 flex-col justify-center  items-center px-6 py-12 bg-white lg:px-8">
-        <div className="w-1/4 py-8 px-4 flex flex-col items-center justify-center rounded-md shadow-sm bg-gray-50">
-          <img className="mx-auto h-20 w-auto" src="https://media.discordapp.net/attachments/1088828343731900429/1215287895284518912/Captura_de_pantalla_2024-03-07_080922-removebg-preview.png?ex=65fc340d&is=65e9bf0d&hm=bd96221de684f02eb50594f4791686e8ada3664468ab3100ad71003a35943a34&=&format=webp&quality=lossless&width=622&height=482" alt="" />
-          <h1 className="mt-1 mb-0 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Crea una cuenta</h1>
-          <div className="mt-3 sm:mx-auto sm:w-full sm:max-w-sm">
+      <section className="flex min-h-full flex-1 flex-col justify-center  items-center px-6 py-12 bg-gray-100 lg:px-8">
+        <div className="w-1/4 py-8 px-4 flex flex-col items-center justify-center rounded-md shadow-sm bg-white general-register">
+          <img className="mx-auto h-20 w-auto image-register" src="/exponet-logo.webp" alt="" />
+          <h1 className="mt-1 mb-0 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 title-register">Crea una cuenta</h1>
+          <div className="mt-3 sm:mx-auto sm:w-full sm:max-w-sm general2-register">
             <form onSubmit={handleSubmit} className="space-y-3">
               <div>
-                <label htmlFor="userName" className="block text-sm font-medium leading-6 text-gray-900">
+                <label htmlFor="userName" className="block text-sm font-medium leading-6 text-gray-900 label-register">
                   Nombre de usuario
                 </label>
                 <div className="mt-1">
@@ -107,7 +107,7 @@ function RegisterForm() {
                 </div>
               </div>
               <div>
-                <label htmlFor="userMail" className="block text-sm font-medium leading-6 text-gray-900">
+                <label htmlFor="userMail" className="block text-sm font-medium leading-6 text-gray-900 label-register">
                   Correo electrónico
                 </label>
                 <div className="mt-1">
@@ -124,11 +124,12 @@ function RegisterForm() {
                 </div>
               </div>
               <div>
-                <label htmlFor="userAdress" className="block text-sm font-medium leading-6 text-gray-900">
-                  Dirección de residencia
+                <label htmlFor="userAdress" className="block text-sm font-medium leading-6 text-gray-900 label-register">
+                  Direccion de residencia
                 </label>
                 <div className="mt-1">
                   <input
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 input-register"
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 input-register"
                     type="text"
                     id="userAdress"
@@ -141,7 +142,7 @@ function RegisterForm() {
                 </div>
               </div>
               <div>
-                <label htmlFor="userPassword" className="block text-sm font-medium leading-6 text-gray-900">
+                <label htmlFor="userPassword" className="block text-sm font-medium leading-6 text-gray-900 label-register">
                   Contraseña
                 </label>
                 <div className="mt-1">
@@ -157,7 +158,7 @@ function RegisterForm() {
                 </div>
               </div>
               <div>
-                <label htmlFor="confirmPassword" className="block text-sm font-medium leading-6 text-gray-900">
+                <label htmlFor="confirmPassword" className="block text-sm font-medium leading-6 text-gray-900 label-register">
                   Confirmar contraseña
                 </label>
                 <div className="mt-1">
@@ -172,11 +173,11 @@ function RegisterForm() {
                 </div>
               </div>
               <div>
-                <label htmlFor="userRole" className="block text-sm font-medium leading-6 text-gray-900">
+                <label htmlFor="userRole" className="block text-sm font-medium leading-6 text-gray-900 label-register">
                   Rol
                 </label>
                 <select
-                  className="block w-32 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 input-register"
+                  className="block w-32 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 input-register input-rol"
                   id="userRole"
                   name="userRole"
                   required

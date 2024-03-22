@@ -97,11 +97,11 @@ function Login() {
                   <label htmlFor="userPassword" className="block text-sm font-medium leading-6 text-gray-900 password">
                     Contraseña
                   </label>
-                  <div className="text-sm">
+                  {/* <div className="text-sm">
                     <a href="#" className="font-semibold no-underline link-new-password forgot">
                       Forgot password?
                     </a>
-                  </div>
+                  </div> */}
                 </div>
                 <div className="mt-2">  
                   <input
