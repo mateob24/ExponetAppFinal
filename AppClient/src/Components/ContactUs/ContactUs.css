@@ -2,6 +2,17 @@
   height: 100vh;
 }
 
+.title-contactus{
+  font-size: 2.2rem;
+  font-weight: 700;
+  border-bottom: 3px solid #b1e7f0;
+}
+
+.input-contactus:focus{
+  outline-style: auto;
+  outline-color: #7bd6e5;
+}
+
 .btn-send{
   background-color: #4cbfd5;
 }

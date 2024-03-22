@@ -10,6 +10,11 @@ body{
   height: 100%;
 }
 
+.input-register:focus{
+  outline-style: auto;
+  outline-color: #7bd6e5;
+}
+
 .btn-register{
   background-color: #4cbfd5;
 }
