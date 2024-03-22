@@ -34,7 +34,7 @@ function ProductSamplerHome({ products, stock, quantityCards, Route }) {
           <h1 className="product-title-sampler">Productos de interés</h1>
         </div>
         {filteredProducts.slice(0, quantityCards).map((product) => (
-          <div key={product.productId} className="product-card-home shadow-sm bg-gray-50">
+          <div key={product.productId} className="product-card-home shadow-sm bg-gray-50 card-home">
             <Link to={Ruta} className="card-btn-home">
               Ir a tiendas
             </Link>
@@ -50,10 +50,10 @@ function ProductSamplerHome({ products, stock, quantityCards, Route }) {
               {/* <p className="subtitle-home">Descripción</p> */}
               <p className="value-descrip-home">{product.productDescription}</p>
             </div>
-            <div className="dates-box-one">
+            {/* <div className="dates-box-one">
               <p className="subtitle-home">Existencias</p>
               <p className="value-home">{stock[product.productId]}</p>
-            </div>
+            </div> */}
             <div className="dates-box-two">
               {/* <p className="subtitle-home">Precio</p> */}
               <p className="value-home-price">${product.productPrize}</p>
