@@ -83,17 +83,17 @@ function RegisterForm() {
 
   return (
     <>
-      <section className="flex min-h-full flex-1 flex-col justify-center  items-center px-6 py-12 bg-gray-100 lg:px-8">
-        <div className="w-1/4 py-8 px-4 flex flex-col items-center justify-center rounded-md shadow-sm bg-white general-register">
+      <section className="flex min-h-full flex-1 flex-col justify-center items-center px-6 py-12 bg-white lg:px-8">
+        <div className="w-2/6 py-8 px-4 flex flex-col items-center justify-center rounded-md shadow-sm bg-gray-50 general-register">
           <img className="mx-auto h-20 w-auto image-register" src="/exponet-logo.webp" alt="" />
           <h1 className="mt-1 mb-0 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 title-register">Crea una cuenta</h1>
           <div className="mt-3 sm:mx-auto sm:w-full sm:max-w-sm general2-register">
-            <form onSubmit={handleSubmit} className="space-y-3">
+            <form onSubmit={handleSubmit} className="space-y-3 form-register">
               <div>
                 <label htmlFor="userName" className="block text-sm font-medium leading-6 text-gray-900 label-register">
                   Nombre de usuario
                 </label>
-                <div className="mt-1">
+                <div className="mt-1 input-box">
                   <input
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 input-register"
                     type="text"
@@ -110,7 +110,7 @@ function RegisterForm() {
                 <label htmlFor="userMail" className="block text-sm font-medium leading-6 text-gray-900 label-register">
                   Correo electrónico
                 </label>
-                <div className="mt-1">
+                <div className="mt-1 input-box">
                   <input
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 input-register"
                     type="email"
@@ -127,7 +127,7 @@ function RegisterForm() {
                 <label htmlFor="userAdress" className="block text-sm font-medium leading-6 text-gray-900 label-register">
                   Direccion de residencia
                 </label>
-                <div className="mt-1">
+                <div className="mt-1 input-box">
                   <input
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 input-register"
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 input-register"
@@ -145,7 +145,7 @@ function RegisterForm() {
                 <label htmlFor="userPassword" className="block text-sm font-medium leading-6 text-gray-900 label-register">
                   Contraseña
                 </label>
-                <div className="mt-1">
+                <div className="mt-1 input-box">
                   <input
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 input-register"
                     type="password"
@@ -161,7 +161,7 @@ function RegisterForm() {
                 <label htmlFor="confirmPassword" className="block text-sm font-medium leading-6 text-gray-900 label-register">
                   Confirmar contraseña
                 </label>
-                <div className="mt-1">
+                <div className="mt-1 input-box">
                   <input
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 input-register"
                     type="password"

@@ -52,11 +52,11 @@ function Shops() {
                 className="shops-img"
               />
             </div>
-            <div className="shops-info p-0">
-              <h4 className="shops-title m-0">{shop.shopName}</h4>
-              <p className="shops-descrip m-0">{shop.shopComments}</p>
+            <div className="p-0 shops-info">
+              <h4 className="m-0 shops-title">{shop.shopName}</h4>
+              <p className="m-0 shops-descrip">{shop.shopComments}</p>
               <button
-                className="flex w-20 justify-center rounded-md px-3 py-1 text-sm font-semibold leading-6 text-white shadow-sm shops-btn"
+                className="flex justify-center rounded-md px-3 py-1 text-sm font-semibold leading-6 text-white shadow-sm shops-btn"
                 onClick={() => handleEnterShop(shop.shopId, shop.shopName)}
               >
                 Entrar

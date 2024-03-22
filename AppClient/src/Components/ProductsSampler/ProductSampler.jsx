@@ -154,10 +154,6 @@ function ProductSampler({ products, stock, quantityCards, Route }) {
             </div>
             <section className="card-dates">
               <div className="card-item">
-                <p className="subtitle">Precio</p>
-                <p className="value">${product.productPrize}</p>
-              </div>
-              <div className="card-item">
                 <p className="subtitle">Stock</p>
                 <p className="value">{stock[product.productId]}</p>
               </div>
@@ -168,25 +164,30 @@ function ProductSampler({ products, stock, quantityCards, Route }) {
                 </p>
               </div>
             </section>
-            <div className="quantity-controls">
-              <button
-                className="btn-minor shadow-sm"
-                onClick={() => handleDecrement(product.productId)}
-              >
-                <span className="span-btn">
-                  <FaMinus />
-                </span>
-              </button>
-              <span className="span-quan">{selectedProducts[product.productId] || 0}</span>
-              <button
-                className="btn-plus shadow-sm"
-                onClick={() => handleIncrement(product.productId)}
-              >
-                <span className="span-btn">
-                  <FaPlus />
-                </span>
-              </button>
-            </div>
+            <section className="w-full flex items-center justify-between" >
+              <div className="card-item">
+                <p className="value-price">${product.productPrize}</p>
+              </div>
+              <div className="quantity-controls">
+                <button
+                  className="btn-minor shadow-sm"
+                  onClick={() => handleDecrement(product.productId)}
+                >
+                  <span className="span-btn">
+                    <FaMinus />
+                  </span>
+                </button>
+                <span className="span-quan">{selectedProducts[product.productId] || 0}</span>
+                <button
+                  className="btn-plus shadow-sm"
+                  onClick={() => handleIncrement(product.productId)}
+                >
+                  <span className="span-btn">
+                    <FaPlus />
+                  </span>
+                </button>
+              </div>
+            </section>
           </div>
         ))}
       </div>

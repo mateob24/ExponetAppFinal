@@ -2,10 +2,14 @@
   height: 100vh;
 }
 
+.form-contact{
+  border: 1px solid #efefef;
+}
+
 .title-contact{
   font-size: 2.2rem;
   font-weight: 700;
-  border-bottom: 3px solid #b1e7f0;
+  /* border-bottom: 3px solid #b1e7f0; */
 }
 
 .input-contact:focus{
@@ -26,36 +30,16 @@
 @media screen and (max-width: 768px) {
 
   .container-contactus {
-    margin-left: 30%;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
   }
 
   .title-contact {
-    font-size: 39px;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
   }
 
   .form-contact {
-    width: 70vw;
-  }
-
-  .label-contact {
-    font-size: 20px;
-    padding-bottom: 5px;
-  }
-
-  .input-contact {
-    height: 7vh;
-    font-size: 18px;
-  }
-
-  .textarea-contact {
-    font-size: 18px;
-  }
-
-  .button-contact {
-    width: 21vh;
-    height: 6vh;
-    font-size: 23px;
+    width: 60%;
   }
 
 }

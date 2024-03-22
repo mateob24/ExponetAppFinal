@@ -1,8 +1,7 @@
 .product-container-home {
   width: 100%;
-  padding-top: 6rem;
-  /* padding-bottom: 2rem; */
-  gap: 3rem 5rem;
+  padding-top: 5rem;
+  gap: 2rem 6rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -20,16 +19,15 @@
   font-size: 2.2rem;
   font-weight: 700;
   text-align: center;
-  border-bottom: 3px solid #b1e7f0;
+  /* border-bottom: 3px solid #b1e7f0; */
 }
 
 .product-card-home {
-  width: 21rem;
-  height: 26rem;
+  width: 20rem;
+  height: 25rem;
   padding: 1rem;
   border-radius: 8px;
-  border: 1px solid #b2e8f3;
-  background-color: white;
+  border: 1px solid #dcdcdc;  
   position: relative;
   display: flex;
   flex-direction: column;
@@ -53,12 +51,12 @@
   color: #4cbfd5;
   text-align: center;
   text-decoration: none;
-  background-color: white;
+  background-color: #d6f4f7;
   box-shadow: 1px 1px 3px #efefef;
 }
 
 .card-btn-home:hover {
-  background-color: white;
+  background-color: #effcfc;
   box-shadow: 1px 1px 3px #efefef;
 }
 
@@ -76,7 +74,7 @@
   border-radius: 8px;
   max-height: 100%;
   display: block;
-  border: 1px solid #b2e8f3;
+  border: 1px solid #dcdcdc;
   /* object-fit: cover; */
 }
 
